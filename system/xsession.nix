@@ -26,6 +26,7 @@
     feh
     sxhkd
     caffeine-ng
+    pamixer
   ];
 
   location = {
