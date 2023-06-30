@@ -46,6 +46,7 @@
         extraSpecialArgs = {
           inherit inputs;
           inherit theme;
+          factor = 0.75; # 144/192
           hostname = "xps15";
           username = "binh";
         }; # Pass flake inputs to our config
@@ -57,6 +58,7 @@
         extraSpecialArgs = {
           inherit inputs;
           inherit theme;
+          factor = 1; # 144/192
           hostname = "pc";
           username = "binh";
         }; # Pass flake inputs to our config

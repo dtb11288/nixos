@@ -1,4 +1,4 @@
-{ theme, ... }:
+{ theme, factor, ... }:
 {
   programs.alacritty = {
     enable = true;
@@ -9,7 +9,7 @@
           familly = "SauceCodePro Nerd Font";
           style = "Regular";
         };
-        size = 10.0;
+        size = 10.0 * factor;
       };
       colors = with theme.colors; {
         primary = {
