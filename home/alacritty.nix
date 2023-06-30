@@ -6,8 +6,20 @@
       env.TERM = "alacritty";
       font = {
         normal = {
-          familly = "SauceCodePro Nerd Font";
+          familly = "SauceCodePro Nerd Font Mono,SauceCodePro NFM";
           style = "Regular";
+        };
+        bold = {
+          familly = "SauceCodePro Nerd Font Mono,SauceCodePro NFM";
+          style = "Bold";
+        };
+        italic = {
+          familly = "SauceCodePro Nerd Font Mono,SauceCodePro NFM";
+          style = "Italic";
+        };
+        bold_italic = {
+          familly = "SauceCodePro Nerd Font Mono,SauceCodePro NFM";
+          style = "Bold Italic";
         };
         size = 10.0 * factor;
       };
