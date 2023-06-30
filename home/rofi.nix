@@ -1,7 +1,7 @@
 { pkgs, config, theme, ... }:
 let
   inherit (config.lib.formats.rasi) mkLiteral;
-  font = "Noto Front 20";
+  font = "Noto Front 16";
 in
 {
   programs.rofi = {
@@ -59,7 +59,7 @@ in
       };
 
       entry = {
-        font =  mkLiteral "inherit";
+        font = mkLiteral "inherit";
         placeholder = "Search";
         placeholder-color = mkLiteral "@fg2";
       };
