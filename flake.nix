@@ -8,13 +8,9 @@
     # Home manager
     home-manager.url = "github:nix-community/home-manager/release-23.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    theme = {
-      url = "path:./theme.nix";
-      flake = false;
-    };
   };
 
-  outputs = { nixpkgs, theme, home-manager, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, ... }@inputs: {
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
@@ -45,7 +41,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {
           inherit inputs;
-          theme = (import theme);
+          theme = (import ./theme.nix);
           hostname = "xps15";
           username = "binh";
         }; # Pass flake inputs to our config
@@ -56,7 +52,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {
           inherit inputs;
-          theme = (import theme);
+          theme = (import ./theme.nix);
           hostname = "pc";
           username = "binh";
         }; # Pass flake inputs to our config
