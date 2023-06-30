@@ -5,6 +5,11 @@ in
 {
   services.sxhkd = {
     enable = true;
-    inherit keybindings;
+    keybindings = with pkgs; keybindings // {
+      "super + p" = "rofi -show run";
+      "super + e" = "rofi -show emoji";
+      "super + c" = "rofi -show calc -calc-command 'xdotool type --clearmodifiers \"{expression} = {result}\"'";
+      "super + s" = "${rofi-rbw}/bin/rofi-rbw";
+    };
   };
 }

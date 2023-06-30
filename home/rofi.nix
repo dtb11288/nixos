@@ -10,9 +10,8 @@ in
     plugins = with pkgs; [ rofi-calc rofi-emoji ];
     inherit font;
     extraConfig = {
-      modi = "drun,run,combi";
+      modes = map mkLiteral [ "drun" "run" "calc" "emoji" ];
       show-icons = true;
-      combi-modi = map mkLiteral [ "drun" "run" ];
     };
     theme = with theme.colors; {
       "*" = {
