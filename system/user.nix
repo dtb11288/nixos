@@ -3,7 +3,7 @@
 {
   users.extraUsers.${username} = {
     createHome = true;
-    home = "/home/binh";
+    home = "/home/${username}";
     group = "users";
     extraGroups = [ "wheel" "disk" "networkmanager" "video" "audio" "input" "docker" "vboxusers" "wireshark" "libvirtd" "i2c" ];
     isNormalUser = true;
