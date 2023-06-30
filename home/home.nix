@@ -92,6 +92,7 @@
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
 
+  # Enable xsession service, for some programs
   xsession.enable = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
