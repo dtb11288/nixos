@@ -9,7 +9,7 @@
     home-manager.url = "github:nix-community/home-manager/release-23.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     theme = {
-      url = "path:theme.nix";
+      url = "path:./theme.nix";
       flake = false;
     };
   };

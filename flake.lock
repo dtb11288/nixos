@@ -49,11 +49,11 @@
       "locked": {
         "lastModified": 1,
         "narHash": "sha256-78kyp45ySSy2BK1kH4JlEvVrl5+2FCB+JsArxGrFSRM=",
-        "path": "theme.nix",
+        "path": "./theme.nix",
         "type": "path"
       },
       "original": {
-        "path": "theme.nix",
+        "path": "./theme.nix",
         "type": "path"
       }
     }
