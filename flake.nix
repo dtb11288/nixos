@@ -10,7 +10,11 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs: {
+  outputs = { nixpkgs, home-manager, ... }@inputs:
+  let
+    theme = import ./theme.nix;
+  in
+  {
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
@@ -41,7 +45,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {
           inherit inputs;
-          theme = (import ./theme.nix);
+          inherit theme;
           hostname = "xps15";
           username = "binh";
         }; # Pass flake inputs to our config
@@ -52,7 +56,7 @@
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = {
           inherit inputs;
-          theme = (import ./theme.nix);
+          inherit theme;
           hostname = "pc";
           username = "binh";
         }; # Pass flake inputs to our config
