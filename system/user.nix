@@ -5,7 +5,7 @@
     createHome = true;
     home = "/home/${username}";
     group = "users";
-    extraGroups = [ "wheel" "disk" "networkmanager" "video" "audio" "input" "docker" "vboxusers" "wireshark" "libvirtd" "i2c" ];
+    extraGroups = [ "wheel" "disk" "networkmanager" "video" "audio" "input" "docker" "vboxusers" "wireshark" "libvirtd" ];
     isNormalUser = true;
     uid = 1000;
     useDefaultShell = true;

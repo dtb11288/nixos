@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, config, username, ... }:
 {
   imports = [
     ./configuration.nix
@@ -51,4 +51,7 @@
   };
 
   hardware.i2c.enable = true;
+  users.extraUsers.${username} = {
+    extraUsers = [ "i2c" ];
+  };
 }
