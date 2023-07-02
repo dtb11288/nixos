@@ -52,6 +52,6 @@
 
   hardware.i2c.enable = true;
   users.extraUsers.${username} = {
-    extraUsers = [ "i2c" ];
+    extraGroups = [ "i2c" ];
   };
 }
