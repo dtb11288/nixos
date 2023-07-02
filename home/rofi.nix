@@ -83,7 +83,7 @@ in
       };
 
       element = {
-        padding = mkLiteral "6px 12px";
+        padding = mkLiteral "6px 14px";
         spacing = mkLiteral "16px";
         background-color = mkLiteral "transparent";
       };
