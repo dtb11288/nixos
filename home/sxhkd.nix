@@ -6,10 +6,10 @@ in
   services.sxhkd = {
     enable = true;
     keybindings = with pkgs; keybindings // {
-      "super + p" = "rofi -show run";
-      "super + e" = "rofi -show emoji";
-      "super + c" = "rofi -show calc -calc-command 'xdotool type --clearmodifiers \"{expression} = {result}\"'";
-      "super + s" = "${rofi-rbw}/bin/rofi-rbw";
+      "mod4 + p" = "rofi -show run";
+      "mod4 + e" = "rofi -show emoji";
+      "mod4 + c" = "rofi -show calc -calc-command '${pkgs.xdotool}/bin/xdotool type --clearmodifiers {result}'";
+      "mod4 + s" = "${rofi-rbw}/bin/rofi-rbw";
     };
   };
 }

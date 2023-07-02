@@ -11,7 +11,7 @@ in
     inherit font;
     extraConfig = {
       modes = map mkLiteral [ "drun" "run" "calc" "emoji" ];
-      show-icons = true;
+      show-icons = false;
     };
     theme = with theme.colors; {
       "*" = {
