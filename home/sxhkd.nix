@@ -16,6 +16,8 @@ in
       "mod4 + e" = "rofi -show emoji";
       "mod4 + c" = "rofi -show calc -calc-command '${pkgs.xsel}/bin/xsel -b'";
       "mod4 + s" = "${rofi-rbw}/bin/rofi-rbw";
+      "mod4 + shift + Return" = "${alacritty}/bin/alacritty";
+      "mod4 + Escape" = "slock";
     };
   };
 }
