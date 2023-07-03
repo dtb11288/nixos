@@ -17,6 +17,7 @@
     ./dunst.nix
     ./fzf.nix
     ./sxhkd.nix
+    ./git.nix
   ];
 
   nixpkgs = {
