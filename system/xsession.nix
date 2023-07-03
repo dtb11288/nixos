@@ -51,6 +51,7 @@
   };
 
   services.picom.enable = true;
+  services.tumbler.enable = true;
 
   services.xserver = {
     enable = true;
