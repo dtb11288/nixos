@@ -32,8 +32,17 @@
   };
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    efi = {
+      efiSysMountPoint = "/boot";
+      canTouchEfiVariables = true;
+    };
+    grub = {
+      devices = [ "nodev" ];
+      efiSupport = true;
+      enable = true;
+    };
+  };
   boot.supportedFilesystems = [ "ntfs" ];
 
   # Set your time zone.
