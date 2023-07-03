@@ -85,6 +85,7 @@
     sqlite
     lxtask
     lxappearance
+    cinnamon.nemo
     tree
   ];
 
