@@ -72,6 +72,7 @@
     nomacs
     darktable
     (xfce.thunar.override { thunarPlugins = with pkgs; [ xfce.thunar-volman xfce.thunar-archive-plugin ]; })
+    xarchiver
     postman
     zathura
     mpv
