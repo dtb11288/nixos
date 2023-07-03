@@ -70,6 +70,10 @@
       lightdm = {
         enable = true;
       };
+      ly = {
+        enable = true;
+        defaultUser = "${username}";
+      };
       autoLogin.enable = true;
       autoLogin.user = username;
 

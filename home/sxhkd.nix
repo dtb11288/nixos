@@ -1,6 +1,6 @@
 { pkgs, hostname, ... }:
 let
-  keybindings = import ./sxhkd-${hostname}.nix pkgs;
+  keybindings = import ./sxhkd-${hostname}.nix { inherit pkgs; };
 in
 {
   services.sxhkd = {
