@@ -72,9 +72,4 @@ in
   programs.light.enable = true;
 
   console.font = "sun12x22";
-
-  environment.variables = {
-    QT_AUTO_SCREEN_SCALE_FACTOR = "0";
-    QT_SCALE_FACTOR = "1.5";
-  };
 }

@@ -1,7 +1,8 @@
 # This is your home-manager configuration file
 # Use this to configure your home environment (it replaces ~/.config/nixpkgs/home.nix)
 
-{ username, pkgs, ... }: {
+{ username, pkgs, ... }:
+{
   # You can import other home-manager modules here
   imports = [
     # If you want to use home-manager modules from other flakes (such as nix-colors):
@@ -18,6 +19,7 @@
     ./fzf.nix
     ./sxhkd.nix
     ./git.nix
+    ./telegram.nix
   ];
 
   nixpkgs = {
@@ -65,6 +67,7 @@
     spotify-player
     openssl
     libreoffice
+    onlyoffice-bin
     flameshot
     zip
     unzip
@@ -78,7 +81,6 @@
     mpv
     gimp
     kodi
-    telegram-desktop
     lazydocker
     nil
     mariadb-client
