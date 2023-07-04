@@ -89,6 +89,7 @@
     lxappearance
     tree
     discord
+    leafpad
   ];
 
   # Enable home-manager and git
