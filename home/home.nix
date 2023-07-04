@@ -86,6 +86,7 @@
     lxtask
     lxappearance
     tree
+    discord
   ];
 
   # Enable home-manager and git
