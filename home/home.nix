@@ -20,6 +20,7 @@
     ./sxhkd.nix
     ./git.nix
     ./telegram.nix
+    ./lf.nix
   ];
 
   nixpkgs = {

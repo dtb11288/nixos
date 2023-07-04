@@ -67,6 +67,7 @@
     fzf
     lazygit
     direnv
+    lf
   ];
 
   security.rtkit.enable = true;
