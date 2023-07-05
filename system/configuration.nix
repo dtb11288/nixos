@@ -1,4 +1,4 @@
-{inputs, lib, config, pkgs, hostname, ... }: {
+{ inputs, lib, config, pkgs, hostname, ... }: {
   imports = [
     ./user.nix
     ./font.nix
