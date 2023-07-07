@@ -15,8 +15,6 @@
     glib
     pavucontrol
     blueman
-    networkmanagerapplet
-    networkmanager-openvpn
     xdg_utils
     slock
     volumeicon
@@ -28,6 +26,12 @@
     caffeine-ng
     pamixer
   ];
+
+  networking.networkmanager = {
+    enable = true;
+    plugins = with pkgs; [ networkmanager-openvpn ];
+  };
+  programs.nm-applet.enable = true;
 
   location = {
     provider = "manual"; #"geoclue2";
@@ -53,6 +57,13 @@
   services.picom.enable = true;
   services.tumbler.enable = true;
 
+  programs.xss-lock = {
+    enable = true;
+    lockerCommand = "${pkgs.slock}/bin/slock";
+  };
+
+  services.blueman.enable = true;
+
   services.xserver = {
     enable = true;
     layout = "us";
@@ -63,6 +74,12 @@
 
     windowManager.leftwm = {
       enable = true;
+    };
+
+    xautolock = {
+      enable = true;
+      locker = "${pkgs.slock}/bin/slock";
+      extraOptions = [ "-detectsleep" ];
     };
 
     displayManager = {
@@ -76,12 +93,8 @@
       sessionCommands = with pkgs; ''
         ${xorg.xset}/bin/xset r rate 200 25
         ${xorg.xset}/bin/xset dpms 300
-        ${xss-lock}/bin/xss-lock -- "slock" &
-        ${xautolock}/bin/xautolock -detectsleep -locker "slock" &
-        ${networkmanagerapplet}/bin/nm-applet &
         ${volumeicon}/bin/volumeicon &
         ${parcellite}/bin/parcellite &
-        ${blueman}/bin/blueman-applet &
         ${caffeine-ng}/bin/caffeine &
         ${flatpak}/bin/flatpak run com.synology.SynologyDrive &
       '';
