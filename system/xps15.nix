@@ -62,6 +62,7 @@ in
   };
 
   environment.systemPackages = with pkgs; [
+    xss-lock
     nvidia-offload
     cbatticon
     libinput-gestures

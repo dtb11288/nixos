@@ -85,19 +85,9 @@
   };
   services.printing.enable = true;
   services.ntp.enable = true;
-  virtualisation.docker = {
-    enable = true;
-  };
+  virtualisation.docker.enable = true;
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
-  services.flatpak.enable = true;
-  xdg.portal = {
-    enable = true;
-    extraPortals = with pkgs; [
-      xdg-desktop-portal
-      xdg-desktop-portal-gtk
-    ];
-  };
 
   networking = {
     hostName = "${hostname}";
@@ -105,8 +95,10 @@
     extraHosts = ''
       127.0.0.1  biits.lambda
     '';
+    wireless.iwd.enable = true;
     networkmanager = {
       enable = true;
+      wifi.backend = "iwd";
       insertNameservers = [ "8.8.8.8" "8.8.4.4" ];
       plugins = with pkgs; [ networkmanager-openvpn ];
     };

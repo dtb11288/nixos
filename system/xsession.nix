@@ -7,7 +7,6 @@
     pinentry-gtk2
     polybar
     alacritty
-    xss-lock
     xautolock
     xsel
     dunst
@@ -27,13 +26,6 @@
     pamixer
   ];
 
-  networking.wireless.iwd.enable = true;
-
-  networking.networkmanager = {
-    enable = true;
-    wifi.backend = "iwd";
-    plugins = with pkgs; [ networkmanager-openvpn ];
-  };
   programs.nm-applet.enable = true;
 
   location = {
@@ -60,6 +52,15 @@
   services.picom.enable = true;
   services.tumbler.enable = true;
   services.blueman.enable = true;
+
+  services.flatpak.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal
+      xdg-desktop-portal-gtk
+    ];
+  };
 
   services.xserver = {
     enable = true;
