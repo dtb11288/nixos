@@ -7,7 +7,6 @@
     pinentry-gtk2
     polybar
     alacritty
-    xautolock
     xsel
     dunst
     libnotify
@@ -76,7 +75,7 @@
 
     xautolock = {
       enable = true;
-      locker = "${pkgs.slock}/bin/slock";
+      locker = "/run/wrappers/bin/slock";
       time = 5;
       extraOptions = [ "-detectsleep" ];
     };

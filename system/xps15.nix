@@ -62,7 +62,6 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    xss-lock
     nvidia-offload
     cbatticon
     libinput-gestures
@@ -71,7 +70,7 @@ in
   # This will detech systemd event like when you close the lid
   programs.xss-lock = {
     enable = true;
-    lockerCommand = "${pkgs.slock}/bin/slock";
+    lockerCommand = "/run/wrappers/bin/slock";
   };
 
   services.xserver.dpi = 192;
