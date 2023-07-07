@@ -27,8 +27,11 @@
     pamixer
   ];
 
+  networking.wireless.iwd.enable = true;
+
   networking.networkmanager = {
     enable = true;
+    wifi.backend = "iwd";
     plugins = with pkgs; [ networkmanager-openvpn ];
   };
   programs.nm-applet.enable = true;
