@@ -59,12 +59,6 @@
 
   services.picom.enable = true;
   services.tumbler.enable = true;
-
-  programs.xss-lock = {
-    enable = true;
-    lockerCommand = "${pkgs.slock}/bin/slock";
-  };
-
   services.blueman.enable = true;
 
   services.xserver = {
@@ -82,6 +76,7 @@
     xautolock = {
       enable = true;
       locker = "${pkgs.slock}/bin/slock";
+      time = 5;
       extraOptions = [ "-detectsleep" ];
     };
 

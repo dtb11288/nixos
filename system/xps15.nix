@@ -67,6 +67,12 @@ in
     libinput-gestures
   ];
 
+  # This will detech systemd event like when you close the lid
+  programs.xss-lock = {
+    enable = true;
+    lockerCommand = "${pkgs.slock}/bin/slock";
+  };
+
   services.xserver.dpi = 192;
 
   programs.light.enable = true;
