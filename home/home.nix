@@ -82,7 +82,6 @@
     zathura
     mpv
     gimp
-    kodi
     lazydocker
     nil
     mariadb-client
@@ -92,6 +91,7 @@
     tree
     discord
     leafpad
+    (kodi.withPackages (kodiPkgs: []))
   ];
 
   # Enable home-manager and git
