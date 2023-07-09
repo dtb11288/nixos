@@ -77,7 +77,7 @@
       enable = true;
       locker = "/run/wrappers/bin/slock";
       time = 5;
-      extraOptions = [ "-detectsleep" ];
+      extraOptions = [ "-detectsleep" "-corners '0-00'" ];
     };
 
     displayManager = {
