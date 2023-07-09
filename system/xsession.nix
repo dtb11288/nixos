@@ -94,7 +94,6 @@
         ${volumeicon}/bin/volumeicon &
         ${parcellite}/bin/parcellite &
         ${caffeine-ng}/bin/caffeine &
-        ${flatpak}/bin/flatpak run com.synology.SynologyDrive &
       '';
     };
   };

@@ -60,6 +60,7 @@
     firefox
     google-chrome
     thunderbird
+    birdtray
     lm_sensors
     pciutils
     slack
@@ -100,7 +101,13 @@
   systemd.user.startServices = "sd-switch";
 
   # Enable xsession service, for some programs
-  xsession.enable = true;
+  xsession = {
+    enable = true;
+    initExtra = with pkgs; ''
+      ${birdtray}/bin/birdtray &
+      ${flatpak}/bin/flatpak run com.synology.SynologyDrive &
+    '';
+  };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "23.05";
