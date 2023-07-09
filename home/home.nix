@@ -91,7 +91,6 @@
     tree
     discord
     leafpad
-    (kodi.withPackages (kodiPkgs: []))
   ];
 
   # Enable home-manager and git
