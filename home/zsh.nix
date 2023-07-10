@@ -21,7 +21,6 @@
     };
     initExtra = ''
       prompt_nix_shell_setup
-      eval "$(${pkgs.direnv}/bin/direnv hook zsh)"
     '';
   };
 }
