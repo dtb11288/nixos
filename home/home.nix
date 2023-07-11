@@ -22,6 +22,7 @@
     ./telegram.nix
     ./lf.nix
     ./flameshot.nix
+    ./helix.nix
   ];
 
   nixpkgs = {
