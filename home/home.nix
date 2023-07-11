@@ -84,7 +84,6 @@
     mpv
     gimp
     lazydocker
-    nil
     mariadb-client
     sqlite
     lxtask
