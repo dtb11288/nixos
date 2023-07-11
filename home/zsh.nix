@@ -2,9 +2,11 @@
 {
   programs.zsh = {
     enable = true;
-    shellAliases = {
-      vi = "${pkgs.neovim}/bin/nvim";
-      vim = "${pkgs.neovim}/bin/nvim";
+    shellAliases = with pkgs; {
+      vi = "${neovim}/bin/nvim";
+      vim = "${neovim}/bin/nvim";
+      ls = "${exa}/bin/exa";
+      find = "${fd}/bin/fd";
     };
     zplug = {
       enable = true;
