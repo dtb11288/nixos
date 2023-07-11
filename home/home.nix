@@ -54,7 +54,6 @@
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
-    rustup
     silver-searcher
     ripgrep
     firefox
@@ -64,11 +63,10 @@
     lm_sensors
     pciutils
     slack
-    dbeaver
+    dbeaver mariadb-client sqlite
     lshw
     gimp
     spotify-player
-    openssl
     libreoffice
     onlyoffice-bin
     flameshot
@@ -84,8 +82,6 @@
     mpv
     gimp
     lazydocker
-    mariadb-client
-    sqlite
     lxtask
     lxappearance
     tree

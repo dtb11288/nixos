@@ -12,7 +12,7 @@
     in {
       devShells.default = pkgs.mkShell {
         buildInputs = with pkgs; [
-          nil
+          nixd
           lua-language-server
         ];
       };
