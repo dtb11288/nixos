@@ -1,0 +1,17 @@
+# new Promise
+snippet pr "new Promise"
+	new Promise((${1:resolve}, ${2:reject}) => {
+		${3:resolve()}
+	})
+
+# log promise
+snippet lpr "log Promise"
+	.then(require('ramda').tap(data => { console.log(JSON.stringify(${1:data}, undefined, 2)) }))
+
+# log pipe
+snippet lpi "log Pipe"
+	require('ramda').tap(data => { console.log(JSON.stringify(${1:data}, undefined, 2)) }),
+
+# normal log
+snippet log "log"
+	console.log(JSON.stringify(${1:data}, undefined, 2))

@@ -23,6 +23,7 @@
     ./lf.nix
     ./flameshot.nix
     ./helix.nix
+    ./vim
   ];
 
   nixpkgs = {

@@ -1,4 +1,4 @@
 { pkgs ? import <nixpkgs> {} }:
 pkgs.mkShell {
-  buildInputs = with pkgs; [ nil ];
+  buildInputs = with pkgs; [ nil lua-language-server ];
 }
