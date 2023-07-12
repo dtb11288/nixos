@@ -1,6 +1,6 @@
 { ... }:
 {
-  xdg.configFile."nvim" = {
+  xdg.configFile."leftwm" = {
     source = ./config;
     recursive = true;
   };

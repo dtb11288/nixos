@@ -24,6 +24,7 @@
     ./flameshot.nix
     ./helix.nix
     ./vim
+    ./leftwm
   ];
 
   nixpkgs = {
