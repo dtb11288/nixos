@@ -17,7 +17,6 @@ in
       ignorecase = true;
       icons = true;
       shell = "zsh";
-      color256 = true;
       drawbox = true;
     };
     keybindings = {
