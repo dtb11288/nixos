@@ -66,7 +66,6 @@
     lm_sensors
     pciutils
     slack
-    dbeaver mariadb-client sqlite
     lshw
     gimp
     spotify-player
@@ -90,6 +89,8 @@
     tree
     discord
     leafpad
+    mariadb-client
+    sqlite
   ];
 
   # Enable home-manager and git

@@ -1,4 +1,4 @@
-{ pkgs, lib, theme, ... }: {
+{ pkgs, lib, theme, factor, ... }: {
 
   home.pointerCursor = {
     x11.enable = true;
@@ -55,6 +55,14 @@
     *color13: ${color13}
     *color14: ${color14}
     *color15: ${color15}
+
+    Xft.dpi: ${toString (144 / factor)}
+    Xft.autohint: 0
+    Xft.lcdfilter: lcddefault
+    Xft.hintstyle: hintfull
+    Xft.hinting: 1
+    Xft.antialias: 1
+    Xft.rgba: rgb
   '';
 
   home.sessionVariables.GTK_THEME = "Adwaita-dark";
