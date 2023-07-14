@@ -21,7 +21,7 @@
           familly = "SauceCodePro Nerd Font Mono,SauceCodePro NFM";
           style = "Bold Italic";
         };
-        size = 12.0 * factor;
+        size = 11.0 * factor;
       };
       colors = with theme.colors; {
         primary = {
