@@ -67,9 +67,9 @@
     pciutils
     slack
     lshw
+    btop
     gimp
     spotify-player
-    libreoffice
     onlyoffice-bin
     flameshot
     zip

@@ -21,7 +21,6 @@
     playerctl
     feh
     sxhkd
-    caffeine-ng
     pamixer
   ];
 
@@ -93,7 +92,6 @@
         ${xorg.xset}/bin/xset dpms 300
         ${volumeicon}/bin/volumeicon &
         ${parcellite}/bin/parcellite &
-        ${caffeine-ng}/bin/caffeine &
       '';
     };
   };
