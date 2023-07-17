@@ -22,6 +22,7 @@
     feh
     sxhkd
     pamixer
+    solaar
   ];
 
   programs.nm-applet.enable = true;
@@ -92,6 +93,7 @@
         ${xorg.xset}/bin/xset dpms 300
         ${volumeicon}/bin/volumeicon &
         ${parcellite}/bin/parcellite &
+        ${solaar}/bin/solaar -w hide &
       '';
     };
   };

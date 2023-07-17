@@ -1,25 +1,31 @@
 {% for tag in workspace.tags %}
 {% if tag.mine %}
 %{A1:$SCRIPTPATH/change_to_tag {{workspace.index}} {{tag.index}}:}
-%{F#000000}%{B#FFB52A}  {{tag.name}}  %{B-}%{F-}
+%{F#292929}%{B#FAD07A}  {{tag.name}}  %{B-}%{F-}
 %{A}
 {% elsif tag.urgent %}
 %{A1:$SCRIPTPATH/change_to_tag {{workspace.index}} {{tag.index}}:}
-%{B#FF0000}%{F#000000}  {{tag.name}}  %{F-}%{B-}
+%{B#CF6A4C}%{F#292929}  {{tag.name}}  %{F-}%{B-}
 %{A}
 {% elsif tag.visible  %}
 %{A1:$SCRIPTPATH/change_to_tag {{workspace.index}} {{tag.index}}:}
-%{F#000000}%{B#FFFFFF}  {{tag.name}}  %{B-}%{F-}
+%{F#292929}%{B#E8E8D3}  {{tag.name}}  %{B-}%{F-}
 %{A}
 {% elsif tag.busy %}
 %{A1:$SCRIPTPATH/change_to_tag {{workspace.index}} {{tag.index}}:}
-%{F#FFB52A}  {{tag.name}}  %{F-}
+%{F#FAD07A}  {{tag.name}}  %{F-}
 %{A}
 {% else %}
 %{A1:$SCRIPTPATH/change_to_tag {{workspace.index}} {{tag.index}}:}
-%{F#FFFFFF}  {{tag.name}}  %{F-}
+%{F#E8E8D3}  {{tag.name}}  %{F-}
 %{A}
 {% endif %}
 {% endfor %}
-%{c}
-{{ window_title }}
+{% if workspace.layout == "MainAndVertStack" %}
+%{F#292929}%{B#888888} Vert %{B-}%{F-}
+{% elsif workspace.layout == "MainAndHorizontalStack" %}
+%{F#292929}%{B#888888} Hori %{B-}%{F-}
+{% elsif workspace.layout == "Monocle" %}
+%{F#292929}%{B#888888} Full %{B-}%{F-}
+{% endif %}
+ %{F#99AD6A} {{ window_title }}

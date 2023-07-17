@@ -101,7 +101,11 @@ return require('packer').startup({
     -- Theme
     use 'nvim-lualine/lualine.nvim'
     use 'nvim-tree/nvim-web-devicons'
-    use 'mcchrish/zenbones.nvim'
+    use {
+      "jesseleite/nvim-noirbuddy",
+      requires = { "tjdevries/colorbuddy.nvim", branch = "dev" }
+    }
+    use 'aditya-azad/candle-grey'
     use 'shaunsingh/nord.nvim'
     use 'norcalli/nvim-colorizer.lua'
 
