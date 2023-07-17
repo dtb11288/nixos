@@ -41,8 +41,8 @@ vim.api.nvim_create_autocmd({ "QuitPre" }, {
     vim.cmd('NvimTreeClose')
   end,
 })
-vim.keymap.set('n', '<F2>', function () require('nvim-tree.api').tree.toggle({ focus = true }) end)
-vim.keymap.set('n', '<leader><F2>', function () require('nvim-tree.api').tree.toggle({ find_file = true, focus = true }) end)
+vim.keymap.set('n', '<leader>to', function () require('nvim-tree.api').tree.toggle({ focus = true }) end, { noremap = true, silent = true, desc = 'Open file manager' })
+vim.keymap.set('n', '<leader>tf', function () require('nvim-tree.api').tree.toggle({ find_file = true, focus = true }) end, { noremap = true, silent = true, desc = 'Find current buffer path' })
 
 -- Autocomplete cmp
 require('./configs/autocomplete')
