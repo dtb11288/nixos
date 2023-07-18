@@ -19,7 +19,6 @@
     ./fzf.nix
     ./sxhkd.nix
     ./git.nix
-    ./telegram.nix
     ./lf.nix
     ./flameshot.nix
     ./helix.nix
@@ -57,6 +56,7 @@
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
+    telegram-desktop
     silver-searcher
     ripgrep
     firefox
