@@ -1,11 +1,21 @@
 vim.opt.background = 'dark'
 vim.opt.showmode = false
 require('noirbuddy').setup {
-  preset = 'slate',
   colors = {
     background = '#151515',
-    primary = '#e8e8d3',
-    secondary = '#888888',
+    primary = '#888888',
+    secondary = '#e8e8d3',
+
+    noir_0 = '#ffffff',
+    noir_1 = '#f5f5f5',
+    noir_2 = '#d5d5d5',
+    noir_3 = '#b4b4b4',
+    noir_4 = '#a7a7a7',
+    noir_5 = '#949494',
+    noir_6 = '#737373',
+    noir_7 = '#535353',
+    noir_8 = '#323232',
+    noir_9 = '#212121',
 
     diagnostic_error = '#cf6a4c',
     diagnostic_warning = '#fad07a',
