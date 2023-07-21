@@ -1,4 +1,4 @@
-{ pkgs, lib, theme, factor, ... }: {
+{ pkgs, lib, theme, dpi, ... }: {
 
   home.pointerCursor = {
     x11.enable = true;
@@ -56,7 +56,7 @@
     *color14: ${color14}
     *color15: ${color15}
 
-    Xft.dpi: ${toString (144 / factor)}
+    Xft.dpi: ${toString dpi}
     Xft.autohint: 0
     Xft.lcdfilter: lcddefault
     Xft.hintstyle: hintfull

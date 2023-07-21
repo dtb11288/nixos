@@ -1,4 +1,4 @@
-{ theme, config, pkgs, ... }:
+{ theme, config, dpi, pkgs, ... }:
 let
 change_to_tag = pkgs.writeShellScriptBin "change_to_tag" ''
   ${pkgs.leftwm}/bin/leftwm-command "SendWorkspaceToTag $1 $2"
@@ -94,8 +94,8 @@ in
     monitor = ''${env:monitor}
     ;offset-y = ''${env:y}
     ;width = 100%
-    height = 38
-    dpi=192
+    height = 52
+    dpi=${toString dpi}
     fixed-center = false
     background = ''${colors.background}
     foreground = ''${colors.foreground}
@@ -107,15 +107,15 @@ in
     padding-right = 0
     module-margin-left = 1
     module-margin-right = 2
-    font-0 = misc fixed:pixelsize=10;1
-    font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-    font-2 = wuncon siji:pixelsize=10;1
+    font-0 = misc fixed:pixelsize=12;1
+    font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
+    font-2 = wuncon siji:pixelsize=12;1
     modules-center =
     modules-right = filesystem xbacklight pulseaudio memory cpu wlan battery temperature date powermenu
     tray-position = right
     tray-padding = 2
     tray-scale = 1.0
-    tray-maxsize = 32
+    tray-maxsize = 40
     cursor-click = pointer
     cursor-scroll = ns-resize
 

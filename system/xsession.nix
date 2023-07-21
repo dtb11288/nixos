@@ -1,8 +1,8 @@
-{ pkgs, username, ... }:
+{ pkgs, username, dpi, ... }:
 
 {
   environment.systemPackages = with pkgs; [
-    rofi
+    (rofi.override { plugins = [ rofi-calc rofi-emoji ]; })
     rofi-rbw
     pinentry-gtk2
     polybar
@@ -73,6 +73,7 @@
   services.xserver = {
     enable = true;
     layout = "us";
+    inherit dpi;
 
     excludePackages = with pkgs; [
       xterm

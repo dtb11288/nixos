@@ -21,6 +21,7 @@
       xps15 = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs;
+          dpi = 192;
           hostname = "xps15";
           username = "binh";
         }; # Pass flake inputs to our config
@@ -30,6 +31,7 @@
       pc = nixpkgs.lib.nixosSystem {
         specialArgs = {
           inherit inputs;
+          dpi = 144;
           hostname = "pc";
           username = "binh";
         }; # Pass flake inputs to our config
@@ -46,7 +48,7 @@
         extraSpecialArgs = {
           inherit inputs;
           inherit theme;
-          factor = 0.75; # 144/192
+          dpi = 192;
           hostname = "xps15";
           username = "binh";
         }; # Pass flake inputs to our config
@@ -58,7 +60,7 @@
         extraSpecialArgs = {
           inherit inputs;
           inherit theme;
-          factor = 1; # 144/192
+          dpi = 144;
           hostname = "pc";
           username = "binh";
         }; # Pass flake inputs to our config

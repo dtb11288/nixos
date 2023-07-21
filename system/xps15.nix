@@ -73,8 +73,6 @@ in
     lockerCommand = "/run/wrappers/bin/slock";
   };
 
-  services.xserver.dpi = 192;
-
   programs.light.enable = true;
 
   console.font = "sun12x22";

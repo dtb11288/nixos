@@ -43,8 +43,6 @@
     ddcutil
   ];
 
-  services.xserver.dpi = 144;
-
   hardware.i2c.enable = true;
   users.extraUsers.${username} = {
     extraGroups = [ "i2c" ];
