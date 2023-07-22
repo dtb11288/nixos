@@ -94,7 +94,7 @@ in
     monitor = ''${env:monitor}
     ;offset-y = ''${env:y}
     ;width = 100%
-    height = 52
+    height = 48
     dpi=${toString dpi}
     fixed-center = false
     background = ''${colors.background}
@@ -107,15 +107,13 @@ in
     padding-right = 0
     module-margin-left = 1
     module-margin-right = 2
-    font-0 = misc fixed:pixelsize=12;1
-    font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
-    font-2 = wuncon siji:pixelsize=12;1
+    font-0 = Noto Sans:size=13;1
     modules-center =
     modules-right = filesystem xbacklight pulseaudio memory cpu wlan battery temperature date powermenu
     tray-position = right
     tray-padding = 2
     tray-scale = 1.0
-    tray-maxsize = 40
+    tray-maxsize = 36
     cursor-click = pointer
     cursor-scroll = ns-resize
 
