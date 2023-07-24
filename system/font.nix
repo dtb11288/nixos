@@ -8,7 +8,7 @@
   };
 
   fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+    (nerdfonts.override { fonts = [ "SourceCodePro" "Noto" ]; })
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji

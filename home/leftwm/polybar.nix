@@ -90,7 +90,7 @@ in
 
     [bar/barbase]
     width = ''${env:width}
-    offset-x = ''${env:offsetx}
+    offset-x = ''${env:offset}
     monitor = ''${env:monitor}
     ;offset-y = ''${env:y}
     ;width = 100%
@@ -108,6 +108,7 @@ in
     module-margin-left = 1
     module-margin-right = 2
     font-0 = Noto Sans:size=13;1
+    ;font-1 = NotoSans Nerd Font:style=Regular:size=9;1
     modules-center =
     modules-right = filesystem xbacklight pulseaudio memory cpu wlan battery temperature date powermenu
     tray-position = right
