@@ -57,6 +57,9 @@
     fadeDelta = 5;
     shadow = true;
     shadowOpacity = 0.75;
+    settings = {
+      focus-exclude = "x = 0 && y = 0 && override_redirect = true";
+    };
   };
   services.tumbler.enable = true;
   services.blueman.enable = true;
