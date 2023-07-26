@@ -70,6 +70,7 @@
     fzf
     lazygit
     direnv
+    lazydocker
     lf
     lshw
     lm_sensors

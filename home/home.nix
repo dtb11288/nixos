@@ -75,14 +75,11 @@
     zathura
     mpv
     gimp
-    lazydocker
     lxtask
     lxappearance
     tree
     discord
     leafpad
-    mariadb-client
-    sqlite
   ];
 
   # Wallpaper
