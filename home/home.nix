@@ -85,6 +85,9 @@
     sqlite
   ];
 
+  # Wallpaper
+  home.file.".background-image".source = ./wallpaper;
+
   # Enable home-manager and git
   programs.home-manager.enable = true;
 
