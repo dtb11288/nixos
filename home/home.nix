@@ -58,24 +58,15 @@
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
     telegram-desktop
-    silver-searcher
-    ripgrep
     firefox
     google-chrome
     thunderbird
     birdtray
-    lm_sensors
-    pciutils
     slack
-    lshw
-    btop
     gimp
     spotify-player
     onlyoffice-bin
     flameshot
-    zip
-    unzip
-    unrar
     nomacs
     darktable
     (xfce.thunar.override { thunarPlugins = with pkgs; [ xfce.thunar-volman xfce.thunar-archive-plugin ]; })

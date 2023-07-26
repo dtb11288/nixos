@@ -56,10 +56,13 @@
     bind
     git
     neovim
+    silver-searcher
+    ripgrep
     file
     coreutils
     zellij
     htop
+    btop
     wget
     curl
     git
@@ -68,6 +71,12 @@
     lazygit
     direnv
     lf
+    lshw
+    lm_sensors
+    pciutils
+    zip
+    unzip
+    unrar
   ];
 
   security.rtkit.enable = true;
