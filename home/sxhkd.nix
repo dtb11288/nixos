@@ -17,6 +17,7 @@ in
       "mod4 + e" = "${rofi-wrapped}/bin/rofi -show emoji";
       "mod4 + c" = "${rofi-wrapped}/bin/rofi -show calc -no-show-match -no-sort -calc-command \"echo -n '\\\{result\\\}' | xsel -b\"";
       "mod4 + s" = "${rofi-rbw}/bin/rofi-rbw";
+      "mod4 + v" = "${rofi-vpn}/bin/rofi-vpn";
       "mod4 + shift + Return" = "${alacritty}/bin/alacritty";
       "mod4 + Escape" = "slock";
     };

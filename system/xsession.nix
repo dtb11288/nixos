@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
     (rofi.override { plugins = [ rofi-calc rofi-emoji ]; })
     rofi-rbw
+    rofi-vpn
     pinentry-gtk2
     polybar
     alacritty

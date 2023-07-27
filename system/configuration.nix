@@ -23,6 +23,8 @@
     # Making legacy nix commands consistent as well, awesome!
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
+    package = pkgs.nixFlakes;
+
     settings = {
       # Enable flakes and new 'nix' command
       experimental-features = "nix-command flakes";
