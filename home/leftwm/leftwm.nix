@@ -43,6 +43,7 @@ in
     stringify = s: "\"${toString s}\"";
     stringifyArray = ar: "[${builtins.concatStringsSep "," (map (a: stringify a) ar)}]";
     command = c: v: m: k: "(command: ${c}, value: ${stringify v}, modifier: ${stringifyArray m}, key: ${stringify k})";
+    handlTags = c: m: builtins.concatStringsSep ",\n      " (map (t: "${command c t m t}") tags);
   in
   ''
     #![enable(implicit_some)]
@@ -82,8 +83,8 @@ in
           ${command "PreviousLayout" "" ["modkey" "Control"] "j"},
           ${command "FocusWorkspaceNext" "" ["modkey"] "l"},
           ${command "FocusWorkspacePrevious" "" ["modkey"] "h"},
-          ${ builtins.concatStringsSep ",\n      " (map (t: "${command "GotoTag" t ["modkey"] t}") tags) },
-          ${ builtins.concatStringsSep ",\n      " (map (t: "${command "MoveToTag" t ["modkey" "Shift"] t}") tags) },
+          ${handlTags "GotoTag" ["modkey"]},
+          ${handlTags "MoveToTag" ["modkey" "Shift"]},
         ],
         state_path: None,
     )
