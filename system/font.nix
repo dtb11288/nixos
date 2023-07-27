@@ -7,7 +7,7 @@
     defaultLocale = "en_US.UTF-8";
   };
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "SourceCodePro" "Noto" ]; })
     noto-fonts
     noto-fonts-cjk
@@ -28,7 +28,7 @@
     };
     aggregatedFonts = pkgs.buildEnv {
       name = "system-fonts";
-      paths = config.fonts.fonts;
+      paths = config.fonts.packages;
       pathsToLink = [ "/share/fonts" ];
     };
   in {

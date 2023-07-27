@@ -1,5 +1,5 @@
-{ pkgs, lib, theme, dpi, ... }: {
-
+{ pkgs, lib, theme, dpi, ... }:
+{
   home.pointerCursor = {
     x11.enable = true;
     name = "Adwaita";
