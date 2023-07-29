@@ -5,15 +5,6 @@
     ./xsession.nix
   ];
 
-  nixpkgs = {
-    # You can add overlays here
-    overlays = [ ];
-    # Configure your nixpkgs instance
-    config = {
-      allowUnfree = true;
-    };
-  };
-
   nix = {
     # This will add each flake input as a registry
     # To make nix3 commands consistent with your flake

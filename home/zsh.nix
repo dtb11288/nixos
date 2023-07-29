@@ -22,7 +22,6 @@
       theme = "gentoo";
     };
     initExtra = ''
-      prompt_nix_shell_setup
       export PATH=$PATH:$HOME/opt/bin:/var/lib/flatpak/exports/bin
       export KEYTIMEOUT=1;
     '';

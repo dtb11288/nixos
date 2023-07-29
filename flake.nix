@@ -13,30 +13,62 @@
   outputs = { nixpkgs, home-manager, ... }@inputs:
   let
     theme = import ./theme.nix;
+    makeArgs = username: hostname: dpi: {
+      # Pass flake inputs to our config
+      inherit inputs theme dpi hostname username;
+    };
+    nixpkgsConfig = { ... }: {
+      nixpkgs = {
+        overlays = [ ];
+        # Configure your nixpkgs instance
+        config = {
+          # Disable if you don't want unfree packages
+          allowUnfree = true;
+          # Workaround for https://github.com/nix-community/home-manager/issues/2942
+          allowUnfreePredicate = (_: true);
+        };
+      };
+    };
   in
   {
     # NixOS configuration entrypoint
     # Available through 'nixos-rebuild --flake .#your-hostname'
     nixosConfigurations = {
-      xps15 = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs;
-          dpi = 192;
-          hostname = "xps15";
-          username = "binh";
-        }; # Pass flake inputs to our config
+      xps15 = let
+        args = makeArgs "binh" "xps15" 192;
+      in
+      nixpkgs.lib.nixosSystem {
+        specialArgs = args;
         # > Our main nixos configuration file <
-        modules = [ ./system/xps15.nix ];
+        modules = [
+          nixpkgsConfig
+          ./system/xps15.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.binh = import ./home/home.nix;
+            home-manager.extraSpecialArgs = args;
+          }
+        ];
       };
-      pc = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs;
-          dpi = 144;
-          hostname = "pc";
-          username = "binh";
-        }; # Pass flake inputs to our config
+      pc = let
+        args = makeArgs "binh" "pc" 144;
+      in
+      nixpkgs.lib.nixosSystem {
+        specialArgs = args;
         # > Our main nixos configuration file <
-        modules = [ ./system/pc.nix ];
+        modules = [
+          nixpkgsConfig
+          ./system/pc.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.binh = import ./home/home.nix;
+            home-manager.extraSpecialArgs = args;
+          }
+        ];
       };
     };
 
@@ -45,27 +77,15 @@
     homeConfigurations = {
       "binh@xps15" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {
-          inherit inputs;
-          inherit theme;
-          dpi = 192;
-          hostname = "xps15";
-          username = "binh";
-        }; # Pass flake inputs to our config
+        extraSpecialArgs = makeArgs "binh" "xps15" 192;
         # > Our main home-manager configuration file <
-        modules = [ ./home/home.nix ];
+        modules = [ nixpkgsConfig ./home/home.nix ];
       };
       "binh@pc" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = {
-          inherit inputs;
-          inherit theme;
-          dpi = 144;
-          hostname = "pc";
-          username = "binh";
-        }; # Pass flake inputs to our config
+        extraSpecialArgs = makeArgs "binh" "pc" 144;
         # > Our main home-manager configuration file <
-        modules = [ ./home/home.nix ];
+        modules = [ nixpkgsConfig ./home/home.nix ];
       };
     };
   };
