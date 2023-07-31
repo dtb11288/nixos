@@ -16,7 +16,7 @@
     blueman
     xdg_utils
     slock
-    volumeicon
+    pa_applet
     parcellite
     xdotool
     playerctl
@@ -105,7 +105,7 @@
       sessionCommands = with pkgs; ''
         ${xorg.xset}/bin/xset r rate 200 25
         ${xorg.xset}/bin/xset dpms 300
-        ${volumeicon}/bin/volumeicon &
+        ${pa_applet}/bin/pa-applet &
         ${parcellite}/bin/parcellite &
         ${solaar}/bin/solaar -w hide &
       '';

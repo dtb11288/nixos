@@ -110,7 +110,7 @@ in
     font-0 = Noto Sans:size=13;1
     ;font-1 = NotoSans Nerd Font:style=Regular:size=9;1
     modules-center =
-    modules-right = filesystem xbacklight pulseaudio memory cpu wlan battery temperature date powermenu
+    modules-right = filesystem xbacklight memory cpu wlan battery temperature date powermenu
     tray-position = right
     tray-padding = 2
     tray-scale = 1.0
