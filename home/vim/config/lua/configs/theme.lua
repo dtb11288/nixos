@@ -2,9 +2,9 @@ vim.opt.background = 'dark'
 vim.opt.showmode = false
 require('noirbuddy').setup {
   colors = {
-    background = '#151515',
-    primary = '#888888',
-    secondary = '#e8e8d3',
+    background = BACKGROUND,
+    primary = FOREGROUND,
+    secondary = COLOR15,
 
     noir_0 = '#ffffff',
     noir_1 = '#f5f5f5',
@@ -17,13 +17,13 @@ require('noirbuddy').setup {
     noir_8 = '#323232',
     noir_9 = '#212121',
 
-    diagnostic_error = '#cf6a4c',
-    diagnostic_warning = '#fad07a',
-    diagnostic_info = '#99ad6a',
-    diagnostic_hint = '#668799',
-    diff_add = '#99ad6a',
-    diff_change = '#fad07a',
-    diff_delete = '#cf6a4c',
+    diagnostic_error = COLOR1,
+    diagnostic_warning = COLOR3,
+    diagnostic_info = COLOR2,
+    diagnostic_hint = COLOR6,
+    diff_add = COLOR2,
+    diff_change = COLOR3,
+    diff_delete = COLOR1,
   }
 }
 require('lualine').setup({
