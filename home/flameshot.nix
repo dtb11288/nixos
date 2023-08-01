@@ -1,11 +1,11 @@
-{ username, ... }:
+{ config, ... }:
 {
   services.flameshot = {
     enable = true;
     settings = {
       General = {
         showStartupLaunchMessage = false;
-        savePath = "/home/${username}/ScreenShots";
+        savePath = "${config.xdg.configHome}/ScreenShots";
         savePathFixed = true;
       };
     };
