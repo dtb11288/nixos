@@ -5,7 +5,7 @@
     settings = {
       General = {
         showStartupLaunchMessage = false;
-        savePath = "${config.xdg.configHome}/ScreenShots";
+        savePath = "${config.home.homeDirectory}/ScreenShots";
         savePathFixed = true;
       };
     };
