@@ -165,7 +165,10 @@ vim.opt.runtimepath:append(parsers_dir)
 
 -- Sessions
 require('auto-session').setup({
-  auto_session_root_dir = VIM_HOME .. '/sessions/'
+  auto_session_root_dir = VIM_HOME .. '/sessions/',
+  post_cwd_changed_hook = function()
+    require("lualine").refresh()
+  end,
 })
 
 -- Undo
