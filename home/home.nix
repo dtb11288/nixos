@@ -18,7 +18,7 @@
     ./rofi.nix
     ./dunst.nix
     ./fzf.nix
-    ./sxhkd.nix
+    ./sxhkd
     ./git.nix
     ./lf.nix
     ./flameshot.nix
