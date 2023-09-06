@@ -41,7 +41,10 @@
 
   environment.systemPackages = with pkgs; [
     ddcutil
+    openrgb-with-all-plugins
   ];
+
+  services.udev.packages = [ pkgs.openrgb-with-all-plugins ];
 
   hardware.i2c.enable = true;
   users.extraUsers.${username} = {
