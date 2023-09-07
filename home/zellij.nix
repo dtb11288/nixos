@@ -20,7 +20,7 @@
       };
       theme = "default";
       default_mode = "locked";
-      default_layout = "compact"; # default or compact
+      default_layout = "default"; # default or compact
       simplified_ui = true;
       pane_frames = false;
       plugins = {
