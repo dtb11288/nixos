@@ -24,7 +24,7 @@
     };
   };
 
-  # Use the systemd-boot EFI boot loader.
+  # Use the EFI boot loader.
   boot.loader = {
     efi = {
       efiSysMountPoint = "/boot";
@@ -103,6 +103,7 @@
     networkmanager = {
       enable = true;
       wifi.backend = "iwd";
+      wifi.powersave = true;
       insertNameservers = [ "8.8.8.8" "8.8.4.4" ];
       plugins = with pkgs; [ networkmanager-openvpn ];
     };
