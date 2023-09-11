@@ -5,7 +5,7 @@
     shellAliases = with pkgs; {
       vi = "${neovim}/bin/nvim";
       vim = "${neovim}/bin/nvim";
-      ls = "${exa}/bin/exa";
+      ls = "${eza}/bin/eza";
       find = "${fd}/bin/fd";
     };
     zplug = {
