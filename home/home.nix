@@ -47,7 +47,7 @@
     onlyoffice-bin
     flameshot
     nomacs
-    darktable
+    rawtherapee
     (xfce.thunar.override { thunarPlugins = with pkgs; [ xfce.thunar-volman xfce.thunar-archive-plugin ]; })
     xarchiver
     zathura
