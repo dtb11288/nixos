@@ -48,6 +48,8 @@
     flameshot
     nomacs
     rawtherapee
+    hugin
+    blender
     (xfce.thunar.override { thunarPlugins = with pkgs; [ xfce.thunar-volman xfce.thunar-archive-plugin ]; })
     xarchiver
     zathura

@@ -24,6 +24,8 @@
     sxhkd
     pamixer
     solaar
+    wineWowPackages.stable
+    winetricks
   ];
 
   programs.nm-applet.enable = true;
