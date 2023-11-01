@@ -60,7 +60,6 @@
     tree
     discord
     leafpad
-    postman
   ];
 
   # Wallpaper
