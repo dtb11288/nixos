@@ -57,7 +57,6 @@
     gimp
     lxtask
     lxappearance
-    tree
     discord
     leafpad
   ];

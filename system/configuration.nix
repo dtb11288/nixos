@@ -69,6 +69,7 @@
     lshw
     lm_sensors
     pciutils
+    tree
     zip
     unzip
     unrar
