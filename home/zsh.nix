@@ -22,7 +22,6 @@
       theme = "gentoo";
     };
     initExtra = ''
-      export PATH=$PATH:$HOME/opt/bin:/var/lib/flatpak/exports/bin
       export KEYTIMEOUT=1;
     '';
   };
