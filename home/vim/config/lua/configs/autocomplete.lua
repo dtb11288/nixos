@@ -169,6 +169,7 @@ rust_tools.setup()
 rust_tools.inlay_hints.enable()
 vim.keymap.set('n', '<leader>me', require'rust-tools'.expand_macro.expand_macro, { desc = 'Expand macro' })
 
+lspconfig.html.setup {}
 lspconfig.nil_ls.setup {}
 lspconfig.lua_ls.setup {}
 lspconfig.tsserver.setup {}
