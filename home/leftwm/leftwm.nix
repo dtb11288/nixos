@@ -50,6 +50,7 @@ in
   in
   ''
     #![enable(implicit_some)]
+    #![enable(unwrap_newtypes)]
     (
         modkey: "Mod4",
         mousekey: "Mod4",
@@ -57,9 +58,14 @@ in
         tags: ${ stringifyArray tags },
         max_window_width: None,
         layouts: [
-          MainAndVertStack,
-          MainAndHorizontalStack,
-          Monocle,
+          "MainAndVertStack",
+          "MainAndHorizontalStack",
+          "Monocle",
+        ],
+        layout_definitions: [
+          (name: "Monocle", flip: None, rotate: North, reserve: None, columns: (flip: None, rotate: North, main: None, stack: (flip: None, rotate: North, split: None), second_stack: None)),
+          (name: "MainAndVertStack", flip: None, rotate: North, reserve: None, columns: (flip: None, rotate: North, main: (count: 1, size: 0.5, flip: None, rotate: North, split: Vertical), stack: (flip: None, rotate: North, split: Horizontal), second_stack: None)),
+          (name: "MainAndHorizontalStack", flip: None, rotate: North, reserve: None, columns: (flip: None, rotate: North, main: (count: 1, size: 0.5, flip: None, rotate: North, split: Vertical), stack: (flip: None, rotate: North, split: Vertical), second_stack: None)),
         ],
         layout_mode: Tag,
         insert_behavior: Bottom,
