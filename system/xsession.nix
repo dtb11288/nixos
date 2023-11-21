@@ -29,6 +29,7 @@
   ];
 
   programs.nm-applet.enable = true;
+  programs.virt-manager.enable = true;
 
   location = {
     provider = "manual"; #"geoclue2";
