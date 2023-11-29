@@ -61,6 +61,7 @@
     curl
     git
     alsaUtils
+    nfs-utils
     fzf
     lazygit
     direnv
