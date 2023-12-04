@@ -64,6 +64,7 @@
     lxappearance
     discord
     leafpad
+    yuzu
   ];
 
   # Wallpaper
