@@ -1,14 +1,4 @@
 { pkgs, ... }:
-
-let
-  nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-    export __NV_PRIME_RENDER_OFFLOAD=1
-    export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-    export __GLX_VENDOR_LIBRARY_NAME=nvidia
-    export __VK_LAYER_NV_optimu=NVIDIA_only
-    exec -a "$0" "$@"
-  '';
-in
 {
   imports = [
     ./configuration.nix
@@ -50,8 +40,12 @@ in
 
   hardware.nvidia = {
     forceFullCompositionPipeline = true;
+    nvidiaSettings = true;
     prime = {
+      # sync.enable = true;
+
       offload.enable = true;
+      offload.enableOffloadCmd = true;
 
       # Bus ID of the Intel GPU. You can find it using lspci, either under 3D or VGA
       intelBusId = "PCI:0:2:0";
@@ -62,7 +56,6 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    nvidia-offload
     cbatticon
     libinput-gestures
   ];

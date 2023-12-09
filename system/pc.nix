@@ -44,7 +44,6 @@ in
 
   hardware.nvidia = {
     modesetting.enable = true;
-    open = true;
     nvidiaSettings = true;
     forceFullCompositionPipeline = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
