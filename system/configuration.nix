@@ -37,7 +37,8 @@
       enable = true;
     };
   };
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = [ "ntfs" "btrfs" "exfat" ];
+  boot.extraModprobeConfig = '' options bluetooth disable_ertm=1 '';
 
   # Set your time zone.
   time.timeZone = "Asia/Ho_Chi_Minh";

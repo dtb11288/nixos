@@ -65,6 +65,7 @@
     discord
     leafpad
     yuzu
+    ryujinx
   ];
 
   # Wallpaper
