@@ -27,7 +27,7 @@
     ];
   };
 
-  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
   services.xserver.displayManager.sessionCommands = ''
     ${pkgs.libinput-gestures}/bin/libinput-gestures &
     ${pkgs.cbatticon}/bin/cbatticon &
@@ -39,8 +39,9 @@
   };
 
   hardware.nvidia = {
-    forceFullCompositionPipeline = true;
+    modesetting.enable = true;
     nvidiaSettings = true;
+    forceFullCompositionPipeline = true;
     prime = {
       # sync.enable = true;
 
