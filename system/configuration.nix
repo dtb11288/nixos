@@ -110,6 +110,7 @@
       insertNameservers = [ "8.8.8.8" "8.8.4.4" ];
       plugins = with pkgs; [ networkmanager-openvpn ];
     };
+    firewall.enable = false;
   };
 
   services.blueman.enable = true;
