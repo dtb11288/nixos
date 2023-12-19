@@ -3,6 +3,7 @@
     ./user.nix
     ./font.nix
     ./xsession.nix
+    ./8bitdo.nix
   ];
 
   nix = {
