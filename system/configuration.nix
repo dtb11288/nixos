@@ -107,7 +107,7 @@
     networkmanager = {
       enable = true;
       wifi.backend = "iwd";
-      wifi.powersave = false;
+      wifi.powersave = true;
       insertNameservers = [ "8.8.8.8" "8.8.4.4" ];
       plugins = with pkgs; [ networkmanager-openvpn ];
     };
