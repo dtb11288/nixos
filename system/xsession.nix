@@ -6,7 +6,7 @@
     rofi-rbw
     rofi-vpn
     pinentry-gtk2
-    (polybar.override { pulseSupport = true; })
+    polybar
     alacritty
     xsel
     dunst

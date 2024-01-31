@@ -1,33 +1,30 @@
 { theme, config, pkgs, lib, ... }:
 let
-myPolybar = pkgs.polybar.override {
-  pulseSupport = true;
-};
-configFolder = "${config.xdg.configHome}/leftwm";
-up = with pkgs; writeShellScriptBin "up" ''
-  if [ -f "/tmp/leftwm-theme-down" ]; then
-    /tmp/leftwm-theme-down
-    rm /tmp/leftwm-theme-down
-  fi
-  ln -s ${down}/bin/down /tmp/leftwm-theme-down
+  configFolder = "${config.xdg.configHome}/leftwm";
+  up = with pkgs; writeShellScriptBin "up" ''
+    if [ -f "/tmp/leftwm-theme-down" ]; then
+      /tmp/leftwm-theme-down
+      rm /tmp/leftwm-theme-down
+    fi
+    ln -s ${down}/bin/down /tmp/leftwm-theme-down
 
-  ${leftwm}/bin/leftwm-command "LoadTheme ${configFolder}/theme.ron"
+    ${leftwm}/bin/leftwm-command "LoadTheme ${configFolder}/theme.ron"
 
-  index=0
-  monitors="$(${myPolybar}/bin/polybar -m | ${gnused}/bin/sed s/:.*//)"
-  ${leftwm}/bin/leftwm-state -q -n -t ${configFolder}/sizes.liquid | ${gnused}/bin/sed -r '/^\s*$/d' | while read -r width x y
-  do
-    let indextemp=index+1
-    monitor=$(${gnused}/bin/sed "$indextemp!d" <<<"$monitors")
-    barname="mainbar$index"
-    monitor=$monitor offset=$x width=$width ${myPolybar}/bin/polybar -c ${configFolder}/polybar.config $barname &> /dev/null &
-    let index=indextemp
-  done
-'';
-down = with pkgs; writeShellScriptBin "down" ''
-  ${leftwm}/bin/leftwm-command "UnloadTheme"
-  ${procps}/bin/pkill polybar
-'';
+    index=0
+    monitors="$(${polybar}/bin/polybar -m | ${gnused}/bin/sed s/:.*//)"
+    ${leftwm}/bin/leftwm-state -q -n -t ${configFolder}/sizes.liquid | ${gnused}/bin/sed -r '/^\s*$/d' | while read -r width x y
+    do
+      let indextemp=index+1
+      monitor=$(${gnused}/bin/sed "$indextemp!d" <<<"$monitors")
+      barname="mainbar$index"
+      monitor=$monitor offset=$x width=$width ${polybar}/bin/polybar -c ${configFolder}/polybar.config $barname &> /dev/null &
+      let index=indextemp
+    done
+  '';
+  down = with pkgs; writeShellScriptBin "down" ''
+    ${leftwm}/bin/leftwm-command "UnloadTheme"
+    ${procps}/bin/pkill polybar
+  '';
 in
 {
   xdg.configFile."leftwm/up".source = "${up}/bin/up";
