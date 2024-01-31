@@ -24,7 +24,7 @@
     sxhkd
     pamixer
     solaar
-    wineWowPackages.stable
+    wineWowPackages.stableFull
     winetricks
   ];
 
