@@ -55,6 +55,7 @@
     rawtherapee
     hugin
     blender
+    inkscape
     (xfce.thunar.override { thunarPlugins = with pkgs; [ xfce.thunar-volman xfce.thunar-archive-plugin ]; })
     xarchiver
     zathura

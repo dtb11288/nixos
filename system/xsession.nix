@@ -80,7 +80,9 @@
 
   services.xserver = {
     enable = true;
-    layout = "us";
+    xkb = {
+      layout = "us";
+    };
     inherit dpi;
 
     excludePackages = with pkgs; [
