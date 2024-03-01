@@ -1,4 +1,4 @@
-{ pkgs, username, dpi, ... }:
+{ pkgs, lib, username, dpi, ... }:
 
 {
   environment.systemPackages = with pkgs; [
@@ -26,7 +26,12 @@
     solaar
     wineWowPackages.stableFull
     winetricks
+    anydesk
+    teamviewer
   ];
+
+  services.teamviewer.enable = true;
+  systemd.services.teamviewerd.wantedBy = lib.mkForce [ ];
 
   programs.nm-applet.enable = true;
   programs.virt-manager.enable = true;

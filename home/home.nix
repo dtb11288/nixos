@@ -66,7 +66,6 @@
     discord
     leafpad
     yuzu
-    anydesk
   ];
 
   # Wallpaper
