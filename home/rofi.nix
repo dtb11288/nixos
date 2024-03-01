@@ -1,7 +1,7 @@
-{ pkgs, config, theme, ... }:
+{ pkgs, dpi, config, theme, ... }:
 let
   inherit (config.lib.formats.rasi) mkLiteral;
-  font = "Noto Front 16";
+  font = "Noto Front 12";
 in
 {
   programs.rofi = {
@@ -10,6 +10,7 @@ in
     plugins = with pkgs; [ rofi-calc rofi-emoji ];
     inherit font;
     extraConfig = {
+      inherit dpi;
       modes = map mkLiteral [ "drun" "run" "calc" "emoji" ];
       show-icons = false;
     };
@@ -36,7 +37,7 @@ in
       window = {
         background-color = mkLiteral "@bg0";
         location = mkLiteral "center";
-        width = 1200;
+        width = 1500;
         border-radius = 4;
       };
 
