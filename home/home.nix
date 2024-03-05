@@ -65,6 +65,7 @@
     lxappearance
     discord
     leafpad
+    steam
     yuzu
   ];
 
