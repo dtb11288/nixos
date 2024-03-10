@@ -66,7 +66,6 @@
     discord
     leafpad
     steam
-    yuzu
   ];
 
   # Wallpaper

@@ -5,11 +5,6 @@
     ./hardware-xps15.nix
   ];
 
-  hardware.logitech.wireless = {
-    enable = true;
-    enableGraphical = true;
-  };
-
   hardware.bluetooth.enable = true;
 
   hardware.opengl = {
