@@ -41,6 +41,7 @@
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
     telegram-desktop
+    zapzap
     firefox
     google-chrome
     chromium
