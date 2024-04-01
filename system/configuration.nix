@@ -77,6 +77,7 @@
     zip
     unzip
     unrar
+    docker-compose
   ];
 
   security.rtkit.enable = true;
