@@ -94,7 +94,7 @@ in
     monitor = ''${env:monitor}
     ;offset-y = ''${env:y}
     ;width = 100%
-    height = 48
+    height = 24
     dpi=${toString dpi}
     fixed-center = false
     background = ''${colors.background}
@@ -114,7 +114,7 @@ in
     tray-position = right
     tray-padding = 2
     tray-scale = 1.0
-    tray-maxsize = 36
+    tray-maxsize = 18
     cursor-click = pointer
     cursor-scroll = ns-resize
 

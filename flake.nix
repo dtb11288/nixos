@@ -52,6 +52,24 @@
           }
         ];
       };
+      p14s = let
+        args = makeArgs "binh" "p14s" 96;
+      in
+      nixpkgs.lib.nixosSystem {
+        specialArgs = args;
+        # > Our main nixos configuration file <
+        modules = [
+          nixpkgsConfig
+          ./system/p14s.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.binh = import ./home/home.nix;
+            home-manager.extraSpecialArgs = args;
+          }
+        ];
+      };
       pc = let
         args = makeArgs "binh" "pc" 144;
       in
@@ -78,6 +96,12 @@
       "binh@xps15" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
         extraSpecialArgs = makeArgs "binh" "xps15" 192;
+        # > Our main home-manager configuration file <
+        modules = [ nixpkgsConfig ./home/home.nix ];
+      };
+      "binh@p14s" = home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
+        extraSpecialArgs = makeArgs "binh" "p14s" 96;
         # > Our main home-manager configuration file <
         modules = [ nixpkgsConfig ./home/home.nix ];
       };

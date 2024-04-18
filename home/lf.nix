@@ -2,7 +2,7 @@
 let
   icons = builtins.fetchurl {
     url = "https://raw.githubusercontent.com/gokcehan/lf/master/etc/icons.example";
-    sha256 = "sha256:0hxbniw1avl02sdbjx4jdr80kbrlnbm86crfm44rfrs9bkjapda1";
+    sha256 = "sha256:0141nzyjr3mybkbn9p0wwv5l0d0scdc2r7pl8s1lgh11wi2l771x";
   };
   colors = builtins.fetchurl {
     url = "https://raw.githubusercontent.com/gokcehan/lf/master/etc/colors.example";

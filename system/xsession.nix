@@ -83,6 +83,12 @@
     ];
   };
 
+  services.displayManager = {
+    defaultSession = "none+leftwm";
+    autoLogin.enable = true;
+    autoLogin.user = username;
+  };
+
   services.xserver = {
     enable = true;
     xkb = {
@@ -106,12 +112,9 @@
     };
 
     displayManager = {
-      defaultSession = "none+leftwm";
       lightdm = {
         enable = true;
       };
-      autoLogin.enable = true;
-      autoLogin.user = username;
 
       sessionCommands = with pkgs; ''
         ${xorg.xset}/bin/xset r rate 200 25
