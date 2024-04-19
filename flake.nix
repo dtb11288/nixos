@@ -52,15 +52,15 @@
           }
         ];
       };
-      p14s = let
-        args = makeArgs "binh" "p14s" 96;
+      t14 = let
+        args = makeArgs "binh" "t14" 96;
       in
       nixpkgs.lib.nixosSystem {
         specialArgs = args;
         # > Our main nixos configuration file <
         modules = [
           nixpkgsConfig
-          ./system/p14s.nix
+          ./system/t14.nix
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -99,9 +99,9 @@
         # > Our main home-manager configuration file <
         modules = [ nixpkgsConfig ./home/home.nix ];
       };
-      "binh@p14s" = home-manager.lib.homeManagerConfiguration {
+      "binh@t14" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = makeArgs "binh" "p14s" 96;
+        extraSpecialArgs = makeArgs "binh" "t14" 96;
         # > Our main home-manager configuration file <
         modules = [ nixpkgsConfig ./home/home.nix ];
       };

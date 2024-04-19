@@ -2,7 +2,7 @@
 {
   imports = [
     ./configuration.nix
-    ./hardware-p14s.nix
+    ./hardware-t14.nix
   ];
 
   hardware.bluetooth.enable = true;
