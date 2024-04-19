@@ -4,7 +4,7 @@
     x11.enable = true;
     name = "Adwaita";
     package = pkgs.gnome.adwaita-icon-theme;
-    size = 32;
+    size = 18;
   };
 
   gtk = {
