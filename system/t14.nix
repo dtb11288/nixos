@@ -45,6 +45,8 @@
     radeontop
   ];
 
+  programs.light.enable = true;
+
   # This will detech systemd event like when you close the lid
   programs.xss-lock = {
     enable = true;
