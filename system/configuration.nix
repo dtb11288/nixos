@@ -78,6 +78,8 @@
     unzip
     unrar
     docker-compose
+    usbutils
+    tmux
   ];
 
   security.rtkit.enable = true;
