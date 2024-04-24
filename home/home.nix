@@ -25,6 +25,7 @@
     ./helix.nix
     ./vim
     ./leftwm
+    ./tmux.nix
   ];
 
   home = {
