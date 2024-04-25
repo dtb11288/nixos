@@ -4,7 +4,7 @@
   # Select internationalisation properties.
   console.keyMap = "us";
   i18n = {
-    defaultLocale = "en_US.UTF-8";
+    defaultLocale = "en_GB.UTF-8";
   };
 
   fonts.packages = with pkgs; [
