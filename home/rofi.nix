@@ -37,7 +37,7 @@ in
       window = {
         background-color = mkLiteral "@bg0";
         location = mkLiteral "center";
-        width = 1500;
+        width = 1000 * dpi / 96;
         border-radius = 4;
       };
 
