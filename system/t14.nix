@@ -28,7 +28,7 @@
     ${pkgs.libinput-gestures}/bin/libinput-gestures &
     ${pkgs.cbatticon}/bin/cbatticon &
   '';
-  services.xserver.libinput = {
+  services.libinput = {
     enable = true;
     touchpad.naturalScrolling = true;
     touchpad.disableWhileTyping = true;
