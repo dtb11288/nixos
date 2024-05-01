@@ -51,7 +51,7 @@ in
       "icon-search" = {
         expand = false;
         filename = "search";
-        size = mkLiteral "${toString (20 * dpi / 96)}px";
+        size = mkLiteral "${toString (2 * dpi / 96)}px";
       };
 
       "icon-search, entry, element-icon, element-text" = {
