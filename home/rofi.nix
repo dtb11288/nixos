@@ -43,15 +43,15 @@ in
 
       inputbar = {
         inherit font;
-        padding = mkLiteral "13px";
-        spacing = mkLiteral "13px";
+        padding = mkLiteral "${toString (13 * dpi / 96)}px";
+        spacing = mkLiteral "${toString (13 * dpi / 96)}px";
         children = map mkLiteral [ "icon-search" "entry" ];
       };
 
       "icon-search" = {
         expand = false;
         filename = "search";
-        size = mkLiteral "20px";
+        size = mkLiteral "${toString (20 * dpi / 96)}px";
       };
 
       "icon-search, entry, element-icon, element-text" = {
