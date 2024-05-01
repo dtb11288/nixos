@@ -1,7 +1,7 @@
 { pkgs, dpi, config, theme, ... }:
 let
   inherit (config.lib.formats.rasi) mkLiteral;
-  font = "Noto Front 12";
+  font = "Noto Front 13";
 in
 {
   programs.rofi = {
@@ -38,13 +38,13 @@ in
         background-color = mkLiteral "@bg0";
         location = mkLiteral "center";
         width = 1000 * dpi / 96;
-        border-radius = 4;
+        border-radius = 4 * dpi / 96;
       };
 
       inputbar = {
         inherit font;
-        padding = mkLiteral "12px";
-        spacing = mkLiteral "12px";
+        padding = mkLiteral "13px";
+        spacing = mkLiteral "13px";
         children = map mkLiteral [ "icon-search" "entry" ];
       };
 
@@ -84,8 +84,8 @@ in
       };
 
       element = {
-        padding = mkLiteral "6px 14px";
-        spacing = mkLiteral "16px";
+        padding = mkLiteral "${toString (4 * dpi / 96)}px ${toString (14 * dpi / 96)}px";
+        spacing = mkLiteral "${toString (16 * dpi / 96)}px";
         background-color = mkLiteral "transparent";
       };
 
