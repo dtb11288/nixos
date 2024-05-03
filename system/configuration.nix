@@ -80,6 +80,7 @@
     docker-compose
     usbutils
     tmux
+    glib
   ];
 
   security.rtkit.enable = true;

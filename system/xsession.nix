@@ -11,7 +11,6 @@
     xsel
     dunst
     libnotify
-    glib
     pavucontrol
     blueman
     xdg_utils
@@ -26,6 +25,7 @@
     solaar
     wineWowPackages.stableFull
     winetricks
+    arandr
     anydesk
     teamviewer
   ];
