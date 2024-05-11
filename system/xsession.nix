@@ -28,6 +28,7 @@
     arandr
     anydesk
     teamviewer
+    jellyfin-media-player
   ];
 
   services.teamviewer.enable = true;
