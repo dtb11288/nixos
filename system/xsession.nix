@@ -29,6 +29,7 @@
     anydesk
     teamviewer
     jellyfin-media-player
+    caffeine-ng
   ];
 
   services.teamviewer.enable = true;
@@ -123,6 +124,7 @@
         ${pa_applet}/bin/pa-applet &
         ${parcellite}/bin/parcellite &
         ${solaar}/bin/solaar -w hide &
+        ${caffeine-ng}/bin/caffeine &
       '';
     };
   };
