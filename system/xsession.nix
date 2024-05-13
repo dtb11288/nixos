@@ -30,6 +30,7 @@
     teamviewer
     jellyfin-media-player
     caffeine-ng
+    goldendict-ng
   ];
 
   services.teamviewer.enable = true;
@@ -125,6 +126,7 @@
         ${parcellite}/bin/parcellite &
         ${solaar}/bin/solaar -w hide &
         ${caffeine-ng}/bin/caffeine &
+        ${goldendict-ng}/bin/goldendict &
       '';
     };
   };
