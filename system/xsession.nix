@@ -11,6 +11,7 @@
     xsel
     dunst
     libnotify
+    pavucontrol
     easyeffects
     qpwgraph
     blueman
