@@ -22,7 +22,6 @@
     feh
     sxhkd
     pamixer
-    solaar
     wineWowPackages.stableFull
     winetricks
     arandr
@@ -124,8 +123,6 @@
         ${xorg.xset}/bin/xset dpms 300
         ${pa_applet}/bin/pa-applet &
         ${parcellite}/bin/parcellite &
-        ${solaar}/bin/solaar -w hide &
-        ${caffeine-ng}/bin/caffeine &
         ${goldendict-ng}/bin/goldendict &
       '';
     };
