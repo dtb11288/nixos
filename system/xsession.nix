@@ -11,7 +11,8 @@
     xsel
     dunst
     libnotify
-    pavucontrol
+    easyeffects
+    qpwgraph
     blueman
     xdg_utils
     slock
