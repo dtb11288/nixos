@@ -4,6 +4,7 @@
     ./font.nix
     ./xsession.nix
     ./8bitdo.nix
+    ./qudelix.nix
   ];
 
   hardware.enableAllFirmware = true;
