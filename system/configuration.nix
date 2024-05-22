@@ -122,7 +122,7 @@
   };
 
   services.blueman.enable = true;
-  services.thermald.enable = true;
+  services.tlp.enable = true;
   services.gvfs.enable = true;
 
   environment.variables = {
