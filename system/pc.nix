@@ -42,6 +42,7 @@ in
     ];
 
   services.xserver.videoDrivers = ["nvidia"];
+  services.tlp.enable = true;
 
   hardware.nvidia = {
     modesetting.enable = true;
