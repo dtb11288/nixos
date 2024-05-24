@@ -149,7 +149,7 @@ local lazygit  = Terminal:new({
     vim.cmd("startinsert!")
   end,
 })
-vim.keymap.set('n', '<leader>g', function () lazygit:toggle() end, { noremap = true, silent = true, desc = 'Open Lazygit' })
+vim.keymap.set('n', '<C-g>', function () lazygit:toggle() end, { noremap = true, silent = true, desc = 'Open Lazygit' })
 
 -- Tree sitter
 local parsers_dir = VIM_HOME .. '/parsers'
