@@ -24,8 +24,6 @@
     feh
     sxhkd
     pamixer
-    wineWowPackages.stableFull
-    winetricks
     arandr
     anydesk
     teamviewer

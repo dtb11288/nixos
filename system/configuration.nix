@@ -82,6 +82,7 @@
     usbutils
     tmux
     glib
+    nextdns
   ];
 
   security.rtkit.enable = true;
@@ -106,7 +107,6 @@
 
   networking = {
     hostName = "${hostname}";
-    nameservers = [ "8.8.8.8" "8.8.4.4" ];
     extraHosts = ''
       127.0.0.1  biits.lambda
     '';
@@ -115,10 +115,18 @@
       enable = true;
       wifi.backend = "iwd";
       wifi.powersave = true;
-      insertNameservers = [ "8.8.8.8" "8.8.4.4" ];
       plugins = with pkgs; [ networkmanager-openvpn ];
     };
     firewall.enable = false;
+  };
+
+  services.nextdns.enable = true;
+  services.resolved = {
+    enable = true;
+    extraConfig = ''
+      [Resolve]
+      DNSOverTLS=yes
+    '';
   };
 
   services.blueman.enable = true;
