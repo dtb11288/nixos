@@ -10,12 +10,13 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
   let
+    secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
     theme = import ./theme.nix;
     makeArgs = username: hostname: dpi: {
       # Pass flake inputs to our config
-      inherit inputs theme dpi hostname username;
+      inherit inputs theme dpi hostname username secrets;
     };
     nixpkgsConfig = { ... }: {
       nixpkgs = {
