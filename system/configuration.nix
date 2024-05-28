@@ -108,9 +108,6 @@
 
   networking = {
     hostName = "${hostname}";
-    extraHosts = ''
-      127.0.0.1  biits.lambda
-    '';
     wireless.iwd.enable = true;
     networkmanager = {
       enable = true;
