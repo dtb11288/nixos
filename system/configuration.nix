@@ -121,13 +121,13 @@
   services.nextdns.enable = true;
   services.resolved = {
     enable = true;
+    llmnr = "false";
+    dnsovertls = "true";
     extraConfig = ''
-      [Resolve]
       DNS=45.90.28.0#${secrets.nextdns_prefix}.dns.nextdns.io
       DNS=2a07:a8c0::#${secrets.nextdns_prefix}.dns.nextdns.io
       DNS=45.90.30.0#${secrets.nextdns_prefix}.dns.nextdns.io
       DNS=2a07:a8c1::#${secrets.nextdns_prefix}.dns.nextdns.io
-      DNSOverTLS=yes
     '';
   };
 
