@@ -45,7 +45,7 @@
     zapzap
     firefox
     google-chrome
-    chromium
+    (chromium.override { enableWideVine = true; })
     thunderbird
     birdtray
     slack
