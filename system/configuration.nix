@@ -63,7 +63,6 @@
     btop
     wget
     curl
-    git
     alsaUtils
     nfs-utils
     fzf
