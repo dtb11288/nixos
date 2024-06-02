@@ -131,6 +131,7 @@
   services.blueman.enable = true;
   services.tlp.enable = true;
   services.gvfs.enable = true;
+  programs.adb.enable = true;
 
   environment.variables = {
     EDITOR = "nvim";
