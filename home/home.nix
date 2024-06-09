@@ -24,8 +24,8 @@
     ./flameshot.nix
     ./helix.nix
     ./vim
-    ./leftwm
     ./tmux.nix
+    ./xmonad
   ];
 
   home = {

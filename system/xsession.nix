@@ -86,7 +86,7 @@
   };
 
   services.displayManager = {
-    defaultSession = "none+leftwm";
+    defaultSession = "none+xmonad";
     autoLogin.enable = true;
     autoLogin.user = username;
   };
@@ -102,8 +102,13 @@
       xterm
     ];
 
-    windowManager.leftwm = {
+   windowManager.xmonad = {
       enable = true;
+      enableContribAndExtras = true;
+      extraPackages = hp: with hp; [
+        dbus
+        monad-logger
+      ];
     };
 
     xautolock = {
