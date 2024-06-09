@@ -81,7 +81,6 @@
     usbutils
     tmux
     glib
-    nextdns
     git-crypt
   ];
 
@@ -117,22 +116,22 @@
     firewall.enable = false;
   };
 
-  services.nextdns.enable = true;
   services.resolved = {
     enable = true;
     llmnr = "false";
     dnsovertls = "true";
     extraConfig = ''
-      DNS=45.90.28.0#${secrets.nextdns.domain}
-      DNS=2a07:a8c0::#${secrets.nextdns.domain}
-      DNS=45.90.30.0#${secrets.nextdns.domain}
-      DNS=2a07:a8c1::#${secrets.nextdns.domain}
+      DNS=45.90.28.0#${secrets.nextdns.id}.dns.nextdns.io
+      DNS=2a07:a8c0::#${secrets.nextdns.id}.dns.nextdns.io
+      DNS=45.90.30.0#${secrets.nextdns.id}.dns.nextdns.io
+      DNS=2a07:a8c1::#${secrets.nextdns.id}.dns.nextdns.io
     '';
   };
 
   services.blueman.enable = true;
   services.tlp.enable = true;
   services.gvfs.enable = true;
+  programs.adb.enable = true;
 
   environment.variables = {
     EDITOR = "nvim";
@@ -145,5 +144,5 @@
   nix.settings.max-jobs = lib.mkDefault 8;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "23.05";
+  system.stateVersion = "24.05";
 }

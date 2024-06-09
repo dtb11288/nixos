@@ -24,8 +24,8 @@
     ./flameshot.nix
     ./helix.nix
     ./vim
-    ./leftwm
     ./tmux.nix
+    ./xmonad
   ];
 
   home = {
@@ -45,7 +45,7 @@
     zapzap
     firefox
     google-chrome
-    chromium
+    (chromium.override { enableWideVine = true; })
     thunderbird
     birdtray
     slack

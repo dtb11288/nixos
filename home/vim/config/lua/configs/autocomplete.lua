@@ -173,6 +173,7 @@ lspconfig.html.setup {}
 lspconfig.nil_ls.setup {}
 lspconfig.lua_ls.setup {}
 lspconfig.tsserver.setup {}
+lspconfig.hls.setup {}
 lspconfig.lua_ls.setup {
   settings = {
     Lua = {

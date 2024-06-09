@@ -64,6 +64,9 @@ in
           (name: "MainAndHorizontalStack", flip: None, rotate: North, reserve: None, columns: (flip: None, rotate: North, main: (count: 1, size: 0.5, flip: None, rotate: North, split: Vertical), stack: (flip: None, rotate: North, split: Vertical), second_stack: None)),
           (name: "Monocle", flip: None, rotate: North, reserve: None, columns: (flip: None, rotate: North, main: None, stack: (flip: None, rotate: North, split: None), second_stack: None)),
         ],
+        scratchpad: [
+          (name: "EasyEffects", value: "easyeffects", x: 0.1, y: 0.1, height: 0.8, width: 0.8),
+        ],
         layout_mode: Tag,
         insert_behavior: Bottom,
         window_rules: [],
@@ -75,6 +78,9 @@ in
         single_window_border: false,
         auto_derive_workspaces: true,
         keybind: [
+          ${command "Execute" "alacritty" ["modkey" "Shift"] "Return"},
+          ${command "Execute" "chromium" ["modkey" "Shift"] "w"},
+          ${command "ToggleScratchPad" "EasyEffects" ["modkey" "Shift"] "e"},
           ${command "CloseWindow" "" ["modkey" "Shift"] "q"},
           ${command "SoftReload" "" ["modkey" "Shift"] "r"},
           ${command "Execute" "loginctl kill-session $XDG_SESSION_ID" ["modkey" "Shift"] "x"},
