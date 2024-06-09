@@ -102,7 +102,7 @@
       xterm
     ];
 
-   windowManager.xmonad = {
+    windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
       extraPackages = hp: with hp; [
