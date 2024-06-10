@@ -107,10 +107,6 @@
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
-      extraPackages = hp: with hp; [
-        dbus
-        monad-logger
-      ];
     };
 
     xautolock = {

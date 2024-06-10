@@ -110,10 +110,13 @@ cmp.setup.cmdline(':', {
   })
 })
 
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { noremap = true, silent = true, desc = 'Open Diagnostic Window' })
-vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, { noremap = true, silent = true, desc = 'Jump To Previous Diagnostic' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float,
+  { noremap = true, silent = true, desc = 'Open Diagnostic Window' })
+vim.keymap.set('n', '[g', vim.diagnostic.goto_prev,
+  { noremap = true, silent = true, desc = 'Jump To Previous Diagnostic' })
 vim.keymap.set('n', ']g', vim.diagnostic.goto_next, { noremap = true, silent = true, desc = 'Jump To Next Diagnostic' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { noremap = true, silent = true, desc = 'Open Diagnostic List' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist,
+  { noremap = true, silent = true, desc = 'Open Diagnostic List' })
 
 local fzf = require('fzf-lua')
 local on_attach = function(_, bufnr)
@@ -167,12 +170,14 @@ require('fidget').setup()
 local rust_tools = require('rust-tools')
 rust_tools.setup()
 rust_tools.inlay_hints.enable()
-vim.keymap.set('n', '<leader>me', require'rust-tools'.expand_macro.expand_macro, { desc = 'Expand macro' })
+vim.keymap.set('n', '<leader>me', require 'rust-tools'.expand_macro.expand_macro, { desc = 'Expand macro' })
 
 lspconfig.html.setup {}
 lspconfig.nil_ls.setup {}
 lspconfig.lua_ls.setup {}
-lspconfig.tsserver.setup {}
+lspconfig.tsserver.setup {
+  filetypes = { 'haskell', 'lhaskell', 'cabal' },
+}
 lspconfig.hls.setup {}
 lspconfig.lua_ls.setup {
   settings = {
