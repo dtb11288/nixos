@@ -102,6 +102,8 @@
       xterm
     ];
 
+    desktopManager.runXdgAutostartIfNone = true;
+
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
@@ -128,10 +130,7 @@
         ${xorg.xset}/bin/xset dpms 300
         ${pa_applet}/bin/pa-applet &
         ${parcellite}/bin/parcellite &
-        ${caffeine-ng}/bin/caffeine &
         ${goldendict-ng}/bin/goldendict &
-        ${blueman}/bin/blueman-applet &
-        fcitx5 &
       '';
     };
   };

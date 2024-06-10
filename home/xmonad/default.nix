@@ -20,6 +20,7 @@ in
 
     terminal = "${alacritty}/bin/alacritty";
     runbar = "${runbar}/bin/runbar";
+    notifysend = "${libnotify}/bin/notify-send";
   } // theme.colors);
 
   xdg.configFile."xmonad/polybar.ini".source = with pkgs; substituteAll ({

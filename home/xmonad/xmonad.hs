@@ -6,6 +6,7 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.Minimize
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Layout.NoBorders
+import XMonad.Util.EZConfig
 import Graphics.X11.ExtraTypes.XF86
 import Data.Monoid
 import XMonad.Layout.LayoutModifier
@@ -42,7 +43,7 @@ main = do
     xmonad $ ewmhFullscreen . docks $ myConfig { logHook = dynamicLogWithPP (myLogHook dbus) }
 
 -- Override the PP values as you would otherwise, adding colors etc depending
--- on  the statusbar used
+-- on the statusbar used
 myLogHook :: D.Client -> PP
 myLogHook dbus = def
     { ppOutput = dbusOutput dbus
@@ -71,7 +72,7 @@ myModMask :: KeyMask
 myModMask = mod4Mask
 
 -- my config
-myConfig = baseConfig
+myConfig = removeMyKeys . addMyKeys $ baseConfig
     { modMask = myModMask
     , terminal = myTerminal
     , startupHook = setWMName "LG3D"
@@ -82,13 +83,13 @@ myConfig = baseConfig
     , focusedBorderColor = colorFocusedBorder
     , normalBorderColor = colorNormalBorder
     , borderWidth = myBorderWidth
-    , keys = \c -> myKeys c `M.union` keys baseConfig c
     }
 
 -- manage apps
 myManageHook :: ManageHook
 myManageHook = manageDocks <+> manageHookConfig <+> composeOne
-    [ isFullscreen                -?> doF W.focusDown <+> doFullFloat
+    [ isFullscreen        -?> doF W.focusDown <+> doFullFloat
+    , isDialog            -?> doFloat
     ]
     where manageHookConfig = manageHook baseConfig
 
@@ -96,8 +97,17 @@ myManageHook = manageDocks <+> manageHookConfig <+> composeOne
 myLayoutHook = avoidStruts $ smartBorders $ layoutHook baseConfig
 
 -- my keys
-myKeys :: XConfig Layout -> M.Map (KeyMask, KeySym) (X ())
-myKeys XConfig {XMonad.modMask = extraKeysModMask} = M.empty
+addMyKeys :: XConfig a -> XConfig a
+addMyKeys conf@XConfig {XMonad.modMask = extraKeysModMask} = additionalKeys conf
+    []
+
+-- remove keys
+removeMyKeys :: XConfig a -> XConfig a
+removeMyKeys conf@XConfig {XMonad.modMask = extraKeysModMask} = removeKeys conf
+    [ (extraKeysModMask, xK_p)
+    , (extraKeysModMask .|. shiftMask, xK_p)
+    , (extraKeysModMask .|. shiftMask, xK_slash)
+    ]
 
 -- my bar
 myBar :: String
@@ -112,7 +122,7 @@ myRestartXmonad :: String
 myRestartXmonad = unwords
     [ "xmonad --recompile;"
     , "xmonad --restart;"
-    , "notify-send 'Xmonad reloaded';"
+    , "@notifysend@ 'Xmonad reloaded';"
     ]
 
 -- border width
