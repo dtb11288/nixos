@@ -18,6 +18,7 @@ import XMonad.Layout.LayoutModifier
 import XMonad.Layout.NoBorders
 import XMonad.StackSet qualified as W
 import XMonad.Util.EZConfig
+import XMonad.Util.NamedScratchpad
 
 myModMask :: KeyMask
 myModMask = mod4Mask
@@ -91,21 +92,32 @@ myManageHook :: ManageHook
 myManageHook =
   manageDocks
     <+> manageHookConfig
+    <+> namedScratchpadManageHook myScatchPads
     <+> composeOne
       [ isFullscreen -?> doF W.focusDown <+> doFullFloat,
-        isDialog -?> doFloat
+        isDialog -?> doFloat,
+        title =? "Dbeaver" -?> doFloat,
+        className =? "steam" -?> doFloat
       ]
   where
     manageHookConfig = manageHook baseConfig
 
 myLayoutHook = avoidStruts $ smartBorders $ layoutHook baseConfig
 
+myScatchPads :: [NamedScratchpad]
+myScatchPads =
+  [ NS "EasyEffects" "easyeffects" (title =? "Easy Effects") manageEasyEffects
+  ]
+    where
+      manageEasyEffects = customFloating $ W.RationalRect 0.15 0.15 0.7 0.7
+
 -- Add Extra keys to default
 addMyKeys :: XConfig a -> XConfig a
 addMyKeys conf@XConfig {XMonad.modMask = extraKeysModMask} =
   additionalKeys
     conf
-    []
+    [ ((extraKeysModMask .|. shiftMask, xK_e), namedScratchpadAction myScatchPads "EasyEffects")
+    ]
 
 -- Remove keys from default
 removeMyKeys :: XConfig a -> XConfig a
