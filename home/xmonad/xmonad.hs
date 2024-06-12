@@ -97,7 +97,8 @@ myManageHook =
       [ isFullscreen -?> doF W.focusDown <+> doFullFloat,
         isDialog -?> doFloat,
         title =? "Dbeaver" -?> doFloat,
-        className =? "steam" -?> doFloat
+        className =? "steam" -?> doFloat,
+        className =? "file-roller" -?> doFloat
       ]
   where
     manageHookConfig = manageHook baseConfig

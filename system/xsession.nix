@@ -32,6 +32,7 @@
   ];
 
   programs.xfconf.enable = true;
+  programs.file-roller.enable = true;
   programs.thunar = {
     enable = true;
     plugins = with pkgs.xfce; [
@@ -40,7 +41,7 @@
     ];
   };
 
-  services.teamviewer.enable = false;
+  services.teamviewer.enable = true;
   systemd.services.teamviewerd.wantedBy = lib.mkForce [ ];
 
   programs.nm-applet.enable = true;

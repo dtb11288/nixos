@@ -58,7 +58,6 @@
     hugin
     blender
     inkscape
-    xarchiver
     zathura
     mpv
     gimp
