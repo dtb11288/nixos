@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    (rofi.override { plugins = [ rofi-calc rofi-emoji ]; })
+    rofi
     rofi-rbw
     rofi-vpn
     pinentry-gtk2
@@ -27,12 +27,20 @@
     arandr
     anydesk
     teamviewer
-    jellyfin-media-player
     caffeine-ng
     goldendict-ng
   ];
 
-  services.teamviewer.enable = true;
+  programs.xfconf.enable = true;
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-volman
+      thunar-archive-plugin
+    ];
+  };
+
+  services.teamviewer.enable = false;
   systemd.services.teamviewerd.wantedBy = lib.mkForce [ ];
 
   programs.nm-applet.enable = true;

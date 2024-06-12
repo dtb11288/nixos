@@ -26,6 +26,7 @@
     ./tmux.nix
     ./xmonad
     ./rbw.nix
+    ./irssi.nix
   ];
 
   home = {
@@ -45,7 +46,7 @@
     zapzap
     firefox
     google-chrome
-    (chromium.override { enableWideVine = true; })
+    chromium
     thunderbird
     birdtray
     slack
@@ -57,7 +58,6 @@
     hugin
     blender
     inkscape
-    (xfce.thunar.override { thunarPlugins = with pkgs; [ xfce.thunar-volman xfce.thunar-archive-plugin ]; })
     xarchiver
     zathura
     mpv
@@ -67,6 +67,7 @@
     discord
     leafpad
     steam
+    jellyfin-media-player
   ];
 
   # Wallpaper

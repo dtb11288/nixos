@@ -1,7 +1,6 @@
 { pkgs, hostname, ... }:
 let
   keybindings = import ./sxhkd-${hostname}.nix { inherit pkgs; };
-  rofi-wrapped = with pkgs; rofi.override { plugins = [ rofi-calc rofi-emoji ]; };
 in
 {
   services.sxhkd = {
@@ -13,9 +12,9 @@ in
       XF86AudioPrev = "${pkgs.playerctl}/bin/playerctl previous";
       XF86AudioNext = "${pkgs.playerctl}/bin/playerctl next";
       XF86AudioPlay = "${pkgs.playerctl}/bin/playerctl play-pause";
-      "mod4 + p" = "${rofi-wrapped}/bin/rofi -show run";
-      "mod4 + e" = "${rofi-wrapped}/bin/rofi -show emoji";
-      "mod4 + c" = "${rofi-wrapped}/bin/rofi -show calc -no-show-match -no-sort -calc-command \"echo -n '\\\{result\\\}' | xsel -b\"";
+      "mod4 + p" = "${rofi}/bin/rofi -show run";
+      "mod4 + e" = "${rofi}/bin/rofi -show emoji";
+      "mod4 + c" = "${rofi}/bin/rofi -show calc -no-show-match -no-sort -calc-command \"echo -n '\\\{result\\\}' | xsel -b\"";
       "mod4 + s" = "${rofi-rbw}/bin/rofi-rbw";
       "mod4 + v" = "${rofi-vpn}/bin/rofi-vpn";
       "mod4 + Escape" = "slock";
