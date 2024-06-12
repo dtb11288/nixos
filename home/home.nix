@@ -67,6 +67,7 @@
     leafpad
     steam
     jellyfin-media-player
+    ryujinx
   ];
 
   # Wallpaper
