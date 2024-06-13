@@ -51,6 +51,9 @@
     };
   };
 
+  security.pam.services.i3lock.rules.auth.unix.order = 11200;
+  security.pam.services.sudo.rules.auth.unix.order = 11200;
+
   environment.systemPackages = with pkgs; [
     cbatticon
     libinput-gestures
@@ -62,6 +65,6 @@
   # This will detech systemd event like when you close the lid
   programs.xss-lock = {
     enable = true;
-    lockerCommand = "/run/wrappers/bin/slock";
+    lockerCommand = "${pkgs.i3lock-color}/bin/i3lock-color -c 112233";
   };
 }

@@ -16,7 +16,7 @@
     qpwgraph
     blueman
     xdg_utils
-    slock
+    i3lock-color
     pa_applet
     parcellite
     xdotool
@@ -120,7 +120,7 @@
 
     xautolock = {
       enable = true;
-      locker = "/run/wrappers/bin/slock";
+      locker = "${pkgs.i3lock-color}/bin/i3lock-color -c 112233";
       time = 5;
       extraOptions = [ "-detectsleep" "-corners '----'" ];
     };
@@ -139,6 +139,4 @@
       '';
     };
   };
-
-  programs.slock.enable = true;
 }
