@@ -58,6 +58,9 @@ return require('packer').startup({
     -- Rust
     use 'simrat39/rust-tools.nvim'
 
+    -- Haskell
+    use 'MrcJkb/haskell-tools.nvim'
+
     -- Javascript
     use 'jose-elias-alvarez/null-ls.nvim'
     use 'MunifTanjim/eslint.nvim'

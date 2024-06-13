@@ -19,6 +19,7 @@ import XMonad.Layout.NoBorders
 import XMonad.StackSet qualified as W
 import XMonad.Util.EZConfig
 import XMonad.Util.NamedScratchpad
+import XMonad.Util.WorkspaceCompare
 
 myModMask :: KeyMask
 myModMask = mod4Mask
@@ -44,21 +45,21 @@ mkDbusClient = do
   dbus <- D.connectSession
   D.requestName dbus (D.busName_ "org.xmonad.log") opts
   return dbus
-  where
-    opts = [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
+ where
+  opts = [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
 
 -- Status bar display
-myLogHook :: D.Client -> PP
-myLogHook dbus =
+mkLogHook :: D.Client -> PP
+mkLogHook dbus =
   def
-    { ppOutput = dbusOutput dbus,
-      ppCurrent = wrap "%{F@color0@}%{B@color3@}  " "  %{B-}%{F-}",
-      ppVisible = wrap "%{F@color0@}%{B@color15@}  " "  %{B-}%{F-}",
-      ppUrgent = wrap "%{B@color1@}%{F@color0@}  " "  %{F-}%{B-}",
-      ppHidden = wrap " " " ",
-      ppWsSep = "",
-      ppSep = " : ",
-      ppTitle = wrap "%{F@color2@} " " %{F-}" . shorten 120
+    { ppOutput = dbusOutput dbus
+    , ppCurrent = wrap "%{F@color0@}%{B@color3@}  " "  %{B-}%{F-}"
+    , ppVisible = wrap "%{F@color0@}%{B@color15@}  " "  %{B-}%{F-}"
+    , ppUrgent = wrap "%{B@color1@}%{F@color0@}  " "  %{F-}%{B-}"
+    , ppHidden = wrap " " " "
+    , ppWsSep = ""
+    , ppSep = " : "
+    , ppTitle = wrap "%{F@color2@} " " %{F-}" . shorten 120
     }
 
 -- Emit a DBus signal on log updates
@@ -69,23 +70,25 @@ dbusOutput dbus str =
       mname = D.memberName_ "Update"
       signal = D.signal opath iname mname
       body = [D.toVariant $ UTF8.decodeString str]
-   in D.emit dbus $ signal {D.signalBody = body}
+   in D.emit dbus $ signal{D.signalBody = body}
 
 mkConfig dbus =
   removeMyKeys . addMyKeys $
     baseConfig
-      { modMask = myModMask,
-        terminal = myTerminal,
-        startupHook = setWMName "LG3D",
-        focusFollowsMouse = False,
-        workspaces = myWorkspaces,
-        manageHook = myManageHook,
-        layoutHook = myLayoutHook,
-        focusedBorderColor = colorFocusedBorder,
-        normalBorderColor = colorNormalBorder,
-        borderWidth = myBorderWidth,
-        logHook = dynamicLogWithPP (myLogHook dbus)
+      { modMask = myModMask
+      , terminal = myTerminal
+      , startupHook = setWMName "LG3D"
+      , focusFollowsMouse = False
+      , workspaces = myWorkspaces
+      , manageHook = myManageHook
+      , layoutHook = myLayoutHook
+      , focusedBorderColor = colorFocusedBorder
+      , normalBorderColor = colorNormalBorder
+      , borderWidth = myBorderWidth
+      , logHook = myLogHook
       }
+ where
+  myLogHook = dynamicLogWithPP . filterOutWsPP [scratchpadWorkspaceTag] $ mkLogHook dbus
 
 -- Handling some rules for specific apps
 myManageHook :: ManageHook
@@ -94,40 +97,49 @@ myManageHook =
     <+> manageHookConfig
     <+> namedScratchpadManageHook myScatchPads
     <+> composeOne
-      [ isFullscreen -?> doF W.focusDown <+> doFullFloat,
-        isDialog -?> doFloat,
-        title =? "Dbeaver" -?> doFloat,
-        className =? "steam" -?> doFloat,
-        className =? "file-roller" -?> doFloat
+      [ isFullscreen -?> doF W.focusDown <+> doFullFloat
+      , isDialog -?> doFloat
+      , className =? "steam" -?> doFloat
+      , className =? "file-roller" -?> doFloat
+      , isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_SPLASH" -?> doCenterFloat
       ]
-  where
-    manageHookConfig = manageHook baseConfig
+ where
+  manageHookConfig = manageHook baseConfig
 
 myLayoutHook = avoidStruts $ smartBorders $ layoutHook baseConfig
 
 myScatchPads :: [NamedScratchpad]
 myScatchPads =
-  [ NS "EasyEffects" "easyeffects" (title =? "Easy Effects") manageEasyEffects
+  [ NS "EasyEffects" "easyeffects" (title =? "Easy Effects") $ mkCenter 0.7 0.7
+  , NS "htop" "@terminal@ -T htop -e htop" (title =? "htop") $ mkCenter 0.7 0.7
   ]
-    where
-      manageEasyEffects = customFloating $ W.RationalRect 0.15 0.15 0.7 0.7
+
+mkCenter :: Rational -> Rational -> ManageHook
+mkCenter w h = customFloating $ W.RationalRect l r w h
+ where
+  l = (1.0 - w) / 2.0
+  r = (1.0 - h) / 2.0
 
 -- Add Extra keys to default
 addMyKeys :: XConfig a -> XConfig a
-addMyKeys conf@XConfig {XMonad.modMask = extraKeysModMask} =
+addMyKeys conf@XConfig{XMonad.modMask = extraKeysModMask} =
   additionalKeys
     conf
-    [ ((extraKeysModMask .|. shiftMask, xK_e), namedScratchpadAction myScatchPads "EasyEffects")
+    [ ((extraKeysModMask .|. shiftMask, xK_e), callScratchPad "EasyEffects")
+    , ((extraKeysModMask .|. shiftMask, xK_h), callScratchPad "htop")
     ]
+
+callScratchPad :: String -> X ()
+callScratchPad = namedScratchpadAction myScatchPads
 
 -- Remove keys from default
 removeMyKeys :: XConfig a -> XConfig a
-removeMyKeys conf@XConfig {XMonad.modMask = extraKeysModMask} =
+removeMyKeys conf@XConfig{XMonad.modMask = extraKeysModMask} =
   removeKeys
     conf
-    [ (extraKeysModMask, xK_p),
-      (extraKeysModMask .|. shiftMask, xK_p),
-      (extraKeysModMask .|. shiftMask, xK_slash)
+    [ (extraKeysModMask, xK_p)
+    , (extraKeysModMask .|. shiftMask, xK_p)
+    , (extraKeysModMask .|. shiftMask, xK_slash)
     ]
 
 myBar :: String
@@ -139,9 +151,9 @@ myTerminal = unwords ["@terminal@"]
 myRestartXmonad :: String
 myRestartXmonad =
   unwords
-    [ "xmonad --recompile;",
-      "xmonad --restart;",
-      "@notifysend@ 'Xmonad reloaded';"
+    [ "xmonad --recompile;"
+    , "xmonad --restart;"
+    , "@notifysend@ 'Xmonad reloaded';"
     ]
 
 myBorderWidth :: Dimension

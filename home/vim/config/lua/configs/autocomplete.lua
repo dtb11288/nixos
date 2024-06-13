@@ -172,13 +172,17 @@ rust_tools.setup()
 rust_tools.inlay_hints.enable()
 vim.keymap.set('n', '<leader>me', require 'rust-tools'.expand_macro.expand_macro, { desc = 'Expand macro' })
 
+require('haskell-tools')
+vim.g.haskell_tools = {
+  hls = {
+    on_attach = on_attach
+  }
+}
+
 lspconfig.html.setup {}
 lspconfig.nil_ls.setup {}
 lspconfig.lua_ls.setup {}
-lspconfig.tsserver.setup {
-  filetypes = { 'haskell', 'lhaskell', 'cabal' },
-}
-lspconfig.hls.setup {}
+lspconfig.tsserver.setup {}
 lspconfig.lua_ls.setup {
   settings = {
     Lua = {
