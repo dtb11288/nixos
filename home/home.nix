@@ -26,7 +26,6 @@
     ./tmux.nix
     ./xmonad
     ./rbw.nix
-    ./irssi.nix
   ];
 
   home = {
@@ -68,6 +67,7 @@
     steam
     jellyfin-media-player
     ryujinx
+    weechat
   ];
 
   # Wallpaper
