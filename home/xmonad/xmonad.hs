@@ -1,12 +1,12 @@
 {-# LANGUAGE OverloadedStrings #-}
 
 import Codec.Binary.UTF8.String qualified as UTF8
-import DBus qualified as D
-import DBus.Client qualified as D
+import DBus.Client qualified as DC
 import Data.Map qualified as M
 import Data.Monoid
 import Graphics.X11.ExtraTypes.XF86
 import XMonad
+import XMonad.DBus qualified as D
 import XMonad.Config.Desktop
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
@@ -37,22 +37,15 @@ baseConfig = ewmh desktopConfig
 main :: IO ()
 main = do
   spawn myBar
-  dbus <- mkDbusClient
+  dbus <- D.connect
+  D.requestAccess dbus
   xmonad $ ewmhFullscreen . docks $ mkConfig dbus
 
-mkDbusClient :: IO D.Client
-mkDbusClient = do
-  dbus <- D.connectSession
-  D.requestName dbus (D.busName_ "org.xmonad.log") opts
-  return dbus
- where
-  opts = [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
-
 -- Status bar display
-mkLogHook :: D.Client -> PP
+mkLogHook :: DC.Client -> PP
 mkLogHook dbus =
   def
-    { ppOutput = dbusOutput dbus
+    { ppOutput = D.send dbus
     , ppCurrent = wrap "%{F@color0@}%{B@color3@}  " "  %{B-}%{F-}"
     , ppVisible = wrap "%{F@color0@}%{B@color15@}  " "  %{B-}%{F-}"
     , ppUrgent = wrap "%{B@color1@}%{F@color0@}  " "  %{F-}%{B-}"
@@ -61,16 +54,6 @@ mkLogHook dbus =
     , ppSep = " : "
     , ppTitle = wrap "%{F@color2@} " " %{F-}" . shorten 120
     }
-
--- Emit a DBus signal on log updates
-dbusOutput :: D.Client -> String -> IO ()
-dbusOutput dbus str =
-  let opath = D.objectPath_ "/org/xmonad/Log"
-      iname = D.interfaceName_ "org.xmonad.Log"
-      mname = D.memberName_ "Update"
-      signal = D.signal opath iname mname
-      body = [D.toVariant $ UTF8.decodeString str]
-   in D.emit dbus $ signal{D.signalBody = body}
 
 mkConfig dbus =
   removeMyKeys . addMyKeys $

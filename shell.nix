@@ -9,6 +9,7 @@ pkgs.mkShell {
       xmonad-contrib
       xmonad
       dbus
+      xmonad-dbus
     ]))
   ];
 }

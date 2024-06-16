@@ -26,7 +26,7 @@ in
   xdg.configFile."xmonad/polybar.ini".source = with pkgs; substituteAll ({
     src = ./polybar.ini;
 
-    xmonadlog = "${xmonad-log}/bin/xmonad-log";
+    xmonadlog = "${haskellPackages.xmonad-dbus}/bin/xmonad-dbus";
     height = "${toString (24 * dpi / 96)}";
     dpi = "${toString dpi}";
     traymaxsize = "${toString (18 * dpi / 96)}";

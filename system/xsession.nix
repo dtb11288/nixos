@@ -118,6 +118,7 @@
       enableContribAndExtras = true;
       extraPackages = hp: with hp; [
         dbus
+        xmonad-dbus
       ];
     };
 
