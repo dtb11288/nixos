@@ -124,6 +124,10 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc, noremap = true, silent = true })
   end
 
+  if vim.lsp.inlay_hint then
+    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+  end
+
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -167,12 +171,7 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 -- Small UI for progress
 require('fidget').setup()
 
--- Rust
-local rust_tools = require('rust-tools')
-rust_tools.setup()
-rust_tools.inlay_hints.enable()
-vim.keymap.set('n', '<leader>me', require 'rust-tools'.expand_macro.expand_macro, { desc = 'Expand macro' })
-
+-- Haskell
 require('haskell-tools')
 vim.g.haskell_tools = {
   hls = {
@@ -184,6 +183,7 @@ lspconfig.html.setup {}
 lspconfig.nil_ls.setup {}
 lspconfig.lua_ls.setup {}
 lspconfig.tsserver.setup {}
+lspconfig.rust_analyzer.setup {}
 lspconfig.lua_ls.setup {
   settings = {
     Lua = {
