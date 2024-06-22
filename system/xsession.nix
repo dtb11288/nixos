@@ -29,6 +29,7 @@
     teamviewer
     caffeine-ng
     goldendict-ng
+    qbittorrent-qt5
   ];
 
   programs.xfconf.enable = true;
