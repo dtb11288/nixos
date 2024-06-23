@@ -180,7 +180,7 @@ vim.g.haskell_tools = {
 }
 
 lspconfig.html.setup {}
-lspconfig.nil_ls.setup {}
+lspconfig.nixd.setup {}
 lspconfig.lua_ls.setup {}
 lspconfig.tsserver.setup {}
 lspconfig.rust_analyzer.setup {}
