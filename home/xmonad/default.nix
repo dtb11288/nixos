@@ -1,32 +1,32 @@
 { pkgs, config, dpi, theme, ... }:
 let
-  runbar = with pkgs; writeShellScriptBin "runbar" ''
+  runbar = pkgs.writeShellScriptBin "runbar" ''
     for pid in `pgrep polybar`; do kill $pid; done;
     index=0
-    monitors="$(${polybar}/bin/polybar -m | ${gnused}/bin/sed s/:.*//)"
+    monitors="$(${pkgs.polybar}/bin/polybar -m | ${pkgs.gnused}/bin/sed s/:.*//)"
     for index in "''${!monitors[@]}"
     do
       let indextemp=index+1
-      monitor=$(${gnused}/bin/sed "$indextemp!d" <<<"$monitors")
+      monitor=$(${pkgs.gnused}/bin/sed "$indextemp!d" <<<"$monitors")
       barname="mainbar$index"
-      monitor=$monitor offset=$x width=$width ${polybar}/bin/polybar -c ${config.xdg.configHome}/xmonad/polybar.ini $barname &> /dev/null &
+      monitor=$monitor offset=$x width=$width ${pkgs.polybar}/bin/polybar -c ${config.xdg.configHome}/xmonad/polybar.ini $barname &> /dev/null &
       let index=indextemp
     done
   '';
 in
 {
-  xdg.configFile."xmonad/xmonad.hs".source = with pkgs; substituteAll ({
+  xdg.configFile."xmonad/xmonad.hs".source = pkgs.substituteAll ({
     src = ./xmonad.hs;
 
-    terminal = "${alacritty}/bin/alacritty";
+    terminal = "${pkgs.alacritty}/bin/alacritty";
     runbar = "${runbar}/bin/runbar";
-    notifysend = "${libnotify}/bin/notify-send";
+    notifysend = "${pkgs.libnotify}/bin/notify-send";
   } // theme.colors);
 
-  xdg.configFile."xmonad/polybar.ini".source = with pkgs; substituteAll ({
+  xdg.configFile."xmonad/polybar.ini".source = pkgs.substituteAll ({
     src = ./polybar.ini;
 
-    xmonadlog = "${haskellPackages.xmonad-dbus}/bin/xmonad-dbus";
+    xmonadlog = "${pkgs.haskellPackages.xmonad-dbus}/bin/xmonad-dbus";
     height = "${toString (24 * dpi / 96)}";
     dpi = "${toString dpi}";
     traymaxsize = "${toString (18 * dpi / 96)}";
