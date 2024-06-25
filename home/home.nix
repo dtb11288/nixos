@@ -11,7 +11,6 @@
     # You can also split up your configuration and import pieces of it here:
     ./theme.nix
     ./zsh.nix
-    ./spotify.nix
     ./alacritty.nix
     ./lazygit.nix
     ./zellij.nix
@@ -26,6 +25,7 @@
     ./vim
     ./tmux.nix
     ./xmonad
+    ./rbw.nix
   ];
 
   home = {
@@ -45,12 +45,11 @@
     zapzap
     firefox
     google-chrome
-    (chromium.override { enableWideVine = true; })
+    chromium
     thunderbird
     birdtray
     slack
     gimp
-    spotify-player
     onlyoffice-bin
     flameshot
     nomacs
@@ -58,8 +57,6 @@
     hugin
     blender
     inkscape
-    (xfce.thunar.override { thunarPlugins = with pkgs; [ xfce.thunar-volman xfce.thunar-archive-plugin ]; })
-    xarchiver
     zathura
     mpv
     gimp
@@ -68,6 +65,9 @@
     discord
     leafpad
     steam
+    jellyfin-media-player
+    ryujinx
+    weechat
   ];
 
   # Wallpaper
@@ -93,5 +93,5 @@
   programs.direnv.nix-direnv.enable = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "23.05";
+  home.stateVersion = "24.05";
 }

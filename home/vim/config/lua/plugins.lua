@@ -56,7 +56,10 @@ return require('packer').startup({
     use 'kristijanhusak/vim-dadbod-completion'
 
     -- Rust
-    use 'simrat39/rust-tools.nvim'
+    use 'vxpm/rust-expand-macro.nvim'
+
+    -- Haskell
+    use 'MrcJkb/haskell-tools.nvim'
 
     -- Javascript
     use 'jose-elias-alvarez/null-ls.nvim'

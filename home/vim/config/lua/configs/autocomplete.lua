@@ -110,15 +110,22 @@ cmp.setup.cmdline(':', {
   })
 })
 
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { noremap = true, silent = true, desc = 'Open Diagnostic Window' })
-vim.keymap.set('n', '[g', vim.diagnostic.goto_prev, { noremap = true, silent = true, desc = 'Jump To Previous Diagnostic' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float,
+  { noremap = true, silent = true, desc = 'Open Diagnostic Window' })
+vim.keymap.set('n', '[g', vim.diagnostic.goto_prev,
+  { noremap = true, silent = true, desc = 'Jump To Previous Diagnostic' })
 vim.keymap.set('n', ']g', vim.diagnostic.goto_next, { noremap = true, silent = true, desc = 'Jump To Next Diagnostic' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { noremap = true, silent = true, desc = 'Open Diagnostic List' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist,
+  { noremap = true, silent = true, desc = 'Open Diagnostic List' })
 
 local fzf = require('fzf-lua')
 local on_attach = function(_, bufnr)
   local nmap = function(keys, func, desc)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc, noremap = true, silent = true })
+  end
+
+  if vim.lsp.inlay_hint then
+    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
   end
 
   -- Enable completion triggered by <c-x><c-o>
@@ -130,6 +137,7 @@ local on_attach = function(_, bufnr)
   nmap('gd', fzf.lsp_definitions, 'Goto definition')
   nmap('<leader>k', vim.lsp.buf.hover, 'Hover documentation')
   nmap('gi', fzf.lsp_implementations, 'Goto implementation')
+  nmap('<leader>cl', vim.lsp.codelens.run, 'Codelens')
   nmap('<leader>i', fzf.lsp_incoming_calls, 'Goto incoming calls')
   nmap('<leader>o', fzf.lsp_outgoing_calls, 'Goto outgoing calls')
   nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature documentation')
@@ -163,17 +171,19 @@ lsp_defaults.capabilities = vim.tbl_deep_extend(
 -- Small UI for progress
 require('fidget').setup()
 
--- Rust
-local rust_tools = require('rust-tools')
-rust_tools.setup()
-rust_tools.inlay_hints.enable()
-vim.keymap.set('n', '<leader>me', require'rust-tools'.expand_macro.expand_macro, { desc = 'Expand macro' })
+-- Haskell
+require('haskell-tools')
+vim.g.haskell_tools = {
+  hls = {
+    on_attach = on_attach
+  }
+}
 
 lspconfig.html.setup {}
-lspconfig.nil_ls.setup {}
+lspconfig.nixd.setup {}
 lspconfig.lua_ls.setup {}
 lspconfig.tsserver.setup {}
-lspconfig.hls.setup {}
+lspconfig.rust_analyzer.setup {}
 lspconfig.lua_ls.setup {
   settings = {
     Lua = {

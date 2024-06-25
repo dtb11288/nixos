@@ -8,10 +8,8 @@
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
     extraPackages = with pkgs; [
       intel-media-driver
       vaapiIntel
@@ -62,7 +60,7 @@
   # This will detech systemd event like when you close the lid
   programs.xss-lock = {
     enable = true;
-    lockerCommand = "/run/wrappers/bin/slock";
+    lockerCommand = "${pkgs.i3lock-color}/bin/i3lock-color -c 112233";
   };
 
   programs.light.enable = true;

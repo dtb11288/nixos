@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    (rofi.override { plugins = [ rofi-calc rofi-emoji ]; })
+    rofi
     rofi-rbw
     rofi-vpn
     pinentry-gtk2
@@ -16,7 +16,7 @@
     qpwgraph
     blueman
     xdg_utils
-    slock
+    i3lock-color
     pa_applet
     parcellite
     xdotool
@@ -27,10 +27,20 @@
     arandr
     anydesk
     teamviewer
-    jellyfin-media-player
     caffeine-ng
     goldendict-ng
+    qbittorrent-qt5
   ];
+
+  programs.xfconf.enable = true;
+  programs.file-roller.enable = true;
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-volman
+      thunar-archive-plugin
+    ];
+  };
 
   services.teamviewer.enable = true;
   systemd.services.teamviewerd.wantedBy = lib.mkForce [ ];
@@ -102,18 +112,20 @@
       xterm
     ];
 
-   windowManager.xmonad = {
+    desktopManager.runXdgAutostartIfNone = true;
+
+    windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
       extraPackages = hp: with hp; [
         dbus
-        monad-logger
+        xmonad-dbus
       ];
     };
 
     xautolock = {
       enable = true;
-      locker = "/run/wrappers/bin/slock";
+      locker = "${pkgs.i3lock-color}/bin/i3lock-color -c 112233";
       time = 5;
       extraOptions = [ "-detectsleep" "-corners '----'" ];
     };
@@ -132,6 +144,4 @@
       '';
     };
   };
-
-  programs.slock.enable = true;
 }
