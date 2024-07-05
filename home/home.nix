@@ -64,7 +64,6 @@
     lxappearance
     discord
     leafpad
-    steam
     jellyfin-media-player
     ryujinx
     weechat
