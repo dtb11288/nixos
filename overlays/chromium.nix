@@ -1,3 +1,3 @@
 final: prev: {
-  chromium = prev.chromium.override { enableWideVine = true; };
+  chromium = prev.ungoogled-chromium.override { enableWideVine = true; };
 }
