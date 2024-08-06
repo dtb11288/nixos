@@ -18,16 +18,6 @@
     ];
   };
 
-  services.udev.packages = [
-    (pkgs.writeTextFile {
-      name = "micmute-led";
-      text = ''
-        ACTION=="add", SUBSYSTEM=="leds", KERNEL=="platform::micmute" ATTR{trigger}="audio-micmute"
-      '';
-      destination = "/etc/udev/rules.d/micmute-led.rules";
-    })
-  ];
-
   services.xserver.deviceSection = ''Option "TearFree" "true"''; # For amdgpu.
 
   services.xserver.videoDrivers = [ "amdgpu" ];
