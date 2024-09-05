@@ -179,6 +179,7 @@ vim.g.haskell_tools = {
   }
 }
 
+lspconfig.dockerls.setup {}
 lspconfig.html.setup {}
 lspconfig.nixd.setup {}
 lspconfig.lua_ls.setup {}
