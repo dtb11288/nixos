@@ -45,7 +45,7 @@
   environment.systemPackages = with pkgs; [
     cbatticon
     libinput-gestures
-    radeontop
+    amdgpu_top
   ];
 
   programs.light.enable = true;
