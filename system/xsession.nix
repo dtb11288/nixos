@@ -74,7 +74,7 @@
     enable = true;
     activeOpacity = 1.0;
     inactiveOpacity = 0.99;
-    backend = "glx";
+    backend = "xrender";
     fade = true;
     fadeDelta = 5;
     shadow = true;
