@@ -65,7 +65,6 @@
     discord
     leafpad
     jellyfin-media-player
-    ryujinx
     weechat
   ];
 
