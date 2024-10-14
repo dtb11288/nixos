@@ -82,6 +82,7 @@
     tmux
     glib
     git-crypt
+    termscp
   ];
 
   security.rtkit.enable = true;
