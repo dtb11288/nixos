@@ -83,6 +83,7 @@
     glib
     git-crypt
     termscp
+    ventoy-full
   ];
 
   security.rtkit.enable = true;
