@@ -1,31 +1,23 @@
-{ theme, lib, config, ... }:
-let
-  colors = lib.attrsets.mapAttrsToList (name: value: "${lib.strings.toUpper name} = \"${value}\"") theme.colors;
-  luaColors = builtins.concatStringsSep "\n" colors;
-in
+{ pkgs, theme, lib, config, ... }:
 {
   xdg.configFile."nvim" = {
-    source = ./config;
+    source = pkgs.symlinkJoin {
+      name = "nvim-config";
+      paths = [
+        (lib.cleanSourceWith {
+          src = ./config;
+
+          # Filter to exclude certain files and directories
+          filter = name: type:
+            !(lib.hasSuffix "lua/variables.lua" name);
+        })
+      ];
+    };
     recursive = true;
   };
-  xdg.configFile."nvim/lua/variables.lua".text = ''
-    VIM_HOME = vim.fn.expand("${config.xdg.configHome}/nvim")
-    BORDER = {
-      { "╔", "CmpBorder" },
-      { "═", "CmpBorder" },
-      { "╗", "CmpBorder" },
-      { "║", "CmpBorder" },
-      { "╝", "CmpBorder" },
-      { "═", "CmpBorder" },
-      { "╚", "CmpBorder" },
-      { "║", "CmpBorder" },
-    }
-    ${luaColors};
-  '';
-  xdg.configFile."nvim/init.lua".text = ''
-    require("variables")
-    require("settings")
-    require("plugins")
-    require("configs")
-  '';
+  xdg.configFile."nvim/lua/variables.lua".source = pkgs.substituteAll ({
+    src = ./config/lua/variables.lua;
+    vim_home = "${config.xdg.configHome}/nvim";
+  } // theme.colors);
+  xdg.configFile."nvim/init.lua".source = ./init.lua;
 }
