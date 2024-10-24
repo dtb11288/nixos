@@ -18,7 +18,7 @@
     xdg_utils
     i3lock-color
     pa_applet
-    parcellite
+    copyq
     xdotool
     playerctl
     feh
@@ -140,8 +140,8 @@
         ${xorg.xset}/bin/xset r rate 200 25
         ${xorg.xset}/bin/xset dpms 300
         ${pa_applet}/bin/pa-applet &
-        ${parcellite}/bin/parcellite &
         ${goldendict-ng}/bin/goldendict &
+        ${copyq}/bin/copyq &
       '';
     };
   };
