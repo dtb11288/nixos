@@ -18,7 +18,7 @@
     # Making legacy nix commands consistent as well, awesome!
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
-    package = pkgs.nixFlakes;
+    package = pkgs.nixVersions.stable;
 
     settings = {
       # Enable flakes and new 'nix' command
@@ -63,7 +63,7 @@
     btop
     wget
     curl
-    alsaUtils
+    alsa-utils
     nfs-utils
     fzf
     lazygit

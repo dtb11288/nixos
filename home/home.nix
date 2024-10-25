@@ -83,6 +83,7 @@
     initExtra = with pkgs; ''
       ${birdtray}/bin/birdtray &
       ${flatpak}/bin/flatpak run com.synology.SynologyDrive &
+      ${flatpak}/bin/flatpak run io.github.xiaoyifang.goldendict_ng &
     '';
   };
 

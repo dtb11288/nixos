@@ -15,7 +15,7 @@
     easyeffects
     qpwgraph
     blueman
-    xdg_utils
+    xdg-utils
     i3lock-color
     pa_applet
     copyq
@@ -28,7 +28,6 @@
     anydesk
     teamviewer
     caffeine-ng
-    goldendict-ng
     qbittorrent
   ];
 
@@ -140,7 +139,6 @@
         ${xorg.xset}/bin/xset r rate 200 25
         ${xorg.xset}/bin/xset dpms 300
         ${pa_applet}/bin/pa-applet &
-        ${goldendict-ng}/bin/goldendict &
         ${copyq}/bin/copyq &
       '';
     };
