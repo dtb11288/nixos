@@ -179,10 +179,11 @@ vim.g.haskell_tools = {
   }
 }
 
+lspconfig.dockerls.setup {}
 lspconfig.html.setup {}
 lspconfig.nixd.setup {}
 lspconfig.lua_ls.setup {}
-lspconfig.tsserver.setup {}
+lspconfig.ts_ls.setup {}
 lspconfig.rust_analyzer.setup {}
 lspconfig.lua_ls.setup {
   settings = {

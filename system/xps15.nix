@@ -36,6 +36,7 @@
     modesetting.enable = true;
     nvidiaSettings = true;
     forceFullCompositionPipeline = true;
+    open = false;
     prime = {
       # sync.enable = true;
 

@@ -15,10 +15,10 @@
     easyeffects
     qpwgraph
     blueman
-    xdg_utils
+    xdg-utils
     i3lock-color
     pa_applet
-    parcellite
+    copyq
     xdotool
     playerctl
     feh
@@ -28,8 +28,7 @@
     anydesk
     teamviewer
     caffeine-ng
-    goldendict-ng
-    qbittorrent-qt5
+    qbittorrent
   ];
 
   programs.xfconf.enable = true;
@@ -63,25 +62,26 @@
   };
 
   i18n.inputMethod = {
-    enabled = "fcitx5";
+    enable = true;
+    type = "fcitx5";
     fcitx5.addons = with pkgs; [
       fcitx5-unikey
     ];
   };
 
-  services.picom = {
-    enable = true;
-    activeOpacity = 1.0;
-    inactiveOpacity = 0.99;
-    backend = "glx";
-    fade = true;
-    fadeDelta = 5;
-    shadow = true;
-    shadowOpacity = 0.75;
-    settings = {
-      focus-exclude = "x = 0 && y = 0 && override_redirect = true";
-    };
-  };
+  # services.picom = {
+  #   enable = true;
+  #   activeOpacity = 1.0;
+  #   inactiveOpacity = 0.99;
+  #   backend = "xrender";
+  #   fade = true;
+  #   fadeDelta = 5;
+  #   shadow = true;
+  #   shadowOpacity = 0.75;
+  #   settings = {
+  #     focus-exclude = "x = 0 && y = 0 && override_redirect = true";
+  #   };
+  # };
   services.tumbler.enable = true;
   services.blueman.enable = true;
 
@@ -139,8 +139,7 @@
         ${xorg.xset}/bin/xset r rate 200 25
         ${xorg.xset}/bin/xset dpms 300
         ${pa_applet}/bin/pa-applet &
-        ${parcellite}/bin/parcellite &
-        ${goldendict-ng}/bin/goldendict &
+        ${copyq}/bin/copyq &
       '';
     };
   };

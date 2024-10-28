@@ -83,6 +83,7 @@ myManageHook =
       [ isFullscreen -?> doF W.focusDown <+> doFullFloat
       , isDialog -?> doFloat
       , className =? "steam" -?> doFloat
+      , className =? "mpv" -?> doFloat
       , className =? "file-roller" -?> doFloat
       , isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_SPLASH" -?> doCenterFloat
       ]

@@ -3,7 +3,7 @@
   home.pointerCursor = {
     x11.enable = true;
     name = "Adwaita";
-    package = pkgs.gnome.adwaita-icon-theme;
+    package = pkgs.adwaita-icon-theme;
     size = 18 * dpi / 96;
   };
 
@@ -12,12 +12,12 @@
 
     iconTheme = {
       name = "Adwaita";
-      package = pkgs.gnome.adwaita-icon-theme;
+      package = pkgs.adwaita-icon-theme;
     };
 
     theme = {
       name = "Adwaita-dark";
-      package = pkgs.gnome.adwaita-icon-theme;
+      package = pkgs.adwaita-icon-theme;
     };
 
     gtk3.extraConfig = {
