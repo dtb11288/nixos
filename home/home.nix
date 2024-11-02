@@ -63,7 +63,7 @@
     lxtask
     lxappearance
     discord
-    leafpad
+    xfce.mousepad
     jellyfin-media-player
     weechat
   ];
