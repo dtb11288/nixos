@@ -47,6 +47,9 @@
     };
   };
   boot.supportedFilesystems = [ "ntfs" "btrfs" "exfat" ];
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 10;
+  };
 
   # Set your time zone.
   time.timeZone = "Asia/Ho_Chi_Minh";
