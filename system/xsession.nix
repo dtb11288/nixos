@@ -29,6 +29,8 @@
     teamviewer
     caffeine-ng
     qbittorrent
+    wineWowPackages.stable
+    winetricks
   ];
 
   programs.xfconf.enable = true;
