@@ -17,9 +17,11 @@
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/17e94125-580a-4ce4-aabd-21655f3541d4";
       fsType = "ext4";
+      options = [ "noatime" "nodiratime" "discard" ];
     };
 
   boot.initrd.luks.devices."root".device = "/dev/disk/by-uuid/63705f79-b7ee-460e-b76a-0db984fc2fb1";
+  boot.initrd.luks.devices."root".allowDiscards = true;
 
   fileSystems."/boot" =
     { device = "/dev/disk/by-uuid/2135-2583";
