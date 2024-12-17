@@ -2,6 +2,7 @@
 {
   imports = [
     ./configuration.nix
+    ./game.nix
     ./hardware-t14.nix
   ];
 
