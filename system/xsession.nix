@@ -31,7 +31,15 @@
     qbittorrent
     wineWowPackages.stable
     winetricks
+    steam-run
   ];
+
+  programs.steam = {
+    enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+    localNetworkGameTransfers.openFirewall = true;
+  };
 
   programs.xfconf.enable = true;
   programs.file-roller.enable = true;
