@@ -96,6 +96,7 @@ myScatchPads :: [NamedScratchpad]
 myScatchPads =
   [ NS "EasyEffects" "easyeffects" (title =? "Easy Effects") $ mkCenter 0.7 0.7
   , NS "htop" "@terminal@ -T htop -e htop" (title =? "htop") $ mkCenter 0.7 0.7
+  , NS "cpupower" "@cpupower@" (title =? "cpupower-gui") $ mkCenter 0.7 0.7
   ]
 
 mkCenter :: Rational -> Rational -> ManageHook
@@ -111,6 +112,7 @@ addMyKeys conf@XConfig{XMonad.modMask = extraKeysModMask} =
     conf
     [ ((extraKeysModMask .|. shiftMask, xK_e), callScratchPad "EasyEffects")
     , ((extraKeysModMask .|. shiftMask, xK_h), callScratchPad "htop")
+    , ((extraKeysModMask .|. shiftMask, xK_g), callScratchPad "cpupower")
     ]
 
 callScratchPad :: String -> X ()

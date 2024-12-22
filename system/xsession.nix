@@ -43,6 +43,7 @@
     ];
   };
 
+  services.cpupower-gui.enable = true;
   services.teamviewer.enable = true;
   systemd.services.teamviewerd.wantedBy = lib.mkForce [ ];
 
