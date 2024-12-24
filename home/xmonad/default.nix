@@ -1,4 +1,4 @@
-{ pkgs, config, dpi, theme, ... }:
+{ pkgs, config, dpi, dpiRatio, theme, ... }:
 let
   runbar = pkgs.writeShellScriptBin "runbar" ''
     for pid in `pgrep polybar`; do kill $pid; done;
@@ -28,8 +28,8 @@ in
     src = ./polybar.ini;
 
     xmonadlog = "${pkgs.haskellPackages.xmonad-dbus}/bin/xmonad-dbus";
-    height = "${toString (24 * dpi / 96)}";
+    height = "${toString (24 * dpiRatio)}";
     dpi = "${toString dpi}";
-    traymaxsize = "${toString (18 * dpi / 96)}";
+    traymaxsize = "${toString (18 * dpiRatio)}";
   } // theme.colors);
 }

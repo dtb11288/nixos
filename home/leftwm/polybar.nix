@@ -1,4 +1,4 @@
-{ theme, config, dpi, pkgs, ... }:
+{ theme, config, dpi, dpiRatio, pkgs, ... }:
 let
 change_to_tag = pkgs.writeShellScriptBin "change_to_tag" ''
   ${pkgs.leftwm}/bin/leftwm-command "SendWorkspaceToTag $1 $2"
@@ -94,7 +94,7 @@ in
     monitor = ''${env:monitor}
     ;offset-y = ''${env:y}
     ;width = 100%
-    height = ${toString (24 * dpi / 96)}
+    height = ${toString (24 * dpiRatio)}
     dpi=${toString dpi}
     fixed-center = false
     background = ''${colors.background}
@@ -114,7 +114,7 @@ in
     tray-position = right
     tray-padding = 2
     tray-scale = 1.0
-    tray-maxsize = ${toString (18 * dpi / 96)}
+    tray-maxsize = ${toString (18 * dpiRatio)}
     cursor-click = pointer
     cursor-scroll = ns-resize
 

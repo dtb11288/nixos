@@ -14,8 +14,9 @@
   let
     theme = import ./theme.nix;
     secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
-    makeArgs = config: config // {
+    makeArgs = { dpi, ... }@config: config // {
       # Pass flake inputs to our config
+      dpiRatio = dpi / 96;
       inherit inputs theme secrets;
     };
     mkHomeManagerConfig = config:

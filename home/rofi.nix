@@ -1,4 +1,4 @@
-{ pkgs, dpi, config, theme, ... }:
+{ pkgs, dpi, dpiRatio, config, theme, ... }:
 let
   inherit (config.lib.formats.rasi) mkLiteral;
   font = "Noto Front 13";
@@ -36,21 +36,21 @@ in
       window = {
         background-color = mkLiteral "@bg0";
         location = mkLiteral "center";
-        width = 1000 * dpi / 96;
-        border-radius = 4 * dpi / 96;
+        width = 1000 * dpiRatio;
+        border-radius = 4 * dpiRatio;
       };
 
       inputbar = {
         inherit font;
-        padding = mkLiteral "${toString (13 * dpi / 96)}px";
-        spacing = mkLiteral "${toString (13 * dpi / 96)}px";
+        padding = mkLiteral "${toString (13 * dpiRatio)}px";
+        spacing = mkLiteral "${toString (13 * dpiRatio)}px";
         children = map mkLiteral [ "icon-search" "entry" ];
       };
 
       "icon-search" = {
         expand = false;
         filename = "search";
-        size = mkLiteral "${toString (2 * dpi / 96)}px";
+        size = mkLiteral "${toString (2 * dpiRatio)}px";
       };
 
       "icon-search, entry, element-icon, element-text" = {
@@ -83,8 +83,8 @@ in
       };
 
       element = {
-        padding = mkLiteral "${toString (4 * dpi / 96)}px ${toString (14 * dpi / 96)}px";
-        spacing = mkLiteral "${toString (16 * dpi / 96)}px";
+        padding = mkLiteral "${toString (4 * dpiRatio)}px ${toString (14 * dpiRatio)}px";
+        spacing = mkLiteral "${toString (16 * dpiRatio)}px";
         background-color = mkLiteral "transparent";
       };
 
