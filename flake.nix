@@ -21,7 +21,7 @@
     };
     mkHomeManagerConfig = config:
       home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        pkgs = nixpkgs.legacyPackages.${nixpkgs.system};
         extraSpecialArgs = makeArgs config;
         modules = [ nixpkgsConfig ./home/home.nix ];
       };
