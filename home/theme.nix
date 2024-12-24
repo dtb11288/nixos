@@ -1,10 +1,10 @@
-{ pkgs, lib, theme, dpi, ... }:
+{ pkgs, lib, theme, dpi, dpiRatio, ... }:
 {
   home.pointerCursor = {
     x11.enable = true;
     name = "Adwaita";
     package = pkgs.adwaita-icon-theme;
-    size = 18 * dpi / 96;
+    size = 18 * dpiRatio;
   };
 
   gtk = {
