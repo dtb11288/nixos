@@ -17,6 +17,7 @@ in
       "mod4 + c" = "${rofi}/bin/rofi -show calc -no-show-match -no-sort -calc-command \"echo -n '\\\{result\\\}' | xsel -b\"";
       "mod4 + s" = "${rofi-rbw}/bin/rofi-rbw";
       "mod4 + v" = "${rofi-vpn}/bin/rofi-vpn";
+      "mod4 + d" = "${rofi-systemd}/bin/rofi-systemd";
       "mod4 + Escape" = "${i3lock-color}/bin/i3lock-color -c 112233";
     };
   };

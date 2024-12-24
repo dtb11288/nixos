@@ -3,7 +3,6 @@
     ./user.nix
     ./font.nix
     ./xsession.nix
-    ./8bitdo.nix
     ./qudelix.nix
   ];
 
@@ -19,6 +18,11 @@
     nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
     package = pkgs.nixVersions.stable;
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
 
     settings = {
       # Enable flakes and new 'nix' command
@@ -42,6 +46,9 @@
     };
   };
   boot.supportedFilesystems = [ "ntfs" "btrfs" "exfat" ];
+  boot.kernel.sysctl = {
+    "vm.swappiness" = 10;
+  };
 
   # Set your time zone.
   time.timeZone = "Asia/Ho_Chi_Minh";

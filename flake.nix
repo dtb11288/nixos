@@ -12,11 +12,44 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
   let
-    secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
     theme = import ./theme.nix;
-    makeArgs = username: hostname: dpi: {
+    secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
+    makeArgs = config: config // {
       # Pass flake inputs to our config
-      inherit inputs theme dpi hostname username secrets;
+      inherit inputs theme secrets;
+    };
+    mkHomeManagerConfig = config:
+      home-manager.lib.homeManagerConfiguration {
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        extraSpecialArgs = makeArgs config;
+        modules = [ nixpkgsConfig ./home/home.nix ];
+      };
+    mkNixosSystem = { hostname, username, ... }@config:
+      let args = makeArgs config;
+      in nixpkgs.lib.nixosSystem {
+        specialArgs = args;
+        modules = [
+          nixpkgsConfig
+          ./system/${hostname}.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.${username} = import ./home/home.nix;
+            home-manager.extraSpecialArgs = args;
+          }
+        ];
+      };
+    mkConfigs = username: systems: {
+      nixosConfigurations = builtins.mapAttrs (hostname: config: mkNixosSystem (config // { inherit hostname username; })) systems;
+      homeConfigurations = builtins.mapAttrs (hostname: config:
+        let
+          userAtHost = "${username}@${hostname}";
+        in
+        {
+          ${userAtHost} = mkHomeManagerConfig (config // { inherit hostname username; });
+        }
+      ) systems;
     };
     nixpkgsConfig = { ... }: {
       nixpkgs = {
@@ -34,87 +67,9 @@
       };
     };
   in
-  {
-    # NixOS configuration entrypoint
-    # Available through 'nixos-rebuild --flake .#your-hostname'
-    nixosConfigurations = {
-      xps15 = let
-        args = makeArgs "binh" "xps15" 192;
-      in
-      nixpkgs.lib.nixosSystem {
-        specialArgs = args;
-        # > Our main nixos configuration file <
-        modules = [
-          nixpkgsConfig
-          ./system/xps15.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.binh = import ./home/home.nix;
-            home-manager.extraSpecialArgs = args;
-          }
-        ];
-      };
-      t14 = let
-        args = makeArgs "binh" "t14" 96;
-      in
-      nixpkgs.lib.nixosSystem {
-        specialArgs = args;
-        # > Our main nixos configuration file <
-        modules = [
-          nixpkgsConfig
-          ./system/t14.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.binh = import ./home/home.nix;
-            home-manager.extraSpecialArgs = args;
-          }
-        ];
-      };
-      pc = let
-        args = makeArgs "binh" "pc" 144;
-      in
-      nixpkgs.lib.nixosSystem {
-        specialArgs = args;
-        # > Our main nixos configuration file <
-        modules = [
-          nixpkgsConfig
-          ./system/pc.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.binh = import ./home/home.nix;
-            home-manager.extraSpecialArgs = args;
-          }
-        ];
-      };
-    };
-
-    # Standalone home-manager configuration entrypoint
-    # Available through 'home-manager --flake .#your-username@your-hostname'
-    homeConfigurations = {
-      "binh@xps15" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = makeArgs "binh" "xps15" 192;
-        # > Our main home-manager configuration file <
-        modules = [ nixpkgsConfig ./home/home.nix ];
-      };
-      "binh@t14" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = makeArgs "binh" "t14" 96;
-        # > Our main home-manager configuration file <
-        modules = [ nixpkgsConfig ./home/home.nix ];
-      };
-      "binh@pc" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux; # Home-manager requires 'pkgs' instance
-        extraSpecialArgs = makeArgs "binh" "pc" 144;
-        # > Our main home-manager configuration file <
-        modules = [ nixpkgsConfig ./home/home.nix ];
-      };
-    };
+  mkConfigs "binh" {
+    xps15 = { dpi = 192; };
+    t14 = { dpi = 96; };
+    pc = { dpi = 144; };
   };
 }

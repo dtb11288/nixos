@@ -31,15 +31,14 @@ colorFocusedBorder = "@color5@"
 colorNormalBorder :: String
 colorNormalBorder = "@color0@"
 
--- Define default config
-baseConfig = ewmh desktopConfig
+myBaseConfig = desktopConfig
 
 main :: IO ()
 main = do
   spawn myBar
   dbus <- D.connect
   D.requestAccess dbus
-  xmonad $ ewmhFullscreen . docks $ mkConfig dbus
+  xmonad $ docks . ewmhFullscreen . ewmh . mkConfig dbus $ myBaseConfig
 
 -- Status bar display
 mkLogHook :: DC.Client -> PP
@@ -55,7 +54,7 @@ mkLogHook dbus =
     , ppTitle = wrap "%{F@color2@} " " %{F-}" . shorten 120
     }
 
-mkConfig dbus =
+mkConfig dbus baseConfig =
   removeMyKeys . addMyKeys $
     baseConfig
       { modMask = myModMask
@@ -63,8 +62,8 @@ mkConfig dbus =
       , startupHook = setWMName "LG3D"
       , focusFollowsMouse = False
       , workspaces = myWorkspaces
-      , manageHook = myManageHook
-      , layoutHook = myLayoutHook
+      , manageHook = myManageHook baseConfig
+      , layoutHook = myLayoutHook baseConfig
       , focusedBorderColor = colorFocusedBorder
       , normalBorderColor = colorNormalBorder
       , borderWidth = myBorderWidth
@@ -74,8 +73,8 @@ mkConfig dbus =
   myLogHook = dynamicLogWithPP . filterOutWsPP [scratchpadWorkspaceTag] $ mkLogHook dbus
 
 -- Handling some rules for specific apps
-myManageHook :: ManageHook
-myManageHook =
+myManageHook :: XConfig l -> ManageHook
+myManageHook baseConfig =
   manageDocks
     <+> manageHookConfig
     <+> namedScratchpadManageHook myScatchPads
@@ -90,12 +89,13 @@ myManageHook =
  where
   manageHookConfig = manageHook baseConfig
 
-myLayoutHook = avoidStruts $ smartBorders $ layoutHook baseConfig
+myLayoutHook baseConfig = avoidStruts $ smartBorders $ layoutHook baseConfig
 
 myScatchPads :: [NamedScratchpad]
 myScatchPads =
   [ NS "EasyEffects" "easyeffects" (title =? "Easy Effects") $ mkCenter 0.7 0.7
   , NS "htop" "@terminal@ -T htop -e htop" (title =? "htop") $ mkCenter 0.7 0.7
+  , NS "cpupower" "@cpupower@" (title =? "cpupower-gui") $ mkCenter 0.7 0.7
   ]
 
 mkCenter :: Rational -> Rational -> ManageHook
@@ -111,6 +111,7 @@ addMyKeys conf@XConfig{XMonad.modMask = extraKeysModMask} =
     conf
     [ ((extraKeysModMask .|. shiftMask, xK_e), callScratchPad "EasyEffects")
     , ((extraKeysModMask .|. shiftMask, xK_h), callScratchPad "htop")
+    , ((extraKeysModMask .|. shiftMask, xK_g), callScratchPad "cpupower")
     ]
 
 callScratchPad :: String -> X ()

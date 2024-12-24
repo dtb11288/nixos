@@ -29,6 +29,8 @@
     teamviewer
     caffeine-ng
     qbittorrent
+    wineWowPackages.stable
+    winetricks
   ];
 
   programs.xfconf.enable = true;
@@ -41,6 +43,7 @@
     ];
   };
 
+  services.cpupower-gui.enable = true;
   services.teamviewer.enable = true;
   systemd.services.teamviewerd.wantedBy = lib.mkForce [ ];
 
@@ -69,29 +72,41 @@
     ];
   };
 
-  # services.picom = {
-  #   enable = true;
-  #   activeOpacity = 1.0;
-  #   inactiveOpacity = 0.99;
-  #   backend = "xrender";
-  #   fade = true;
-  #   fadeDelta = 5;
-  #   shadow = true;
-  #   shadowOpacity = 0.75;
-  #   settings = {
-  #     focus-exclude = "x = 0 && y = 0 && override_redirect = true";
-  #   };
-  # };
+  services.picom = {
+    enable = true;
+    activeOpacity = 1.0;
+    inactiveOpacity = 0.99;
+    backend = "xrender";
+    fade = true;
+    fadeDelta = 5;
+    shadow = true;
+    shadowOpacity = 0.75;
+    settings = {
+      focus-exclude = "x = 0 && y = 0 && override_redirect = true";
+    };
+  };
+
   services.tumbler.enable = true;
   services.blueman.enable = true;
 
   services.flatpak.enable = true;
+  systemd.services.flatpak-repo = {
+    wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.flatpak ];
+    script = ''
+      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    '';
+  };
   xdg.portal = {
     enable = true;
-    config.common.default = "*";
+    config = {
+      common.default = "gtk";
+    };
     extraPortals = with pkgs; [
       xdg-desktop-portal
       xdg-desktop-portal-gtk
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-kde
     ];
   };
 
