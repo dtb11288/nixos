@@ -78,13 +78,19 @@ myManageHook baseConfig =
   manageDocks
     <+> manageHookConfig
     <+> namedScratchpadManageHook myScatchPads
-    <+> composeOne
-      [ isFullscreen -?> doF W.focusDown <+> doFullFloat
-      , isDialog -?> doFloat
-      , className =? "steam" -?> doFloat
-      , className =? "mpv" -?> doFloat
-      , className =? "file-roller" -?> doFloat
-      , isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_SPLASH" -?> doCenterFloat
+    <+> composeAll
+      [ isFullscreen --> doF W.focusDown <+> doFullFloat
+      , isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_SPLASH" --> doCenterFloat
+      , isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_DIALOG" --> doFloat
+      , isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_UTILITY" --> doFloat
+      , isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_MENU" --> doFloat
+      , isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_NOTIFICATION" --> doFloat
+
+      -- Special apps
+      , className =? "steam" --> doFloat
+      , className =? "battle.net.exe" --> doFloat
+      , className =? "mpv" --> doFloat
+      , className =? "file-roller" --> doFloat
       ]
  where
   manageHookConfig = manageHook baseConfig
