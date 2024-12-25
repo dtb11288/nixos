@@ -29,7 +29,7 @@
     teamviewer
     caffeine-ng
     qbittorrent
-    wineWowPackages.stable
+    wineWowPackages.staging
     winetricks
   ];
 
