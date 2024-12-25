@@ -1,5 +1,7 @@
-{ pkgs, lib, username, dpi, ... }:
-
+{ pkgs, config, lib, username, dpi, ... }:
+let
+  fcitx5 = config.i18n.inputMethod.package;
+in
 {
   environment.systemPackages = with pkgs; [
     rofi
@@ -127,8 +129,6 @@
       xterm
     ];
 
-    desktopManager.runXdgAutostartIfNone = true;
-
     windowManager.xmonad = {
       enable = true;
       enableContribAndExtras = true;
@@ -145,6 +145,7 @@
       extraOptions = [ "-detectsleep" "-corners '----'" ];
     };
 
+    desktopManager.runXdgAutostartIfNone = false;
     displayManager = {
       lightdm = {
         enable = true;
@@ -155,6 +156,9 @@
         ${xorg.xset}/bin/xset dpms 300
         ${pa_applet}/bin/pa-applet &
         ${copyq}/bin/copyq &
+        ${blueman}/bin/blueman-applet &
+        ${caffeine-ng}/bin/caffeine &
+        ${fcitx5}/bin/fcitx5 &
       '';
     };
   };
