@@ -16,9 +16,12 @@ import XMonad.Hooks.Minimize
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.NoBorders
+import XMonad.Layout.Tabbed
+import XMonad.Layout.Renamed
 import XMonad.StackSet qualified as W
 import XMonad.Util.EZConfig
 import XMonad.Util.NamedScratchpad
+import XMonad.Util.Themes
 import XMonad.Util.WorkspaceCompare
 
 myModMask :: KeyMask
@@ -63,7 +66,7 @@ mkConfig dbus baseConfig =
       , focusFollowsMouse = False
       , workspaces = myWorkspaces
       , manageHook = myManageHook baseConfig
-      , layoutHook = myLayoutHook baseConfig
+      , layoutHook = myLayoutHook
       , focusedBorderColor = colorFocusedBorder
       , normalBorderColor = colorNormalBorder
       , borderWidth = myBorderWidth
@@ -95,11 +98,31 @@ myManageHook baseConfig =
  where
   manageHookConfig = manageHook baseConfig
 
-myLayoutHook baseConfig = avoidStruts $ smartBorders $ layoutHook baseConfig
+myLayoutHook = avoidStruts $ smartBorders myLayout
+
+myLayout = Tall 1 (3/100) (1/2)
+  ||| renamed [Replace "Mirrored"] (Mirror (Tall 1 (3/100) (1/2)))
+  ||| renamed [Replace "Tabbed"] (tabbed shrinkText myTabConfig)
+  ||| Full
+
+myTabConfig = def
+  { activeColor         = "@color0@"
+  , inactiveColor       = "@color8@"
+  , urgentColor         = "@color1@"
+  , activeBorderColor   = "@color0@"
+  , inactiveBorderColor = "@color8@"
+  , urgentBorderColor   = "@color1@"
+  , activeTextColor     = "@color10@"
+  , inactiveTextColor   = "@color7@"
+  , urgentTextColor     = "@color0@"
+  , fontName            = "xft:Noto Sans:bold:size=11"
+  , decoWidth           = 400
+  , decoHeight          = 28
+  }
 
 myScatchPads :: [NamedScratchpad]
 myScatchPads =
-  [ NS "EasyEffects" "easyeffects" (title =? "Easy Effects") $ mkCenter 0.7 0.7
+  [ NS "easyeffects" "easyeffects" (title =? "Easy Effects") $ mkCenter 0.7 0.7
   , NS "htop" "@terminal@ -T htop -e htop" (title =? "htop") $ mkCenter 0.7 0.7
   , NS "cpupower" "@cpupower@" (title =? "cpupower-gui") $ mkCenter 0.7 0.7
   ]
@@ -115,7 +138,7 @@ addMyKeys :: XConfig a -> XConfig a
 addMyKeys conf@XConfig{XMonad.modMask = extraKeysModMask} =
   additionalKeys
     conf
-    [ ((extraKeysModMask .|. shiftMask, xK_e), callScratchPad "EasyEffects")
+    [ ((extraKeysModMask .|. shiftMask, xK_e), callScratchPad "easyeffects")
     , ((extraKeysModMask .|. shiftMask, xK_h), callScratchPad "htop")
     , ((extraKeysModMask .|. shiftMask, xK_g), callScratchPad "cpupower")
     ]
