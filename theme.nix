@@ -32,7 +32,7 @@
     color14 = "#80bfaf";
 
     # white
-    color7 = "#888888";
+    color7 = "#a0a0a0";
     color15 = "#e8e8d3";
   };
 }
