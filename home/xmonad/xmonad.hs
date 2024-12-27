@@ -27,28 +27,26 @@ import XMonad.Util.WorkspaceCompare
 myModMask :: KeyMask
 myModMask = mod4Mask
 
--- Colors
-colorFocusedBorder :: String
-colorFocusedBorder = "@color5@"
+myColorFocusedBorder :: String
+myColorFocusedBorder = "@color5@"
 
-colorNormalBorder :: String
-colorNormalBorder = "@color0@"
+myColorNormalBorder :: String
+myColorNormalBorder = "@color0@"
 
-myBaseConfig = desktopConfig
+myBorderWidth :: Dimension
+myBorderWidth = 1
 
-main :: IO ()
-main = do
-  spawn myBar
-  dbus <- D.connect
-  D.requestAccess dbus
-  xmonad $ docks . ewmhFullscreen . ewmh . mkConfig dbus $ myBaseConfig
+myWorkspaces :: [String]
+myWorkspaces = map show ([1 .. 9] :: [Int])
 
--- Status bar display
-mkLogHook :: DC.Client -> PP
-mkLogHook dbus =
-  def
-    { ppOutput = D.send dbus
-    , ppCurrent = wrap "%{F@color0@}%{B@color3@}  " "  %{B-}%{F-}"
+myBar :: String
+myBar = unwords ["@runbar@"]
+
+myTerminal :: String
+myTerminal = unwords ["@terminal@"]
+
+myBarLog = def
+    { ppCurrent = wrap "%{F@color0@}%{B@color3@}  " "  %{B-}%{F-}"
     , ppVisible = wrap "%{F@color0@}%{B@color15@}  " "  %{B-}%{F-}"
     , ppUrgent = wrap "%{B@color1@}%{F@color0@}  " "  %{F-}%{B-}"
     , ppHidden = wrap " " " "
@@ -57,110 +55,94 @@ mkLogHook dbus =
     , ppTitle = wrap "%{F@color2@} " " %{F-}" . shorten 120
     }
 
-mkConfig dbus baseConfig =
-  removeMyKeys . addMyKeys $
-    baseConfig
-      { modMask = myModMask
-      , terminal = myTerminal
-      , startupHook = setWMName "LG3D"
-      , focusFollowsMouse = False
-      , workspaces = myWorkspaces
-      , manageHook = myManageHook baseConfig
-      , layoutHook = myLayoutHook
-      , focusedBorderColor = colorFocusedBorder
-      , normalBorderColor = colorNormalBorder
-      , borderWidth = myBorderWidth
-      , logHook = myLogHook
+myWindowConditions =
+    [ isFullscreen --> doF W.focusDown <+> doFullFloat
+    , checkProperty "SPLASH" --> doCenterFloat
+    , checkProperty "DIALOG" --> doFloat
+    , checkProperty "UTILITY" --> doFloat
+    , checkProperty "MENU" --> doFloat
+    , checkProperty "NOTIFICATION" --> doFloat
+
+    -- Special apps
+    , className =? "steam" --> doFloat
+    , className =? "battle.net.exe" --> doFloat
+    , className =? "mpv" --> doFloat
+    , className =? "file-roller" --> doFloat
+    ]
+  where
+    checkProperty pType = let root = "_NET_WM_WINDOW_TYPE" in
+      isInProperty root $ root ++ "_" ++ pType
+
+myLayout =
+    Tall 1 (3/100) (1/2)
+      ||| Mirror (Tall 1 (3/100) (1/2)) ==> "MTall"
+      ||| tabbed shrinkText myTabConfig ==> "Tab"
+      ||| Full
+  where
+    (==>) layout newName = renamed [Replace newName] layout
+    myTabConfig = def
+      { activeColor         = "@color0@"
+      , inactiveColor       = "@color8@"
+      , urgentColor         = "@color1@"
+      , activeBorderColor   = "@color0@"
+      , inactiveBorderColor = "@color8@"
+      , urgentBorderColor   = "@color1@"
+      , activeTextColor     = "@color10@"
+      , inactiveTextColor   = "@color7@"
+      , urgentTextColor     = "@color0@"
+      , fontName            = "xft:Noto Sans:bold:size=11"
+      , decoWidth           = 400
+      , decoHeight          = 28
       }
- where
-  myLogHook = dynamicLogWithPP . filterOutWsPP [scratchpadWorkspaceTag] $ mkLogHook dbus
-
--- Handling some rules for specific apps
-myManageHook :: XConfig l -> ManageHook
-myManageHook baseConfig =
-  manageDocks
-    <+> manageHookConfig
-    <+> namedScratchpadManageHook myScatchPads
-    <+> composeAll
-      [ isFullscreen --> doF W.focusDown <+> doFullFloat
-      , isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_SPLASH" --> doCenterFloat
-      , isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_DIALOG" --> doFloat
-      , isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_UTILITY" --> doFloat
-      , isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_MENU" --> doFloat
-      , isInProperty "_NET_WM_WINDOW_TYPE" "_NET_WM_WINDOW_TYPE_NOTIFICATION" --> doFloat
-
-      -- Special apps
-      , className =? "steam" --> doFloat
-      , className =? "battle.net.exe" --> doFloat
-      , className =? "mpv" --> doFloat
-      , className =? "file-roller" --> doFloat
-      ]
- where
-  manageHookConfig = manageHook baseConfig
-
-myLayoutHook = avoidStruts $ smartBorders myLayout
-
-myLayout = Tall 1 (3/100) (1/2)
-  ||| renamed [Replace "Mirrored"] (Mirror (Tall 1 (3/100) (1/2)))
-  ||| renamed [Replace "Tabbed"] (tabbed shrinkText myTabConfig)
-  ||| Full
-
-myTabConfig = def
-  { activeColor         = "@color0@"
-  , inactiveColor       = "@color8@"
-  , urgentColor         = "@color1@"
-  , activeBorderColor   = "@color0@"
-  , inactiveBorderColor = "@color8@"
-  , urgentBorderColor   = "@color1@"
-  , activeTextColor     = "@color10@"
-  , inactiveTextColor   = "@color7@"
-  , urgentTextColor     = "@color0@"
-  , fontName            = "xft:Noto Sans:bold:size=11"
-  , decoWidth           = 400
-  , decoHeight          = 28
-  }
 
 myScatchPads :: [NamedScratchpad]
 myScatchPads =
-  [ NS "easyeffects" "easyeffects" (title =? "Easy Effects") $ mkCenter 0.7 0.7
-  , NS "htop" "@terminal@ -T htop -e htop" (title =? "htop") $ mkCenter 0.7 0.7
-  , NS "cpupower" "@cpupower@" (title =? "cpupower-gui") $ mkCenter 0.7 0.7
-  ]
+    [ NS "easyeffects" "easyeffects" (title =? "Easy Effects") $ mkCenter 0.7 0.7
+    , NS "htop" "@terminal@ -T htop -e htop" (title =? "htop") $ mkCenter 0.7 0.7
+    , NS "cpupower" "@cpupower@" (title =? "cpupower-gui") $ mkCenter 0.7 0.7
+    ]
+  where
+    mkCenter :: Rational -> Rational -> ManageHook
+    mkCenter w h = customFloating $ W.RationalRect l r w h
+     where
+      l = (1.0 - w) / 2.0
+      r = (1.0 - h) / 2.0
 
-mkCenter :: Rational -> Rational -> ManageHook
-mkCenter w h = customFloating $ W.RationalRect l r w h
- where
-  l = (1.0 - w) / 2.0
-  r = (1.0 - h) / 2.0
+additionKeys =
+    [ ((myModMask .|. shiftMask, xK_e), callScratchPad "easyeffects")
+    , ((myModMask .|. shiftMask, xK_h), callScratchPad "htop")
+    , ((myModMask .|. shiftMask, xK_g), callScratchPad "cpupower")
+    ]
+  where
+    callScratchPad = namedScratchpadAction myScatchPads
 
--- Add Extra keys to default
-addMyKeys :: XConfig a -> XConfig a
-addMyKeys conf@XConfig{XMonad.modMask = extraKeysModMask} =
-  additionalKeys
-    conf
-    [ ((extraKeysModMask .|. shiftMask, xK_e), callScratchPad "easyeffects")
-    , ((extraKeysModMask .|. shiftMask, xK_h), callScratchPad "htop")
-    , ((extraKeysModMask .|. shiftMask, xK_g), callScratchPad "cpupower")
+removalKeys =
+    [ (myModMask, xK_p)
+    , (myModMask .|. shiftMask, xK_p)
+    , (myModMask .|. shiftMask, xK_slash)
     ]
 
-callScratchPad :: String -> X ()
-callScratchPad = namedScratchpadAction myScatchPads
+addManageHook baseConfig =
+  baseConfig { manageHook = myManageHook }
+  where
+    myManageHook =
+      manageDocks
+        <+> manageHook baseConfig
+        <+> namedScratchpadManageHook myScatchPads
+        <+> composeAll myWindowConditions
 
--- Remove keys from default
-removeMyKeys :: XConfig a -> XConfig a
-removeMyKeys conf@XConfig{XMonad.modMask = extraKeysModMask} =
-  removeKeys
-    conf
-    [ (extraKeysModMask, xK_p)
-    , (extraKeysModMask .|. shiftMask, xK_p)
-    , (extraKeysModMask .|. shiftMask, xK_slash)
-    ]
+addLogHook dbus baseConfig = baseConfig { logHook = myLogHook }
+  where
+    myLogHook = dynamicLogWithPP . filterOutWsPP [scratchpadWorkspaceTag] $
+      myBarLog { ppOutput = D.send dbus }
 
-myBar :: String
-myBar = unwords ["@runbar@"]
+addLayoutHook baseConfig = baseConfig { layoutHook = myLayoutHook }
+  where
+    myLayoutHook = avoidStruts . smartBorders $ myLayout
 
-myTerminal :: String
-myTerminal = unwords ["@terminal@"]
+addMyKeys baseConfig = additionalKeys baseConfig additionKeys
+
+removeMyKeys baseConfig = removeKeys baseConfig removalKeys
 
 myRestartXmonad :: String
 myRestartXmonad =
@@ -170,8 +152,28 @@ myRestartXmonad =
     , "@notifysend@ 'Xmonad reloaded';"
     ]
 
-myBorderWidth :: Dimension
-myBorderWidth = 1
+myBaseConfig = desktopConfig
+    { modMask = myModMask
+    , terminal = myTerminal
+    , startupHook = setWMName "LG3D"
+    , focusFollowsMouse = False
+    , focusedBorderColor = myColorFocusedBorder
+    , normalBorderColor = myColorNormalBorder
+    , borderWidth = myBorderWidth
+    , workspaces = myWorkspaces
+    }
 
-myWorkspaces :: [String]
-myWorkspaces = map show ([1 .. 9] :: [Int])
+main :: IO ()
+main = do
+    spawn myBar
+    dbus <- D.connect
+    D.requestAccess dbus
+    let myConfig = myBaseConfig
+            |> addLayoutHook
+            |> addLogHook dbus
+            |> addManageHook
+            |> removeMyKeys
+            |> addMyKeys
+    xmonad $ docks . ewmhFullscreen . ewmh $ myConfig
+  where
+    (|>) x f = f x
