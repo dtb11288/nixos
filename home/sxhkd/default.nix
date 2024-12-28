@@ -19,6 +19,7 @@ in
       "mod4 + v" = "${rofi-vpn}/bin/rofi-vpn";
       "mod4 + d" = "${rofi-systemd}/bin/rofi-systemd";
       "mod4 + Escape" = "${i3lock-color}/bin/i3lock-color -c 112233";
+      "mod4 + shift + Return" = "${alacritty}/bin/alacritty";
     };
   };
 }

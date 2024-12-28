@@ -42,9 +42,6 @@ myWorkspaces = map show ([1 .. 9] :: [Int])
 myBar :: String
 myBar = unwords ["@runbar@"]
 
-myTerminal :: String
-myTerminal = unwords ["@terminal@"]
-
 myBarLog = def
     { ppCurrent = wrap "%{F@color0@}%{B@color3@}  " "  %{B-}%{F-}"
     , ppVisible = wrap "%{F@color0@}%{B@color15@}  " "  %{B-}%{F-}"
@@ -112,14 +109,21 @@ additionKeys =
     [ ((myModMask .|. shiftMask, xK_e), callScratchPad "easyeffects")
     , ((myModMask .|. shiftMask, xK_h), callScratchPad "htop")
     , ((myModMask .|. shiftMask, xK_g), callScratchPad "cpupower")
+    , ((myModMask, xK_q), spawn myRestartXmonad)
     ]
   where
     callScratchPad = namedScratchpadAction myScatchPads
+    myRestartXmonad = unwords
+        [ "xmonad --recompile;"
+        , "xmonad --restart;"
+        , "@notifysend@ 'Xmonad reloaded';"
+        ]
 
 removalKeys =
     [ (myModMask, xK_p)
     , (myModMask .|. shiftMask, xK_p)
     , (myModMask .|. shiftMask, xK_slash)
+    , (myModMask .|. shiftMask, xK_Return)
     ]
 
 addManageHook baseConfig =
@@ -144,17 +148,9 @@ addMyKeys baseConfig = additionalKeys baseConfig additionKeys
 
 removeMyKeys baseConfig = removeKeys baseConfig removalKeys
 
-myRestartXmonad :: String
-myRestartXmonad =
-  unwords
-    [ "xmonad --recompile;"
-    , "xmonad --restart;"
-    , "@notifysend@ 'Xmonad reloaded';"
-    ]
-
 myBaseConfig = desktopConfig
     { modMask = myModMask
-    , terminal = myTerminal
+    , terminal = "none"
     , startupHook = setWMName "LG3D"
     , focusFollowsMouse = False
     , focusedBorderColor = myColorFocusedBorder
