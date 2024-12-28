@@ -19,7 +19,6 @@ in
     src = ./xmonad.hs;
     runbar = "${runbar}/bin/runbar";
     notifysend = "${pkgs.libnotify}/bin/notify-send";
-    cpupower = "${pkgs.cpupower-gui}/bin/cpupower-gui";
   } // theme.colors);
 
   xdg.configFile."xmonad/polybar.ini".source = pkgs.substituteAll ({
