@@ -17,16 +17,12 @@ in
 {
   xdg.configFile."xmonad/xmonad.hs".source = pkgs.substituteAll ({
     src = ./xmonad.hs;
-
-    terminal = "${pkgs.alacritty}/bin/alacritty";
     runbar = "${runbar}/bin/runbar";
     notifysend = "${pkgs.libnotify}/bin/notify-send";
-    cpupower = "${pkgs.cpupower-gui}/bin/cpupower-gui";
   } // theme.colors);
 
   xdg.configFile."xmonad/polybar.ini".source = pkgs.substituteAll ({
     src = ./polybar.ini;
-
     xmonadlog = "${pkgs.haskellPackages.xmonad-dbus}/bin/xmonad-dbus";
     height = "${toString (24 * dpiRatio)}";
     dpi = "${toString dpi}";

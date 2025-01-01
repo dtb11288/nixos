@@ -1,10 +1,6 @@
 { pkgs, ... }:
 
 {
-  imports = [
-    ./8bitdo.nix
-  ];
-
   environment.systemPackages = with pkgs; [
     lutris
     ryujinx
