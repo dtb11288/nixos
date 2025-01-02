@@ -19,6 +19,7 @@ in
     src = ./xmonad.hs;
     runbar = "${runbar}/bin/runbar";
     notifysend = "${pkgs.libnotify}/bin/notify-send";
+    tabheight = "${toString (28 * dpiRatio)}";
   } // theme.colors);
 
   xdg.configFile."xmonad/polybar.ini".source = pkgs.substituteAll ({

@@ -97,8 +97,7 @@ myLayout =
       , inactiveTextColor = "@color7@"
       , urgentTextColor = "@color0@"
       , fontName = "xft:Noto Sans:bold:size=11"
-      , decoWidth = 400
-      , decoHeight = 28
+      , decoHeight = read "@tabheight@"
       }
 
 myScatchPads :: [NamedScratchpad]
