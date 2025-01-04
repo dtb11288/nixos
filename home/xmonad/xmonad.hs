@@ -16,6 +16,7 @@ import XMonad.Hooks.Minimize
 import XMonad.Hooks.SetWMName
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.NoBorders
+import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Renamed
 import XMonad.Layout.Tabbed
 import XMonad.StackSet qualified as W
@@ -76,15 +77,15 @@ myWindowConditions =
     let root = "_NET_WM_WINDOW_TYPE"
      in isInProperty root $ root ++ "_" ++ pType
 
-myLayout =
-  Tall 1 (3 / 100) (1 / 2)
-    ||| Mirror (Tall 1 (3 / 100) (1 / 2))
-    ==> "MTall"
-    ||| tabbed shrinkText myTabConfig
-    ==> "Tab"
-    ||| Full
+myLayout = onWorkspace "2" myWSLayout myDefaultLayout
  where
   layout ==> newName = renamed [Replace newName] layout
+  myWSLayout = myTab
+  myDefaultLayout = myTall ||| myMTall ||| myTab ||| Full
+  myTall = Tall 1 (3 / 100) (1 / 2)
+  myMTall = Mirror (Tall 1 (3 / 100) (1 / 2)) ==> "MTall"
+  myTab = tabbed shrinkText myTabConfig ==> "Tab"
+  myFull = Full
   myTabConfig =
     def
       { activeColor = "@color0@"
