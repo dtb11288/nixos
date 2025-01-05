@@ -89,7 +89,6 @@ return require('packer').startup({
     use 'kylechui/nvim-surround'
     use 'junegunn/vim-easy-align'
     use 'cappyzawa/trim.nvim'
-    use 'Chiel92/vim-autoformat'
     use 'moll/vim-bbye'
     use 'jiangmiao/auto-pairs'
     use 'L3MON4D3/LuaSnip'

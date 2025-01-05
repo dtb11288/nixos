@@ -139,9 +139,21 @@
   };
 
   services.blueman.enable = true;
-  services.tlp.enable = true;
   services.gvfs.enable = true;
   programs.adb.enable = true;
+  services.auto-cpufreq = {
+    enable = true;
+    settings = {
+      battery = {
+         governor = "powersave";
+         turbo = "never";
+      };
+      charger = {
+         governor = "performance";
+         turbo = "auto";
+      };
+    };
+  };
 
   environment.variables = {
     EDITOR = "nvim";
