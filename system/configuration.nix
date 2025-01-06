@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, hostname, secrets, ... }: {
+{ inputs, lib, config, pkgs, hostname, secrets, programs-sqlite-db, ... }: {
   imports = [
     ./user.nix
     ./font.nix
@@ -140,7 +140,6 @@
 
   services.blueman.enable = true;
   services.gvfs.enable = true;
-  programs.adb.enable = true;
   services.auto-cpufreq = {
     enable = true;
     settings = {
@@ -160,6 +159,8 @@
     VISUAL = "nvim";
   };
 
+  programs.adb.enable = true;
+  programs.command-not-found.dbPath = programs-sqlite-db;
   programs.zsh.enable = true;
   programs.ssh.startAgent = true;
 

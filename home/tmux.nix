@@ -42,7 +42,7 @@
       bind-key -n M-\- split-window -v
 
       # session select
-      bind-key -n M-f display-popup -E "tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"
+      bind-key -n M-s display-popup -E "tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"
 
       # status bar
       set -g status-position bottom
