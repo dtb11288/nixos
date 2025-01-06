@@ -110,7 +110,12 @@
   };
   services.printing.enable = true;
   services.ntp.enable = true;
-  virtualisation.docker.enable = true;
+  virtualisation.docker = {
+    enable = true;
+    daemon.settings = {
+      data-root = "/docker";
+    };
+  };
   virtualisation.libvirtd.enable = true;
   programs.dconf.enable = true;
 
