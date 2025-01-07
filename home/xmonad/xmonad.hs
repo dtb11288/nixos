@@ -103,8 +103,8 @@ myLayout = onWorkspace "2" myWSLayout myDefaultLayout
 
 myScatchPads :: [NamedScratchpad]
 myScatchPads =
-  [ NS "easyeffects" "easyeffects" (title =? "Easy Effects") $ mkCenter 0.7 0.7
-  , NS "htop" "@terminal@ -T htop -e htop" (title =? "htop") $ mkCenter 0.7 0.7
+  [ NS "easyeffects" "@easyeffects@" (title =? "Easy Effects") $ mkCenter 0.7 0.7
+  , NS "htop" "@htop@" (title =? "htop") $ mkCenter 0.7 0.7
   ]
  where
   mkCenter :: Rational -> Rational -> ManageHook
@@ -123,8 +123,8 @@ additionKeys =
   callScratchPad = namedScratchpadAction myScatchPads
   myRestartXmonad =
     unwords
-      [ "xmonad --recompile;"
-      , "xmonad --restart;"
+      [ "@xmonad@ --recompile;"
+      , "@xmonad@ --restart;"
       , "@notifysend@ 'Xmonad reloaded';"
       ]
 

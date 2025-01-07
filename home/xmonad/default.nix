@@ -15,11 +15,14 @@ let
   '';
 in
 {
-  xdg.configFile."xmonad/xmonad.hs".source = pkgs.substituteAll ({
+  xdg.configFile."xmonad/xmonad.hs".source = with pkgs; substituteAll ({
     src = ./xmonad.hs;
     runbar = "${runbar}/bin/runbar";
-    notifysend = "${pkgs.libnotify}/bin/notify-send";
+    xmonad = "xmonad";
+    notifysend = "${libnotify}/bin/notify-send";
     tabheight = "${toString (28 * dpiRatio)}";
+    easyeffects = "${pkgs.easyeffects}/bin/easyeffects";
+    htop = "${alacritty}/bin/alacritty -T htop -e ${htop}/bin/htop";
   } // theme.colors);
 
   xdg.configFile."xmonad/polybar.ini".source = pkgs.substituteAll ({
