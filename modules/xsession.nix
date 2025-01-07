@@ -1,4 +1,4 @@
-{ pkgs, config, lib, username, dpi, ... }:
+{ pkgs, config, lib, username, dpi, kbLayout, ... }:
 let
   fcitx5 = config.i18n.inputMethod.package;
 in
@@ -120,7 +120,7 @@ in
   services.xserver = {
     enable = true;
     xkb = {
-      layout = "us";
+      layout = kbLayout;
     };
     inherit dpi;
 

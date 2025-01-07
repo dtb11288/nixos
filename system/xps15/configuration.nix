@@ -1,9 +1,6 @@
 { pkgs, ... }:
 {
-  imports = [
-    ./configuration.nix
-    ./hardware-xps15.nix
-  ];
+  imports = [];
 
   hardware.bluetooth.enable = true;
   hardware.bluetooth.powerOnBoot = true;

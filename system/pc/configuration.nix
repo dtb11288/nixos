@@ -11,10 +11,7 @@ let
   '';
 in
 {
-  imports = [
-    ./configuration.nix
-    ./hardware-pc.nix
-  ];
+  imports = [];
 
   hardware.logitech.wireless = {
     enable = true;
