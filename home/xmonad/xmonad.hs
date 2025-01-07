@@ -157,6 +157,11 @@ addLayoutHook baseConfig = baseConfig{layoutHook = myLayoutHook}
  where
   myLayoutHook = avoidStruts . smartBorders $ myLayout
 
+addStartupHook :: XConfig l -> XConfig l
+addStartupHook baseConfig = baseConfig{startupHook = myStartUpHook}
+ where
+  myStartUpHook = setWMName "LG3D" >> startupHook baseConfig
+
 addMyKeys :: XConfig l -> XConfig l
 addMyKeys = (`additionalKeys` additionKeys)
 
@@ -167,7 +172,6 @@ myBaseConfig =
   desktopConfig
     { modMask = myModMask
     , terminal = "none"
-    , startupHook = setWMName "LG3D"
     , focusFollowsMouse = False
     , focusedBorderColor = myColorFocusedBorder
     , normalBorderColor = myColorNormalBorder
@@ -183,6 +187,7 @@ main = do
   let myConfig =
         myBaseConfig
           |> addLayoutHook
+          |> addStartupHook
           |> addLogHook dbus
           |> addManageHook
           |> removeMyKeys
