@@ -5,6 +5,10 @@
     settings = {
       theme = "monokai";
       editor = {
+        end-of-line-diagnostics = "hint";
+        inline-diagnostics = {
+          cursor-line = "error";
+        };
         line-number = "relative";
         mouse = false;
         bufferline = "multiple";
