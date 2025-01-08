@@ -165,10 +165,15 @@ vim.opt.runtimepath:append(parsers_dir)
 
 -- Sessions
 require('auto-session').setup({
-  auto_session_root_dir = VIM_HOME .. '/sessions/',
+  root_dir = VIM_HOME .. '/sessions/data/',
   post_cwd_changed_hook = function()
     require("lualine").refresh()
   end,
+  session_lens = {
+    session_control = {
+      control_dir = VIM_HOME .. "/sessions/",
+    },
+  },
 })
 
 -- Undo
@@ -182,7 +187,7 @@ vim.keymap.set('n', '<leader>cab', ':bufdo Bdelete<cr>', { noremap = true, silen
 
 -- Tab
 vim.keymap.set('n', '<leader>ct', ':tabclose<cr>', { noremap = true, silent = true, desc = 'Close current tab' })
-vim.keymap.set('n', '<leader>tn', ':tabnew<cr>', { noremap = true, silent = true, desc = 'Open new tab' })
+vim.keymap.set('n', '<leader>nt', ':tabnew<cr>', { noremap = true, silent = true, desc = 'Open new tab' })
 
 -- Whitespace remover
 require('trim').setup()
@@ -204,8 +209,8 @@ require('Comment').setup()
 vim.g.ctrlsf_auto_focus = {
   at = "start"
 }
-vim.keymap.set('n', '<leader>/', '<Plug>CtrlSFPrompt', { noremap = true })
-vim.keymap.set('v', '<leader>/', '<Plug>CtrlSFVwordPath', { noremap = true })
+vim.keymap.set('n', '<leader>/', '<Plug>CtrlSFPrompt', { noremap = true, desc = "Open search promt" })
+vim.keymap.set('v', '<leader>/', '<Plug>CtrlSFVwordPath', { noremap = true, desc = "Search selected word" })
 vim.keymap.set('n', '<F3>', '<cmd>CtrlSFToggle<cr>', { noremap = true, silent = true })
 
 -- Spectre search

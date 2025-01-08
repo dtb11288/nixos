@@ -1,121 +1,108 @@
-local packpath = VIM_HOME
-local bundle_home = packpath .. '/pack'
-local packer_path = bundle_home .. '/packer/start/packer.nvim'
+local lazypath = VIM_HOME .. "/plugins/lazy.nvim"
 
-vim.opt.runtimepath:append(packpath)
-vim.opt.packpath = packpath
-
--- Automatically run :PackerCompile whenever plugins.lua is updated with an autocommand:
-vim.api.nvim_create_autocmd('BufWritePost', {
-  pattern = 'plugins.lua',
-  command = 'source <afile> | PackerCompile',
-})
-
-if not vim.loop.fs_stat(packer_path) then
-  print('Packer not found, clone repository...')
-  vim.fn.system({ 'mkdir', '-p', bundle_home })
-  PACKER_BOOTSTRAP = vim.fn.system({
-    'git',
-    'clone',
-    '--depth',
-    '1',
-    'https://github.com/wbthomason/packer.nvim', packer_path
-  })
-  vim.cmd [[ packadd packer.nvim ]]
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
 end
+vim.opt.rtp:prepend(lazypath)
 
-return require('packer').startup({
-  function(use)
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
-
-    -- Perfomance
-    use 'lewis6991/impatient.nvim'
-
+require("lazy").setup({
+  root = VIM_HOME .. "/plugins",
+  spec = {
     -- File explorer
-    use 'nvim-tree/nvim-tree.lua'
+    'nvim-tree/nvim-tree.lua',
 
     -- Terminal
-    use 'akinsho/toggleterm.nvim'
+    'akinsho/toggleterm.nvim',
+
+    -- Perfomance
+    'lewis6991/impatient.nvim',
 
     -- Git support
-    use 'nvim-lua/plenary.nvim'
-    use 'lewis6991/gitsigns.nvim'
-    use 'sindrets/diffview.nvim'
+    'nvim-lua/plenary.nvim',
+    'lewis6991/gitsigns.nvim',
+    'sindrets/diffview.nvim',
 
     -- Autocomplete
-    use 'neovim/nvim-lspconfig'
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
-    use 'hrsh7th/nvim-cmp'
-    use 'hrsh7th/cmp-nvim-lsp-signature-help'
-    use 'saadparwaiz1/cmp_luasnip'
-    use 'j-hui/fidget.nvim'
-    use 'kristijanhusak/vim-dadbod-completion'
+    'neovim/nvim-lspconfig',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-buffer',
+    'hrsh7th/cmp-path',
+    'hrsh7th/cmp-cmdline',
+    'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-nvim-lsp-signature-help',
+    'saadparwaiz1/cmp_luasnip',
+    'j-hui/fidget.nvim',
+    'kristijanhusak/vim-dadbod-completion',
 
     -- Rust
-    use 'vxpm/rust-expand-macro.nvim'
+    'vxpm/rust-expand-macro.nvim',
 
     -- Haskell
-    use 'MrcJkb/haskell-tools.nvim'
+    'MrcJkb/haskell-tools.nvim',
 
     -- Javascript
-    use 'jose-elias-alvarez/null-ls.nvim'
-    use 'MunifTanjim/eslint.nvim'
+    'jose-elias-alvarez/null-ls.nvim',
+    'MunifTanjim/eslint.nvim',
 
     -- KDL
-    use 'imsnif/kdl.vim'
+    'imsnif/kdl.vim',
 
     -- Database
-    use 'tpope/vim-dadbod'
-    use 'kristijanhusak/vim-dadbod-ui'
+    'tpope/vim-dadbod',
+    'kristijanhusak/vim-dadbod-ui',
 
     -- Liquid template
-    use 'tpope/vim-liquid'
+    'tpope/vim-liquid',
 
     -- Ron
-    use 'ron-rs/ron.vim'
+    'ron-rs/ron.vim',
 
     -- Control
-    use 'ibhagwan/fzf-lua'
-    use 'dyng/ctrlsf.vim'
-    use 'windwp/nvim-spectre'
+    'ibhagwan/fzf-lua',
+    'dyng/ctrlsf.vim',
+    'windwp/nvim-spectre',
 
     -- Editor
-    use 'numToStr/Comment.nvim'
-    use 'mg979/vim-visual-multi'
-    use 'kylechui/nvim-surround'
-    use 'junegunn/vim-easy-align'
-    use 'cappyzawa/trim.nvim'
-    use 'moll/vim-bbye'
-    use 'jiangmiao/auto-pairs'
-    use 'L3MON4D3/LuaSnip'
-    use 'folke/which-key.nvim'
-    use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
-    use 'djoshea/vim-autoread'
+    'numToStr/Comment.nvim',
+    'mg979/vim-visual-multi',
+    'kylechui/nvim-surround',
+    'junegunn/vim-easy-align',
+    'cappyzawa/trim.nvim',
+    'moll/vim-bbye',
+    'jiangmiao/auto-pairs',
+    'L3MON4D3/LuaSnip',
+    'folke/which-key.nvim',
+    {
+      'nvim-treesitter/nvim-treesitter',
+      build = ':TSUpdate',
+      event = { "BufReadPre", "BufNewFile" },
+    },
+    'djoshea/vim-autoread',
 
     -- History & Session
-    use { 'rmagatti/auto-session', requires = 'nvim-telescope/telescope.nvim' }
-    use 'simnalamburt/vim-mundo'
+    { 'rmagatti/auto-session', dependencies = 'nvim-telescope/telescope.nvim' },
+    'simnalamburt/vim-mundo',
 
     -- Theme
-    use 'nvim-lualine/lualine.nvim'
-    use 'nvim-tree/nvim-web-devicons'
-    use {
+    { 'nvim-lualine/lualine.nvim', dependencies = 'nvim-tree/nvim-web-devicons' },
+    {
       "jesseleite/nvim-noirbuddy",
-      requires = { "tjdevries/colorbuddy.nvim", branch = "dev" }
-    }
-    use 'aditya-azad/candle-grey'
-    use 'shaunsingh/nord.nvim'
-    use 'norcalli/nvim-colorizer.lua'
-
-    if PACKER_BOOTSTRAP then
-      require("packer").sync()
-    end
-  end,
-  config = {
-    package_root = bundle_home
-  }
+      dependencies = { "tjdevries/colorbuddy.nvim", branch = "dev" }
+    },
+    'aditya-azad/candle-grey',
+    'shaunsingh/nord.nvim',
+    'norcalli/nvim-colorizer.lua'
+  },
+  install = { colorscheme = { "habamax" } },
+  checker = { enabled = true },
 })

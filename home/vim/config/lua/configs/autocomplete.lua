@@ -115,8 +115,6 @@ vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float,
 vim.keymap.set('n', '[g', vim.diagnostic.goto_prev,
   { noremap = true, silent = true, desc = 'Jump To Previous Diagnostic' })
 vim.keymap.set('n', ']g', vim.diagnostic.goto_next, { noremap = true, silent = true, desc = 'Jump To Next Diagnostic' })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist,
-  { noremap = true, silent = true, desc = 'Open Diagnostic List' })
 
 local fzf = require('fzf-lua')
 local on_attach = function(_, bufnr)
