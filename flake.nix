@@ -24,14 +24,14 @@
     secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
     username = secrets.username;
     nixpkgsConfig = { ... }:
-    let
-      overlayFiles = builtins.attrNames (builtins.readDir ./overlays);
-      importOverlay = name: import ./overlays/${name};
-      filterNixFile = name: builtins.match ".*\\.nix" name != null;
-    in
     {
       nixpkgs = {
-        overlays = map importOverlay (builtins.filter filterNixFile overlayFiles);
+        overlays = nixpkgs.lib.pipe ./overlays [
+          (builtins.readDir)
+          (builtins.attrNames)
+          (builtins.filter (name: builtins.match ".*\\.nix" name != null))
+          (map (name: import ./overlays/${name}))
+        ];
         # Configure your nixpkgs instance
         config = {
           # Disable if you don't want unfree packages
@@ -83,9 +83,13 @@
         }
       ) systems;
     };
-    hostConfig = hostname: import ./system/${hostname}/config.nix;
-    systemDirs = builtins.attrNames (nixpkgs.lib.filterAttrs (name: type: type == "directory") (builtins.readDir ./system));
-    hosts = builtins.listToAttrs (map (hostname: { name = hostname; value = hostConfig hostname; }) systemDirs);
+    hosts = nixpkgs.lib.pipe ./system [
+      (builtins.readDir)
+      (nixpkgs.lib.filterAttrs (name: type: type == "directory"))
+      (builtins.attrNames)
+      (map (hostname: { name = hostname; value = import ./system/${hostname}/config.nix; }))
+      (builtins.listToAttrs)
+    ];
   in
   mkConfigs hosts;
 }
