@@ -58,14 +58,14 @@ myBarLog =
 myWindowConditions =
   [isFullscreen --> doF W.focusDown <+> doFullFloat]
     -- Window types
-    ++ [ "SPLASH" ==> doCenterFloat
+    <> [ "SPLASH" ==> doCenterFloat
        , "DIALOG" ==> doFloat
        , "UTILITY" ==> doFloat
        , "MENU" ==> doFloat
        , "NOTIFICATION" ==> doFloat
        ]
     -- Special apps
-    ++ [ "steam" =?> doFloat
+    <> [ "steam" =?> doFloat
        , "battle.net.exe" =?> doFloat
        , "mpv" =?> doFloat
        , "file-roller" =?> doFloat
@@ -75,7 +75,7 @@ myWindowConditions =
   name =?> action = className =? name --> action
   checkProperty pType =
     let root = "_NET_WM_WINDOW_TYPE"
-     in isInProperty root $ root ++ "_" ++ pType
+     in isInProperty root $ root <> "_" <> pType
 
 myLayout = onWorkspace "2" myWSLayout myDefaultLayout
  where
