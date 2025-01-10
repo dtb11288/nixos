@@ -135,7 +135,6 @@ require('gitsigns').setup({
 local Terminal = require('toggleterm.terminal').Terminal
 local lazygit  = Terminal:new({
   cmd = "lazygit",
-  dir = "git_dir",
   direction = "float",
   float_opts = {
     border = BORDER,
@@ -150,6 +149,22 @@ local lazygit  = Terminal:new({
   end,
 })
 vim.keymap.set('n', '<C-g>', function () lazygit:toggle() end, { noremap = true, silent = true, desc = 'Open Lazygit' })
+
+local slumber  = Terminal:new({
+  cmd = "slumber",
+  direction = "float",
+  float_opts = {
+    border = BORDER,
+  },
+  on_open = function(term)
+    vim.cmd("startinsert!")
+    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
+  end,
+  on_close = function(_)
+    vim.cmd("startinsert!")
+  end,
+})
+vim.keymap.set('n', '<C-s>', function () slumber:toggle() end, { noremap = true, silent = true, desc = 'Slumber' })
 
 -- Tree sitter
 local parsers_dir = VIM_HOME .. '/parsers'
