@@ -39,7 +39,6 @@
     coreutils
     zellij
     htop
-    btop
     wget
     curl
     alsa-utils
@@ -63,6 +62,9 @@
     git-crypt
     termscp
     ventoy-full
+    dua
+    bandwhich
+    slumber
   ];
 
   security.rtkit.enable = true;
