@@ -67,6 +67,10 @@
     slumber
   ];
 
+  # Direnv support
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -133,6 +137,7 @@
   };
 
   environment.variables = {
+    PATH = "/var/lib/flatpak/exports/bin:$PATH";
     EDITOR = "nvim";
     VISUAL = "nvim";
   };

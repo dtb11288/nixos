@@ -35,7 +35,6 @@
 
   home.sessionPath = [
     "/home/${username}/opt/bin"
-    "/var/lib/flatpak/exports/bin"
   ];
 
   # Add stuff for your user as you see fit:
@@ -66,6 +65,7 @@
     xfce.mousepad
     jellyfin-media-player
     weechat
+    qbittorrent
   ];
 
   # Wallpaper
@@ -78,18 +78,7 @@
   systemd.user.startServices = "sd-switch";
 
   # Enable xsession service, for some programs
-  xsession = {
-    enable = true;
-    initExtra = with pkgs; ''
-      ${birdtray}/bin/birdtray &
-      ${flatpak}/bin/flatpak run com.synology.SynologyDrive &
-      ${flatpak}/bin/flatpak run io.github.xiaoyifang.goldendict_ng &
-    '';
-  };
-
-  # Direnv support
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
+  xsession.enable = true;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   home.stateVersion = "24.05";

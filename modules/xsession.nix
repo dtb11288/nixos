@@ -30,7 +30,6 @@ in
     anydesk
     teamviewer
     caffeine-ng
-    qbittorrent
     wineWowPackages.staging
     winetricks
   ];
@@ -158,6 +157,9 @@ in
         ${blueman}/bin/blueman-applet &
         ${caffeine-ng}/bin/caffeine &
         ${fcitx5}/bin/fcitx5 &
+        ${birdtray}/bin/birdtray &
+        ${flatpak}/bin/flatpak run com.synology.SynologyDrive &
+        ${flatpak}/bin/flatpak run io.github.xiaoyifang.goldendict_ng &
       '';
     };
   };
