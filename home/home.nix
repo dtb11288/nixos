@@ -66,6 +66,7 @@
     jellyfin-media-player
     weechat
     qbittorrent
+    simplescreenrecorder
   ];
 
   # Wallpaper
