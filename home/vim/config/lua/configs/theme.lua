@@ -26,16 +26,16 @@ require('noirbuddy').setup {
     diff_delete = COLOR1,
   }
 }
+local noirbuddy_lualine = require('noirbuddy.plugins.lualine')
 require('lualine').setup({
   options = {
     disabled_filetypes = { 'NvimTree', 'packer', 'Mundo', 'ctrlsf', 'toggleterm', 'dbout' },
     icons_enabled = false,
-    theme = 'nord',
+    theme = noirbuddy_lualine.theme,
     component_separators = '|',
     section_separators = '',
   },
-  sections = {
-    lualine_c = { require('auto-session.lib').current_session_name }
-  },
+  sections = noirbuddy_lualine.sections,
+  inactive_sections = noirbuddy_lualine.inactive_sections,
 })
 require('colorizer').setup()
