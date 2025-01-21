@@ -17,6 +17,25 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
   root = VIM_HOME .. "/plugins",
+  install = { colorscheme = { "habamax" } },
+  checker = { enabled = true },
+  change_detection = {
+    notify = false,
+  },
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "netrwPlugin",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
+      },
+    },
+  },
   spec = {
     -- File explorer
     'nvim-tree/nvim-tree.lua',
@@ -103,6 +122,4 @@ require("lazy").setup({
     'shaunsingh/nord.nvim',
     'norcalli/nvim-colorizer.lua'
   },
-  install = { colorscheme = { "habamax" } },
-  checker = { enabled = true },
 })
