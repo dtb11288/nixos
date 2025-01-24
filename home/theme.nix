@@ -4,7 +4,7 @@
     x11.enable = true;
     name = "Adwaita";
     package = pkgs.adwaita-icon-theme;
-    size = 18 * dpiRatio;
+    size = 16 * dpiRatio;
   };
 
   gtk = {
