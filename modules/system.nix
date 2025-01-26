@@ -47,7 +47,7 @@
     lazygit
     direnv
     lazydocker
-    lf
+    yazi
     lshw
     lm_sensors
     pciutils

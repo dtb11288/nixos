@@ -19,7 +19,6 @@
     ./fzf.nix
     ./sxhkd
     ./git.nix
-    ./lf.nix
     ./flameshot.nix
     ./helix.nix
     ./vim
