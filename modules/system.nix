@@ -41,6 +41,7 @@
     htop
     wget
     curl
+    aria2
     alsa-utils
     nfs-utils
     fzf

@@ -25,6 +25,7 @@
     ./tmux.nix
     ./xmonad
     ./rbw.nix
+    ./aria2.nix
   ];
 
   home = {
