@@ -30,6 +30,7 @@ in
     anydesk
     teamviewer
     caffeine-ng
+    goldendict-ng
     wineWowPackages.staging
     winetricks
   ];
@@ -159,7 +160,7 @@ in
         ${fcitx5}/bin/fcitx5 &
         ${birdtray}/bin/birdtray &
         ${flatpak}/bin/flatpak run com.synology.SynologyDrive &
-        ${flatpak}/bin/flatpak run io.github.xiaoyifang.goldendict_ng &
+        ${goldendict-ng}/bin/goldendict &
       '';
     };
   };
