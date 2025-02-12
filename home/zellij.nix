@@ -2,6 +2,9 @@
 {
   programs.zellij = {
     enable = true;
+    enableZshIntegration = false;
+    enableBashIntegration = false;
+    enableFishIntegration = false;
     settings = {
       themes = {
         default = with theme.colors; {
