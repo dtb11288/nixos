@@ -52,7 +52,7 @@
     onlyoffice-bin
     flameshot
     nomacs
-    rawtherapee
+    darktable
     hugin
     blender
     inkscape
