@@ -53,6 +53,7 @@
     flameshot
     nomacs
     darktable
+    rawtherapee
     hugin
     blender
     inkscape
