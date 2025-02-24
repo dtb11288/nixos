@@ -195,7 +195,7 @@ lspconfig.lua_ls.setup {
 }
 
 -- Javascript
-require('null-ls').setup()
+require('none-ls').setup()
 require('eslint').setup({
   bin = 'eslint', -- or `eslint_d`
   code_actions = {

@@ -70,7 +70,7 @@ require("lazy").setup({
     'MrcJkb/haskell-tools.nvim',
 
     -- Javascript
-    'jose-elias-alvarez/null-ls.nvim',
+    'nvimtools/none-ls.nvim',
     'MunifTanjim/eslint.nvim',
 
     -- KDL
