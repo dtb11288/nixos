@@ -28,6 +28,8 @@
     ./aria2.nix
   ];
 
+  nix.settings.experimental-features = "nix-command flakes";
+
   home = {
     username = "${username}";
     homeDirectory = "/home/${username}";
