@@ -44,11 +44,9 @@
   home.packages = with pkgs; [
     telegram-desktop
     zapzap
-    firefox
     google-chrome
     chromium
     thunderbird
-    birdtray
     slack
     gimp
     onlyoffice-bin
