@@ -26,6 +26,7 @@
     ./xmonad
     ./rbw.nix
     ./aria2.nix
+    ./vieb
   ];
 
   nix.settings.experimental-features = "nix-command flakes";
@@ -44,6 +45,7 @@
   home.packages = with pkgs; [
     telegram-desktop
     zapzap
+    vieb
     google-chrome
     chromium
     thunderbird

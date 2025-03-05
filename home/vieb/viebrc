@@ -1,0 +1,21 @@
+" Options
+set adblocker=update
+set devtoolsposition=window
+set dialogalert=show
+set dialogconfirm=show
+set dialogprompt=show
+set downloadmethod=confirm
+set permissioncamera=ask
+set permissioncertificateerror=ask
+set permissiondisplaycapture=ask
+set permissionmediadevices=allowfull
+set permissionmicrophone=ask
+set permissionpersistentstorage=allow
+set redirecttohttp
+set tabclosefocus=right
+set tabreopenposition=previous
+
+" Commands
+colorscheme default
+
+" vim: ft=vim
