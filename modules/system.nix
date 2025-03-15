@@ -36,7 +36,7 @@
     silver-searcher
     ripgrep
     file
-    coreutils
+    uutils-coreutils
     zellij
     htop
     wget
