@@ -33,7 +33,6 @@ in
     goldendict-ng
     wineWowPackages.staging
     winetricks
-    ungoogled-chromium
   ];
 
   programs.xfconf.enable = true;

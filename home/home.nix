@@ -47,7 +47,7 @@
     zapzap
     vieb
     google-chrome
-    chromium
+    ungoogled-chromium
     thunderbird
     slack
     gimp
