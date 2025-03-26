@@ -31,10 +31,12 @@ in
     teamviewer
     caffeine-ng
     goldendict-ng
+    appimage-run
     wineWowPackages.staging
     winetricks
   ];
 
+  programs.appimage.binfmt = true;
   programs.xfconf.enable = true;
   programs.file-roller.enable = true;
   programs.thunar = {
