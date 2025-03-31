@@ -123,20 +123,19 @@
 
   services.blueman.enable = true;
   services.gvfs.enable = true;
-  services.tlp.enable = true;
-  # services.auto-cpufreq = {
-  #   enable = true;
-  #   settings = {
-  #     battery = {
-  #        governor = "powersave";
-  #        turbo = "never";
-  #     };
-  #     charger = {
-  #        governor = "performance";
-  #        turbo = "auto";
-  #     };
-  #   };
-  # };
+  services.auto-cpufreq = {
+    enable = true;
+    settings = {
+      battery = {
+         governor = "powersave";
+         turbo = "never";
+      };
+      charger = {
+         governor = "performance";
+         turbo = "auto";
+      };
+    };
+  };
 
   environment.variables = {
     PATH = "/var/lib/flatpak/exports/bin:$PATH";
