@@ -1,4 +1,5 @@
 VIM_HOME = vim.fn.expand("@vim_home@")
+NODEJS = "@nodejs@"
 BORDER = {
   { "╔", "CmpBorder" },
   { "═", "CmpBorder" },

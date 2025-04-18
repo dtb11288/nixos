@@ -148,7 +148,10 @@
   programs.zsh.enable = true;
   programs.ssh.startAgent = true;
 
-  nix.settings.max-jobs = lib.mkDefault 8;
+  nix.settings = {
+    max-jobs = lib.mkDefault 8;
+    download-buffer-size = 10485760; # 10MB
+  };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = "24.05";

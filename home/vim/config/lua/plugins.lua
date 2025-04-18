@@ -63,6 +63,16 @@ require("lazy").setup({
     'j-hui/fidget.nvim',
     'kristijanhusak/vim-dadbod-completion',
 
+    -- AI
+    {
+      "olimorris/codecompanion.nvim",
+      dependencies = {
+        'nvim-lua/plenary.nvim',
+        'nvim-treesitter/nvim-treesitter',
+        'zbirenbaum/copilot.lua',
+      },
+    },
+
     -- Rust
     'vxpm/rust-expand-macro.nvim',
 

@@ -85,11 +85,44 @@ cmp.setup({
     { name = 'path' },
     { name = 'nvim_lsp' },
     { name = 'nvim_lsp_signature_help' },
+    { name = 'codecompanion' },
     { name = "vim-dadbod-completion" },
     { name = 'buffer' },
   }, {
     { name = 'buffer' },
   })
+})
+
+
+require('copilot').setup({
+  copilot_node_command = NODEJS,
+  suggestion = {
+    enabled = true,
+    auto_trigger = true, -- Show suggestions as you type
+    debounce = 75, -- Debounce time in ms
+    keymap = {
+      accept = "<C-J>", -- Accept suggestion
+      accept_word = false, -- Disable accept by word
+      accept_line = false, -- Disable accept by line
+      next = "<C-L>", -- Next suggestion
+      prev = "<C-H>", -- Previous suggestion
+      dismiss = "<C-K>", -- Dismiss suggestion
+    },
+  }
+})
+
+require('codecompanion').setup({
+  strategies = {
+    chat = {
+      adapter = 'copilot',
+    },
+    inline = {
+      adapter = 'copilot',
+    },
+    agent = {
+      adapter = 'copilot',
+    },
+  },
 })
 
 -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
@@ -195,7 +228,7 @@ lspconfig.lua_ls.setup {
 }
 
 -- Javascript
-require('none-ls').setup()
+require('null-ls').setup()
 require('eslint').setup({
   bin = 'eslint', -- or `eslint_d`
   code_actions = {
