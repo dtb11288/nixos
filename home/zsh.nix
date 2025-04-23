@@ -19,7 +19,7 @@
       plugins = [ "wd" "git" "npm" "cp" "docker" "docker-compose" "rust" "history" ];
       theme = "gentoo";
     };
-    initExtra = ''
+    initContent = ''
       export KEYTIMEOUT=1;
     '';
   };

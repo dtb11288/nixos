@@ -150,7 +150,7 @@
 
   nix.settings = {
     max-jobs = lib.mkDefault 8;
-    download-buffer-size = 10485760; # 10MB
+    download-buffer-size = 512 * 1024 * 1024; # 500MB
   };
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
