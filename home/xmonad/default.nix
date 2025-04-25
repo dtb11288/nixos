@@ -22,6 +22,7 @@ in
     notifysend = "${libnotify}/bin/notify-send";
     tabheight = "${toString (28 * dpiRatio)}";
     easyeffects = "${pkgs.easyeffects}/bin/easyeffects";
+    pomodoro = "${pkgs.pomodoro-gtk}/bin/pomodoro";
     htop = "${alacritty}/bin/alacritty -T htop -e ${htop}/bin/htop";
   } // theme.colors);
 

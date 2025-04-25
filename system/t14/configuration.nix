@@ -39,7 +39,7 @@
     };
   };
 
-  security.pam.services.i3lock.rules.auth.unix.order = 11200;
+  security.pam.services.i3lock-color.rules.auth.unix.order = 11200;
   security.pam.services.sudo.rules.auth.unix.order = 11200;
 
   environment.systemPackages = with pkgs; [
