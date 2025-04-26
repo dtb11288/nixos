@@ -1,9 +1,10 @@
-{ pkgs, username, ... }:
+{ pkgs, username, secrets, ... }:
 
 {
   users.users.${username} = {
     createHome = true;
     home = "/home/${username}";
+    hashedPassword = secrets.password;
     group = "users";
     extraGroups = [ "wheel" "disk" "networkmanager" "video" "audio" "input" "docker" "vboxusers" "wireshark" "libvirtd" "adbusers" "kvm" ];
     isNormalUser = true;
