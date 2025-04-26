@@ -38,6 +38,7 @@
     file
     uutils-coreutils
     zellij
+    killall
     htop
     wget
     curl
