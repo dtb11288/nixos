@@ -15,8 +15,7 @@
     };
     recursive = true;
   };
-  xdg.configFile."nvim/lua/variables.lua".source = pkgs.substituteAll ({
-    src = ./config/lua/variables.lua;
+  xdg.configFile."nvim/lua/variables.lua".source = pkgs.replaceVars ./config/lua/variables.lua ({
     vim_home = "${config.xdg.configHome}/nvim";
     nodejs = "${pkgs.nodejs}/bin/node";
   } // theme.colors);
