@@ -15,8 +15,7 @@ let
   '';
 in
 {
-  xdg.configFile."xmonad/xmonad.hs".source = with pkgs; substituteAll ({
-    src = ./xmonad.hs;
+  xdg.configFile."xmonad/xmonad.hs".source = with pkgs; replaceVars ./xmonad.hs ({
     runbar = "${runbar}/bin/runbar";
     xmonad = "xmonad";
     notifysend = "${libnotify}/bin/notify-send";
@@ -26,8 +25,7 @@ in
     htop = "${alacritty}/bin/alacritty -T htop -e ${htop}/bin/htop";
   } // theme.colors);
 
-  xdg.configFile."xmonad/polybar.ini".source = pkgs.substituteAll ({
-    src = ./polybar.ini;
+  xdg.configFile."xmonad/polybar.ini".source = pkgs.replaceVars ./polybar.ini ({
     xmonadlog = "${pkgs.haskellPackages.xmonad-dbus}/bin/xmonad-dbus";
     height = "${toString (24 * dpiRatio)}";
     dpi = "${toString dpi}";
