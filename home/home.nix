@@ -49,8 +49,9 @@
     google-chrome
     ungoogled-chromium
     thunderbird
+    audacity
     slack
-    gimp
+    gimp3
     onlyoffice-bin
     flameshot
     nomacs
@@ -61,7 +62,6 @@
     inkscape
     zathura
     mpv
-    gimp
     lxtask
     lxappearance
     discord

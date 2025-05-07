@@ -10,7 +10,6 @@ in
     pinentry-gtk2
     polybar
     alacritty
-    audacity
     xsel
     dunst
     libnotify
