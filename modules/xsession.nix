@@ -159,7 +159,6 @@ in
         ${pa_applet}/bin/pa-applet &
         ${copyq}/bin/copyq &
         ${blueman}/bin/blueman-applet &
-        ${caffeine-ng}/bin/caffeine &
         ${fcitx5}/bin/fcitx5 &
         ${birdtray}/bin/birdtray &
         ${flatpak}/bin/flatpak run com.synology.SynologyDrive &
