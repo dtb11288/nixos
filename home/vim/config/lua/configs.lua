@@ -37,7 +37,6 @@ require("nvim-tree").setup({
 })
 vim.api.nvim_create_autocmd({ "QuitPre" }, {
   callback = function()
-    vim.cmd('DBUIClose')
     vim.cmd('NvimTreeClose')
   end,
 })
@@ -64,19 +63,6 @@ require('toggleterm').setup({
     border = BORDER,
   }
 })
-
--- Dadbod
-vim.g.db_ui_execute_on_save = 0
-vim.g.db_ui_icons = {
-  expanded = '>>>',
-  collapsed = '>',
-  saved_query = '*',
-  new_query = '+',
-  tables = '~',
-  buffers = '**',
-  connection_ok = '(ok)',
-  connection_error = '(err)',
-}
 
 -- Gitsigns
 require('gitsigns').setup({

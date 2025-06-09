@@ -61,7 +61,6 @@ require("lazy").setup({
     'hrsh7th/cmp-nvim-lsp-signature-help',
     'saadparwaiz1/cmp_luasnip',
     'j-hui/fidget.nvim',
-    'kristijanhusak/vim-dadbod-completion',
 
     -- AI
     {
@@ -85,10 +84,6 @@ require("lazy").setup({
 
     -- KDL
     'imsnif/kdl.vim',
-
-    -- Database
-    'tpope/vim-dadbod',
-    'kristijanhusak/vim-dadbod-ui',
 
     -- Liquid template
     'tpope/vim-liquid',
