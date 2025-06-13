@@ -1,6 +1,7 @@
 { pkgs, username, secrets, ... }:
 
 {
+  users.mutableUsers = false;
   users.users.${username} = {
     createHome = true;
     home = "/home/${username}";

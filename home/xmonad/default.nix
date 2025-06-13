@@ -22,7 +22,7 @@ in
     tabheight = "${toString (28 * dpiRatio)}";
     easyeffects = "${pkgs.easyeffects}/bin/easyeffects";
     pomodoro = "${pkgs.pomodoro-gtk}/bin/pomodoro";
-    htop = "${alacritty}/bin/alacritty -T htop -e ${htop}/bin/htop";
+    htop = "${common.terminal} -T htop -e ${htop}/bin/htop";
   } // theme.colors);
 
   xdg.configFile."xmonad/polybar.ini".source = pkgs.replaceVars ./polybar.ini ({
