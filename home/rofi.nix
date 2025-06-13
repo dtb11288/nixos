@@ -6,7 +6,7 @@ in
 {
   programs.rofi = {
     enable = true;
-    terminal = "${pkgs.alacritty}/bin/alacritty";
+    terminal = "${pkgs.common.terminal}";
     inherit font;
     extraConfig = {
       inherit dpi;

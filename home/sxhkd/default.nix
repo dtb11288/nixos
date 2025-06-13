@@ -18,8 +18,8 @@ in
       "mod4 + s" = "${rofi-rbw}/bin/rofi-rbw";
       "mod4 + v" = "${rofi-vpn}/bin/rofi-vpn";
       "mod4 + d" = "${rofi-systemd}/bin/rofi-systemd";
-      "mod4 + Escape" = "${i3lock-color}/bin/i3lock-color -c 112233";
-      "mod4 + shift + Return" = "${alacritty}/bin/alacritty";
+      "mod4 + Escape" = "${pkgs.common.locker}";
+      "mod4 + shift + Return" = "${pkgs.common.terminal}";
     };
   };
 }

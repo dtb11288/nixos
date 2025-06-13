@@ -18,7 +18,6 @@ in
     qpwgraph
     blueman
     xdg-utils
-    i3lock-color
     pa_applet
     copyq
     xdotool
@@ -36,6 +35,7 @@ in
     winetricks
   ];
 
+  programs.slock.enable = true;
   programs.appimage.binfmt = true;
   programs.xfconf.enable = true;
   programs.file-roller.enable = true;
@@ -142,7 +142,7 @@ in
 
     xautolock = {
       enable = true;
-      locker = "${pkgs.i3lock-color}/bin/i3lock-color -c 112233";
+      locker = "${pkgs.common.locker}";
       time = 5;
       extraOptions = [ "-detectsleep" "-corners '----'" ];
     };
