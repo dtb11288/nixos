@@ -46,6 +46,7 @@
     telegram-desktop
     zapzap
     vieb
+    firefox
     google-chrome
     ungoogled-chromium
     thunderbird
