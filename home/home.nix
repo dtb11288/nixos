@@ -68,6 +68,7 @@
     discord
     xfce.mousepad
     jellyfin-media-player
+    feishin
     weechat
     qbittorrent
     simplescreenrecorder
