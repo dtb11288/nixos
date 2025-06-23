@@ -72,6 +72,7 @@
     weechat
     qbittorrent
     simplescreenrecorder
+    stremio
   ];
 
   # Wallpaper
