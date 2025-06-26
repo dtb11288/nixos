@@ -25,7 +25,7 @@ import XMonad.Util.NamedScratchpad
 import XMonad.Util.Themes
 import XMonad.Util.WorkspaceCompare
 
-
+-- Just to avoid nix string replacement errors when missing variables
 -- @color0@ @color1@ @color2@ @color3@ @color4@ @color5@ @color6@ @color7@
 -- @color8@ @color9@ @color10@ @color11@ @color12@ @color13@ @color14@ @color15@
 -- @foreground@ @background@
@@ -111,7 +111,7 @@ myScatchPads =
   [ NS "easyeffects" "@easyeffects@" (title =? "Easy Effects") $ mkCenter 0.7 0.7
   , NS "htop" "@htop@" (title =? "htop") $ mkCenter 0.7 0.7
   , NS "pomodoro" "@pomodoro@" (title =? "Pomodoro") $ mkCenter 0.3 0.3
-  , NS "feishin" "@feishin@" (title =? "Feishin") $ mkCenter 0.7 0.7
+  , NS "feishin" "@feishin@" (className =? "feishin") $ mkCenter 0.7 0.7
   ]
  where
   mkCenter :: Rational -> Rational -> ManageHook
