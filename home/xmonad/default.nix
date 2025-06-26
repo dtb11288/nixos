@@ -23,7 +23,7 @@ in
     easyeffects = "${pkgs.easyeffects}/bin/easyeffects";
     pomodoro = "${pkgs.pomodoro-gtk}/bin/pomodoro";
     htop = "${common.terminal} -T htop -e ${htop}/bin/htop";
-    feishin = "${pkgs.feishin}/bin/feishin";
+    supersonic = "${pkgs.supersonic}/bin/supersonic";
   } // theme.colors);
 
   xdg.configFile."xmonad/polybar.ini".source = pkgs.replaceVars ./polybar.ini ({
