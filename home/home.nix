@@ -48,6 +48,7 @@
     google-chrome
     ungoogled-chromium
     thunderbird
+    birdtray
     audacity
     slack
     gimp3
