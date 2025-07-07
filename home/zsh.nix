@@ -5,6 +5,7 @@
     shellAliases = with pkgs; {
       vi = "${neovim}/bin/nvim";
       vim = "${neovim}/bin/nvim";
+      ls = "ls -h --color=auto";
     };
     zplug = {
       enable = true;
