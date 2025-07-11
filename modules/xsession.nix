@@ -33,7 +33,6 @@ in
     appimage-run
     wineWowPackages.staging
     winetricks
-    synology-drive-client
   ];
 
   programs.slock.enable = true;
@@ -162,7 +161,7 @@ in
         ${blueman}/bin/blueman-applet &
         ${fcitx5}/bin/fcitx5 &
         ${birdtray}/bin/birdtray &
-        ${synology-drive-client}/bin/synology-drive &
+        ${flatpak}/bin/flatpak run com.synology.SynologyDrive &
         ${goldendict-ng}/bin/goldendict &
       '';
     };
