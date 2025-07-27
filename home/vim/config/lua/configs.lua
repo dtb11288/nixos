@@ -200,6 +200,11 @@ fzf.setup({
     border = BORDER
   }
 })
+fzf.register_ui_select({
+  winopts = {
+    border = BORDER,
+  },
+})
 vim.keymap.set('n', '<leader>f', fzf.files, { noremap = true, silent = true, desc = 'Search Files' })
 vim.keymap.set('n', '<leader>b', fzf.buffers, { noremap = true, silent = true, desc = 'Search Buffers' })
 
