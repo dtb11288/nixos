@@ -34,6 +34,10 @@
         ];
         # Configure your nixpkgs instance
         config = {
+          # TODO: Remove this when libsoup is updated
+          permittedInsecurePackages = [
+            "libsoup-2.74.3"
+          ];
           # Disable if you don't want unfree packages
           allowUnfree = true;
           # Workaround for https://github.com/nix-community/home-manager/issues/2942

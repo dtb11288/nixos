@@ -49,7 +49,8 @@
     ungoogled-chromium
     thunderbird
     birdtray
-    audacity
+    # TODO: Remove this later
+    # audacity
     slack
     gimp3
     onlyoffice-bin
