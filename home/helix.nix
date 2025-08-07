@@ -3,7 +3,7 @@
   programs.helix = {
     enable = true;
     settings = {
-      theme = "monokai";
+      theme = "autumn";
       editor = {
         end-of-line-diagnostics = "hint";
         inline-diagnostics = {
