@@ -76,16 +76,10 @@ require('tiny-inline-diagnostic').setup({
 })
 vim.diagnostic.config({
   virtual_text = false,
+  float = {
+    border = BORDER,
+  }
 })
-
-vim.keymap.set('n', '[d', function()
-    vim.diagnostic.goto_prev({ float = false })
-  end,
-  { noremap = true, silent = true, desc = 'Jump To Previous Diagnostic' })
-vim.keymap.set('n', ']d', function()
-  vim.diagnostic.goto_next({ float = false })
-end, { noremap = true, silent = true, desc = 'Jump To Next Diagnostic' })
-
 
 -- Terminal
 require('toggleterm').setup({
