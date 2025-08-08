@@ -16,9 +16,11 @@ cmp.setup({
   window = {
     completion = {
       border = BORDER,
+      winhighlight = "Normal:CmpNormal",
     },
     documentation = {
       border = BORDER,
+      winhighlight = "Normal:CmpDocNormal",
     },
   },
   formatting = {
@@ -30,7 +32,6 @@ cmp.setup({
         buffer = '[B]',
         path = '[P]',
         cmdline = '[C]',
-        ['vim-dadbod-completion'] = '[D]',
       }
       item.menu = menu_icon[entry.source.name]
       return item

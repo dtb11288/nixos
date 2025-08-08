@@ -52,7 +52,11 @@ require('./configs/autocomplete')
 require('./configs/theme')
 
 -- Key helper
-require('which-key').setup()
+require('which-key').setup({
+  win = {
+    border = BORDER,
+  }
+})
 
 -- Surround
 require('nvim-surround').setup()
@@ -71,14 +75,15 @@ sign({ name = 'DiagnosticSignWarn', text = 'W' })
 sign({ name = 'DiagnosticSignHint', text = 'H' })
 sign({ name = 'DiagnosticSignInfo', text = 'I' })
 
-require('tiny-inline-diagnostic').setup({
-  preset = 'minimal'
-})
 vim.diagnostic.config({
   virtual_text = false,
   float = {
     border = BORDER,
   }
+})
+
+require('tiny-inline-diagnostic').setup({
+  preset = 'minimal',
 })
 
 -- Terminal
