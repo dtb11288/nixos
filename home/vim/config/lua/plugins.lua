@@ -6,7 +6,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -112,9 +112,13 @@ require("lazy").setup({
       event = { "BufReadPre", "BufNewFile" },
     },
     'djoshea/vim-autoread',
-
+    {
+      'rachartier/tiny-inline-diagnostic.nvim',
+      event = 'VeryLazy',
+      priority = 1000,
+    },
     -- History & Session
-    { 'rmagatti/auto-session', dependencies = 'nvim-telescope/telescope.nvim' },
+    { 'rmagatti/auto-session',     dependencies = 'nvim-telescope/telescope.nvim' },
     'simnalamburt/vim-mundo',
 
     -- Theme

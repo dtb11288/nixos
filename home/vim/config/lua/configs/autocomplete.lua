@@ -1,25 +1,5 @@
 -- Load snippets
-require("luasnip.loaders.from_snipmate").lazy_load()
-
--- LSP diagnostics setup
-local sign = function(opts)
-  vim.fn.sign_define(opts.name, {
-    texthl = opts.name,
-    text = opts.text,
-    numhl = ''
-  })
-end
-
-sign({ name = 'DiagnosticSignError', text = 'E' })
-sign({ name = 'DiagnosticSignWarn', text = 'W' })
-sign({ name = 'DiagnosticSignHint', text = 'H' })
-sign({ name = 'DiagnosticSignInfo', text = 'I' })
-
-vim.diagnostic.config({
-  float = {
-    border = BORDER,
-  },
-})
+require('luasnip.loaders.from_snipmate').lazy_load()
 
 -- Cmp config
 local cmp = require('cmp')
@@ -97,15 +77,15 @@ require('copilot').setup({
   copilot_node_command = NODEJS,
   suggestion = {
     enabled = true,
-    auto_trigger = true, -- Show suggestions as you type
-    debounce = 75, -- Debounce time in ms
+    auto_trigger = true,   -- Show suggestions as you type
+    debounce = 75,         -- Debounce time in ms
     keymap = {
-      accept = "<C-J>", -- Accept suggestion
+      accept = "<C-J>",    -- Accept suggestion
       accept_word = false, -- Disable accept by word
       accept_line = false, -- Disable accept by line
-      next = "<C-L>", -- Next suggestion
-      prev = "<C-H>", -- Previous suggestion
-      dismiss = "<C-K>", -- Dismiss suggestion
+      next = "<C-L>",      -- Next suggestion
+      prev = "<C-H>",      -- Previous suggestion
+      dismiss = "<C-K>",   -- Dismiss suggestion
     },
   }
 })
@@ -141,12 +121,6 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' }
   })
 })
-
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float,
-  { noremap = true, silent = true, desc = 'Open Diagnostic Window' })
-vim.keymap.set('n', '[g', vim.diagnostic.goto_prev,
-  { noremap = true, silent = true, desc = 'Jump To Previous Diagnostic' })
-vim.keymap.set('n', ']g', vim.diagnostic.goto_next, { noremap = true, silent = true, desc = 'Jump To Next Diagnostic' })
 
 local fzf = require('fzf-lua')
 local on_attach = function(_, bufnr)

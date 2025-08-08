@@ -7,7 +7,7 @@
       editor = {
         end-of-line-diagnostics = "hint";
         inline-diagnostics = {
-          cursor-line = "error";
+          cursor-line = "hint";
         };
         line-number = "relative";
         mouse = false;

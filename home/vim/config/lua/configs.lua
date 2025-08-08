@@ -1,7 +1,7 @@
 -- Neovim tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
-require("nvim-tree").setup({
+require('nvim-tree').setup({
   actions = {
     open_file = {
       quit_on_open = true
@@ -40,8 +40,10 @@ vim.api.nvim_create_autocmd({ "QuitPre" }, {
     vim.cmd('NvimTreeClose')
   end,
 })
-vim.keymap.set('n', '=', function () require('nvim-tree.api').tree.toggle({ focus = true }) end, { noremap = true, silent = true, desc = 'Open file manager' })
-vim.keymap.set('n', '+', function () require('nvim-tree.api').tree.toggle({ find_file = true, focus = true }) end, { noremap = true, silent = true, desc = 'Find current buffer path' })
+vim.keymap.set('n', '<leader>e', function() require('nvim-tree.api').tree.toggle({ focus = true }) end,
+  { noremap = true, silent = true, desc = 'Open file manager' })
+vim.keymap.set('n', '<leader>E', function() require('nvim-tree.api').tree.toggle({ find_file = true, focus = true }) end,
+  { noremap = true, silent = true, desc = 'Find current buffer path' })
 
 -- Autocomplete cmp
 require('./configs/autocomplete')
@@ -54,6 +56,36 @@ require('which-key').setup()
 
 -- Surround
 require('nvim-surround').setup()
+
+-- Diagnostic
+local sign = function(opts)
+  vim.fn.sign_define(opts.name, {
+    texthl = opts.name,
+    text = opts.text,
+    numhl = ''
+  })
+end
+
+sign({ name = 'DiagnosticSignError', text = 'E' })
+sign({ name = 'DiagnosticSignWarn', text = 'W' })
+sign({ name = 'DiagnosticSignHint', text = 'H' })
+sign({ name = 'DiagnosticSignInfo', text = 'I' })
+
+require('tiny-inline-diagnostic').setup({
+  preset = 'minimal'
+})
+vim.diagnostic.config({
+  virtual_text = false,
+})
+
+vim.keymap.set('n', '[d', function()
+    vim.diagnostic.goto_prev({ float = false })
+  end,
+  { noremap = true, silent = true, desc = 'Jump To Previous Diagnostic' })
+vim.keymap.set('n', ']d', function()
+  vim.diagnostic.goto_next({ float = false })
+end, { noremap = true, silent = true, desc = 'Jump To Next Diagnostic' })
+
 
 -- Terminal
 require('toggleterm').setup({
@@ -70,10 +102,10 @@ require('gitsigns').setup({
     border = BORDER,
   },
   signs = {
-    add = { text = '+' },
-    change = { text = '~' },
-    delete = { text = '_' },
-    topdelete = { text = '‾' },
+    add          = { text = '+' },
+    change       = { text = '~' },
+    delete       = { text = '_' },
+    topdelete    = { text = '‾' },
     changedelete = { text = '~' },
     untracked    = { text = '.' },
   },
@@ -134,9 +166,9 @@ local lazygit  = Terminal:new({
     vim.cmd("startinsert!")
   end,
 })
-vim.keymap.set('n', '<C-g>', function () lazygit:toggle() end, { noremap = true, silent = true, desc = 'Open Lazygit' })
+vim.keymap.set('n', '<C-g>', function() lazygit:toggle() end, { noremap = true, silent = true, desc = 'Open Lazygit' })
 
-local slumber  = Terminal:new({
+local slumber = Terminal:new({
   cmd = "slumber",
   direction = "float",
   float_opts = {
@@ -150,7 +182,7 @@ local slumber  = Terminal:new({
     vim.cmd("startinsert!")
   end,
 })
-vim.keymap.set('n', '<C-s>', function () slumber:toggle() end, { noremap = true, silent = true, desc = 'Slumber' })
+vim.keymap.set('n', '<C-s>', function() slumber:toggle() end, { noremap = true, silent = true, desc = 'Slumber' })
 
 -- Tree sitter
 local parsers_dir = VIM_HOME .. '/parsers'
@@ -223,12 +255,12 @@ vim.keymap.set('n', '<F3>', '<cmd>CtrlSFToggle<cr>', { noremap = true, silent = 
 require('spectre').setup({
   color_devicons = false
 })
-vim.cmd[[nnoremap <leader>S <cmd>lua require('spectre').open()<CR>]]
+vim.cmd [[nnoremap <leader>S <cmd>lua require('spectre').open()<CR>]]
 -- search current word
-vim.cmd[[nnoremap <leader>sw <cmd>lua require('spectre').open_visual({select_word=true})<CR>]]
-vim.cmd[[vnoremap <leader>s <esc>:lua require('spectre').open_visual()<CR>]]
+vim.cmd [[nnoremap <leader>sw <cmd>lua require('spectre').open_visual({select_word=true})<CR>]]
+vim.cmd [[vnoremap <leader>s <esc>:lua require('spectre').open_visual()<CR>]]
 -- search in current file
-vim.cmd[[nnoremap <leader>sp viw:lua require('spectre').open_file_search()<cr>]]
+vim.cmd [[nnoremap <leader>sp viw:lua require('spectre').open_file_search()<cr>]]
 
 -- Perfomance
 _G.__luacache_config = {
