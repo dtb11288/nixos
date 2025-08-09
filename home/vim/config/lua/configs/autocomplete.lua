@@ -1,6 +1,18 @@
 -- Load snippets
 require('luasnip.loaders.from_snipmate').lazy_load()
 
+-- Diagnostic
+vim.diagnostic.config({
+  virtual_text = false,
+  float = {
+    border = BORDER,
+  }
+})
+
+require('tiny-inline-diagnostic').setup({
+  preset = 'minimal',
+})
+
 -- Cmp config
 local cmp = require('cmp')
 local select_opts = { behavior = cmp.SelectBehavior.Insert }
@@ -188,12 +200,19 @@ vim.g.haskell_tools = {
   }
 }
 
-lspconfig.dockerls.setup {}
-lspconfig.html.setup {}
+-- Nix
 lspconfig.nixd.setup {}
-lspconfig.lua_ls.setup {}
-lspconfig.ts_ls.setup {}
+
+-- Rust
 lspconfig.rust_analyzer.setup {}
+
+-- Docker
+lspconfig.dockerls.setup {}
+
+-- HTML
+lspconfig.html.setup {}
+
+-- Lua
 lspconfig.lua_ls.setup {
   settings = {
     Lua = {
@@ -205,6 +224,7 @@ lspconfig.lua_ls.setup {
 }
 
 -- Javascript
+lspconfig.ts_ls.setup {}
 require('null-ls').setup()
 require('eslint').setup({
   bin = 'eslint', -- or `eslint_d`

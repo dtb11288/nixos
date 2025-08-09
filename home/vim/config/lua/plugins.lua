@@ -73,7 +73,7 @@ require("lazy").setup({
     },
 
     -- Rust
-    'vxpm/rust-expand-macro.nvim',
+    'vxpm/ferris.nvim',
 
     -- Haskell
     'MrcJkb/haskell-tools.nvim',

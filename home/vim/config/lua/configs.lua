@@ -61,31 +61,6 @@ require('which-key').setup({
 -- Surround
 require('nvim-surround').setup()
 
--- Diagnostic
-local sign = function(opts)
-  vim.fn.sign_define(opts.name, {
-    texthl = opts.name,
-    text = opts.text,
-    numhl = ''
-  })
-end
-
-sign({ name = 'DiagnosticSignError', text = 'E' })
-sign({ name = 'DiagnosticSignWarn', text = 'W' })
-sign({ name = 'DiagnosticSignHint', text = 'H' })
-sign({ name = 'DiagnosticSignInfo', text = 'I' })
-
-vim.diagnostic.config({
-  virtual_text = false,
-  float = {
-    border = BORDER,
-  }
-})
-
-require('tiny-inline-diagnostic').setup({
-  preset = 'minimal',
-})
-
 -- Terminal
 require('toggleterm').setup({
   open_mapping = [[<c-\>]],
