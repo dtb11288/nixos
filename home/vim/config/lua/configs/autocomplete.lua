@@ -223,6 +223,9 @@ lspconfig.lua_ls.setup {
   }
 }
 
+-- Protobuf
+lspconfig.protols.setup {}
+
 -- Javascript
 lspconfig.ts_ls.setup {}
 require('null-ls').setup()
