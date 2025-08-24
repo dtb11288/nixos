@@ -56,6 +56,7 @@
     zip
     unzip
     unrar
+    p7zip
     docker-compose
     usbutils
     tmux

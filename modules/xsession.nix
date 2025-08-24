@@ -31,7 +31,7 @@ in
     caffeine-ng
     goldendict-ng
     appimage-run
-    wineWowPackages.staging
+    wineWowPackages.stable
     winetricks
   ];
 
