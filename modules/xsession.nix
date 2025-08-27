@@ -109,7 +109,6 @@ in
       xdg-desktop-portal
       xdg-desktop-portal-gtk
       xdg-desktop-portal-gnome
-      libsForQt5.xdg-desktop-portal-kde
       kdePackages.xdg-desktop-portal-kde
     ];
   };

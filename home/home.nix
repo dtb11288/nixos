@@ -72,6 +72,7 @@
     qbittorrent
     simplescreenrecorder
     stremio
+    pianoteq.standard-trial_8
   ];
 
   # Wallpaper

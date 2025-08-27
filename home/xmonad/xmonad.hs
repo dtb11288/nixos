@@ -71,9 +71,9 @@ myWindowConditions =
        ]
     -- Special apps
     <> [ "steam" =?> doFloat
-       , "battle.net.exe" =?> doFloat
        , "mpv" =?> doFloat
        , "file-roller" =?> doFloat
+       , "Pianoteq Trial" =?> doFloat
        ]
  where
   name ==> action = checkProperty name --> action
