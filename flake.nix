@@ -37,6 +37,7 @@
           # TODO: Remove this when libsoup is updated
           permittedInsecurePackages = [
             "libsoup-2.74.3"
+            "qtwebengine-5.15.19"
           ];
           # Disable if you don't want unfree packages
           allowUnfree = true;
