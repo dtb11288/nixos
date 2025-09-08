@@ -45,6 +45,9 @@ vim.keymap.set('n', '<leader>e', function() require('nvim-tree.api').tree.toggle
 vim.keymap.set('n', '<leader>E', function() require('nvim-tree.api').tree.toggle({ find_file = true, focus = true }) end,
   { noremap = true, silent = true, desc = 'Find current buffer path' })
 
+-- Package manager
+vim.keymap.set('n', '<leader>l', '<cmd>Lazy<cr>', { noremap = true, silent = true, desc = 'Open Lazy Package Manager' })
+
 -- Autocomplete cmp
 require('./configs/autocomplete')
 
