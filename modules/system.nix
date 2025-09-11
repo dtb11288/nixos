@@ -67,6 +67,7 @@
     dua
     bandwhich
     slumber
+    expressvpn
   ];
 
   # Direnv support
@@ -122,6 +123,7 @@
     '';
   };
 
+  services.expressvpn.enable = true;
   services.blueman.enable = true;
   services.gvfs.enable = true;
   services.auto-cpufreq = {
