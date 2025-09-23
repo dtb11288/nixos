@@ -136,53 +136,54 @@ cmp.setup.cmdline(':', {
 })
 
 local fzf = require('fzf-lua')
-local on_attach = function(_, bufnr)
-  local nmap = function(keys, func, desc)
-    vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc, noremap = true, silent = true })
-  end
-
-  if vim.lsp.inlay_hint then
-    vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-  end
-
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-  -- Mappings.
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  nmap('gD', fzf.lsp_declarations, 'Goto declaration')
-  nmap('gd', fzf.lsp_definitions, 'Goto definition')
-  nmap('K', '<Nop>')
-  nmap('<leader>k', function()
-    vim.lsp.buf.hover({ border = BORDER })
-  end, 'Hover documentation')
-  nmap('gi', fzf.lsp_implementations, 'Goto implementation')
-  nmap('<leader>cl', vim.lsp.codelens.run, 'Codelens')
-  nmap('<leader>i', fzf.lsp_incoming_calls, 'Goto incoming calls')
-  nmap('<leader>o', fzf.lsp_outgoing_calls, 'Goto outgoing calls')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature documentation')
-  nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, 'Workspace add folder')
-  nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, 'Workspace remove folder')
-  nmap('<leader>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, 'Workspace List Folders')
-  nmap('gy', fzf.lsp_typedefs, 'Type definition')
-  nmap('<leader>r', vim.lsp.buf.rename, 'Rename')
-  nmap('<leader>a', fzf.lsp_code_actions, 'Code action')
-  nmap('gr', fzf.lsp_references, 'Goto references')
-  nmap('<leader>d', fzf.diagnostics_document, 'Search diagnostics')
-  nmap('<leader>D', fzf.diagnostics_workspace, 'Search diagnostics for whole workspace')
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
-  nmap('<leader>F', ':Format<CR>', 'Format current buffer with LSP')
-end
 
 -- Set up lspconfig.
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'LSP actions',
+  callback = function(args)
+    local bufnr = args.buf
+    local nmap = function(keys, func, desc)
+      vim.keymap.set('n', keys, func, { buffer = true, desc = desc, noremap = true, silent = true })
+    end
+
+    if vim.lsp.inlay_hint then
+      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+    end
+
+    -- Mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    nmap('gD', fzf.lsp_declarations, 'Goto declaration')
+    nmap('gd', fzf.lsp_definitions, 'Goto definition')
+    nmap('K', '<Nop>')
+    nmap('<leader>k', function()
+      vim.lsp.buf.hover({ border = BORDER })
+    end, 'Hover documentation')
+    nmap('gi', fzf.lsp_implementations, 'Goto implementation')
+    nmap('<leader>cl', vim.lsp.codelens.run, 'Codelens')
+    nmap('<leader>i', fzf.lsp_incoming_calls, 'Goto incoming calls')
+    nmap('<leader>o', fzf.lsp_outgoing_calls, 'Goto outgoing calls')
+    nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature documentation')
+    nmap('<leader>wa', vim.lsp.buf.add_workspace_folder, 'Workspace add folder')
+    nmap('<leader>wr', vim.lsp.buf.remove_workspace_folder, 'Workspace remove folder')
+    nmap('<leader>wl', function()
+      print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    end, 'Workspace List Folders')
+    nmap('gy', fzf.lsp_typedefs, 'Type definition')
+    nmap('<leader>r', vim.lsp.buf.rename, 'Rename')
+    nmap('<leader>a', fzf.lsp_code_actions, 'Code action')
+    nmap('gr', fzf.lsp_references, 'Goto references')
+    nmap('<leader>d', fzf.diagnostics_document, 'Search diagnostics')
+    nmap('<leader>D', fzf.diagnostics_workspace, 'Search diagnostics for whole workspace')
+    vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
+      vim.lsp.buf.format()
+    end, { desc = 'Format current buffer with LSP' })
+    nmap('<leader>F', ':Format<CR>', 'Format current buffer with LSP')
+  end
+})
+
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require('lspconfig')
 local lsp_defaults = lspconfig.util.default_config
-lsp_defaults.on_attach = on_attach
 lsp_defaults.capabilities = vim.tbl_deep_extend(
   'force',
   lsp_defaults.capabilities,
@@ -194,26 +195,23 @@ require('fidget').setup()
 
 -- Haskell
 require('haskell-tools')
-vim.g.haskell_tools = {
-  hls = {
-    on_attach = on_attach
-  }
-}
+vim.g.haskell_tools = {}
 
 -- Nix
-lspconfig.nixd.setup {}
+vim.lsp.enable('nixd')
 
 -- Rust
-lspconfig.rust_analyzer.setup {}
+vim.lsp.enable('rust_analyzer')
 
 -- Docker
-lspconfig.dockerls.setup {}
+vim.lsp.enable('dockerls')
 
 -- HTML
-lspconfig.html.setup {}
+vim.lsp.enable('html')
 
 -- Lua
-lspconfig.lua_ls.setup {
+vim.lsp.enable('lua_ls')
+vim.lsp.config('lua_ls', {
   settings = {
     Lua = {
       diagnostics = {
@@ -221,13 +219,14 @@ lspconfig.lua_ls.setup {
       }
     }
   }
-}
+})
 
 -- Protobuf
-lspconfig.protols.setup {}
+vim.lsp.enable('protols')
 
 -- Javascript
-lspconfig.ts_ls.setup {}
+vim.lsp.enable('ts_ls')
+
 require('null-ls').setup()
 require('eslint').setup({
   bin = 'eslint', -- or `eslint_d`
