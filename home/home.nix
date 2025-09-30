@@ -66,12 +66,10 @@
     lxappearance
     discord
     xfce.mousepad
-    jellyfin-media-player
     supersonic
     weechat
     qbittorrent
     simplescreenrecorder
-    stremio
     pianoteq.standard-trial_8
   ];
 
