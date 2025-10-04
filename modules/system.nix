@@ -20,6 +20,7 @@
   boot.kernel.sysctl = {
     "vm.swappiness" = 10;
   };
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Set your time zone.
   time.timeZone = "Asia/Ho_Chi_Minh";
