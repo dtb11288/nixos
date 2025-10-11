@@ -42,24 +42,14 @@
   # Add stuff for your user as you see fit:
   # programs.neovim.enable = true;
   home.packages = with pkgs; [
-    telegram-desktop
-    zapzap
     firefox
     google-chrome
     ungoogled-chromium
     thunderbird
     birdtray
-    audacity
-    slack
-    gimp3
     onlyoffice-bin
     flameshot
     nomacs
-    darktable
-    rawtherapee
-    hugin
-    blender
-    inkscape
     zathura
     mpv
     lxtask
@@ -67,10 +57,25 @@
     discord
     xfce.mousepad
     supersonic
-    weechat
     qbittorrent
     simplescreenrecorder
     pianoteq.standard-trial_8
+
+    # communication
+    telegram-desktop
+    zapzap
+    slack
+    weechat
+
+    # editor
+    librecad
+    darktable
+    rawtherapee
+    hugin
+    blender
+    inkscape
+    gimp3
+    audacity
   ];
 
   # Wallpaper
