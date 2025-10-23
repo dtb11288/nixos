@@ -1,6 +1,7 @@
 { inputs, lib, config, pkgs, ... }: {
 
   imports = [
+    ./modules/uutils.nix
     ./modules/system.nix
     ./modules/user.nix
     ./modules/font.nix

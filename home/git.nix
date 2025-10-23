@@ -2,17 +2,21 @@
 {
   programs.git = {
     enable = true;
-    userEmail = secrets.git.email;
-    userName = secrets.git.name;
-    extraConfig = {
-      color = {
-        ui = "auto";
+    settings = {
+      user = {
+        email = secrets.git.email;
+        name = secrets.git.name;
       };
-      pull = {
-        rebase = true;
-      };
-      init = {
-        defaultBranch = "master";
+      extraConfig = {
+        color = {
+          ui = "auto";
+        };
+        pull = {
+          rebase = true;
+        };
+        init = {
+          defaultBranch = "main";
+        };
       };
     };
   };
