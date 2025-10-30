@@ -14,5 +14,5 @@
     shell = pkgs.zsh;
   };
 
-  security.sudo.enable = true;
+  security.sudo-rs.enable = true;
 }

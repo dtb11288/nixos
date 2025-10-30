@@ -47,7 +47,7 @@
     ungoogled-chromium
     thunderbird
     birdtray
-    onlyoffice-bin
+    onlyoffice-desktopeditors
     flameshot
     nomacs
     zathura

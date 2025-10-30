@@ -5,7 +5,7 @@
     settings = {
       email = secrets.rbw.email;
       base_url = secrets.rbw.base_url;
-      pinentry = pkgs.pinentry;
+      pinentry = pkgs.pinentry-qt;
     };
   };
 }
