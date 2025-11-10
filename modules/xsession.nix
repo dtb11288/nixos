@@ -36,7 +36,10 @@ in
   ];
 
   programs.slock.enable = true;
-  programs.appimage.binfmt = true;
+  programs.appimage = {
+    enable = true;
+    binfmt = true;
+  };
   programs.xfconf.enable = true;
   programs.file-roller.enable = true;
   programs.thunar = {
