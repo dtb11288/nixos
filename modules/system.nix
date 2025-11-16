@@ -68,7 +68,6 @@
     dua
     bandwhich
     slumber
-    expressvpn
   ];
 
   # Direnv support
