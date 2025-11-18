@@ -34,7 +34,9 @@
         ];
         # Configure your nixpkgs instance
         config = {
-          permittedInsecurePackages = [];
+          permittedInsecurePackages = [
+            "ventoy-1.1.07"
+          ];
           # Disable if you don't want unfree packages
           allowUnfree = true;
           # Workaround for https://github.com/nix-community/home-manager/issues/2942

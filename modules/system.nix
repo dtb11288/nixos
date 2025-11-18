@@ -64,7 +64,7 @@
     glib
     git-crypt
     termscp
-    # ventoy-full
+    ventoy-full
     dua
     bandwhich
     slumber
