@@ -1,5 +1,8 @@
 { lib, pkgs, hostname, secrets, programs-sqlite-db, theme, ... }: {
-  imports = [];
+
+  imports = [
+    ./nordvpn.nix
+  ];
 
   hardware.enableAllFirmware = true;
 
@@ -123,6 +126,7 @@
     '';
   };
 
+  services.custom.nordvpn.enable = true;
   services.expressvpn.enable = true;
   services.blueman.enable = true;
   services.gvfs.enable = true;

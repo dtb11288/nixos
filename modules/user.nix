@@ -7,7 +7,7 @@
     home = "/home/${username}";
     hashedPassword = secrets.password;
     group = "users";
-    extraGroups = [ "wheel" "disk" "networkmanager" "video" "audio" "input" "docker" "vboxusers" "wireshark" "libvirtd" "adbusers" "kvm" ];
+    extraGroups = [ "wheel" "disk" "networkmanager" "video" "audio" "input" "docker" "vboxusers" "wireshark" "libvirtd" "adbusers" "kvm" "nordvpn" ];
     isNormalUser = true;
     uid = 1000;
     useDefaultShell = true;
