@@ -26,6 +26,7 @@ in
     sxhkd
     pamixer
     arandr
+    file-roller
     anydesk
     teamviewer
     caffeine-ng
@@ -38,7 +39,6 @@ in
   programs.slock.enable = true;
   programs.appimage.binfmt = true;
   programs.xfconf.enable = true;
-  programs.file-roller.enable = true;
   programs.thunar = {
     enable = true;
     plugins = with pkgs.xfce; [
