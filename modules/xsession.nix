@@ -27,6 +27,7 @@ in
     pamixer
     arandr
     file-roller
+    synology-drive-client
     anydesk
     teamviewer
     caffeine-ng
@@ -160,7 +161,7 @@ in
         ${blueman}/bin/blueman-applet &
         ${fcitx5}/bin/fcitx5 &
         ${birdtray}/bin/birdtray &
-        ${flatpak}/bin/flatpak run com.synology.SynologyDrive &
+        ${synology-drive-client}/bin/synology-drive &
         ${goldendict-ng}/bin/goldendict &
       '';
     };
