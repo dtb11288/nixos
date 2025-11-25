@@ -1,4 +1,4 @@
-{ inputs, lib, config, pkgs, ... }: {
+{ inputs, lib, config, pkgs, stateVersion, ... }: {
 
   imports = [
     ./modules/uutils.nix
@@ -36,5 +36,5 @@
   nix.settings.max-jobs = lib.mkDefault 8;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = "24.05";
+  system.stateVersion = stateVersion;
 }

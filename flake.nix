@@ -23,9 +23,11 @@
     theme = import ./theme.nix;
     secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
     username = secrets.username;
+    stateVersion = "25.11";
     nixpkgsConfig = { ... }:
     {
       nixpkgs = {
+        # Import all .nix files in the overlays directory
         overlays = nixpkgs.lib.pipe ./overlays [
           (builtins.readDir)
           (builtins.attrNames)
@@ -48,7 +50,7 @@
       # Pass flake inputs to our config
       dpiRatio = dpi / 96;
       programs-sqlite-db = flake-programs-sqlite.packages.${system}.programs-sqlite;
-      inherit inputs theme secrets username;
+      inherit inputs theme secrets username stateVersion;
     };
     mkHomeManagerConfig = { system, ... }@config:
       home-manager.lib.homeManagerConfiguration {
@@ -86,6 +88,7 @@
         }
       ) systems;
     };
+    # Read specific system configurations from the ./system directory for each hostname
     hosts = nixpkgs.lib.pipe ./system [
       (builtins.readDir)
       (nixpkgs.lib.filterAttrs (name: type: type == "directory"))
