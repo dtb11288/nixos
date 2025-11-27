@@ -30,10 +30,10 @@
       experimental-features = "nix-command flakes";
       # Deduplicate and optimize nix store
       auto-optimise-store = true;
+      max-jobs = lib.mkDefault 8;
+      download-buffer-size = 512 * 1024 * 1024; # 500MB
     };
   };
-
-  nix.settings.max-jobs = lib.mkDefault 8;
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
   system.stateVersion = stateVersion;

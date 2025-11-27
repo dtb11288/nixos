@@ -1,4 +1,4 @@
-{ lib, pkgs, hostname, secrets, programs-sqlite-db, theme, stateVersion, ... }: {
+{ pkgs, hostname, secrets, programs-sqlite-db, theme, ... }: {
 
   imports = [
     ./nordvpn.nix
@@ -173,12 +173,4 @@
   programs.command-not-found.dbPath = programs-sqlite-db;
   programs.zsh.enable = true;
   programs.ssh.startAgent = true;
-
-  nix.settings = {
-    max-jobs = lib.mkDefault 8;
-    download-buffer-size = 512 * 1024 * 1024; # 500MB
-  };
-
-  # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  system.stateVersion = stateVersion;
 }
