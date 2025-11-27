@@ -73,6 +73,10 @@
     slumber
   ];
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "ventoy-1.1.07"
+  ];
+
   # Direnv support
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
