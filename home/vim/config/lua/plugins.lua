@@ -65,6 +65,7 @@ require("lazy").setup({
     -- AI
     {
       "olimorris/codecompanion.nvim",
+      version = "17.33.x",
       dependencies = {
         'nvim-lua/plenary.nvim',
         'nvim-treesitter/nvim-treesitter',
@@ -118,7 +119,7 @@ require("lazy").setup({
       priority = 1000,
     },
     -- History & Session
-    { 'rmagatti/auto-session',     dependencies = 'nvim-telescope/telescope.nvim' },
+    { 'rmagatti/auto-session', dependencies = 'nvim-telescope/telescope.nvim' },
     'simnalamburt/vim-mundo',
 
     -- Theme
