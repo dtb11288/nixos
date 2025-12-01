@@ -1,4 +1,4 @@
-{ pkgs, hostname, secrets, programs-sqlite-db, theme, ... }: {
+{ pkgs, bootPath, hostname, secrets, programs-sqlite-db, theme, ... }: {
 
   imports = [
     ./nordvpn.nix
@@ -9,7 +9,7 @@
   # Use the EFI boot loader.
   boot.loader = {
     efi = {
-      efiSysMountPoint = "/boot";
+      efiSysMountPoint = bootPath;
       canTouchEfiVariables = true;
     };
     grub = {
