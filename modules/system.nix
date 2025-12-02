@@ -71,6 +71,7 @@
     dua
     bandwhich
     slumber
+    appimage-run
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
@@ -131,7 +132,6 @@
   };
 
   services.custom.nordvpn.enable = true;
-  services.expressvpn.enable = true;
   services.blueman.enable = true;
   services.gvfs.enable = true;
   services.auto-cpufreq = {
@@ -146,6 +146,14 @@
          turbo = "auto";
       };
     };
+  };
+  services.flatpak.enable = true;
+  systemd.services.flatpak-repo = {
+    wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.flatpak ];
+    script = ''
+      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    '';
   };
 
   environment.variables = with theme.colors;{
@@ -177,4 +185,5 @@
   programs.command-not-found.dbPath = programs-sqlite-db;
   programs.zsh.enable = true;
   programs.ssh.startAgent = true;
+  programs.appimage.binfmt = true;
 }

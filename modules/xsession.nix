@@ -32,13 +32,11 @@ in
     teamviewer
     caffeine-ng
     goldendict-ng
-    appimage-run
     wineWowPackages.stable
     winetricks
   ];
 
   programs.slock.enable = true;
-  programs.appimage.binfmt = true;
   programs.xfconf.enable = true;
   programs.thunar = {
     enable = true;
@@ -93,14 +91,6 @@ in
   services.tumbler.enable = true;
   services.blueman.enable = true;
 
-  services.flatpak.enable = true;
-  systemd.services.flatpak-repo = {
-    wantedBy = [ "multi-user.target" ];
-    path = [ pkgs.flatpak ];
-    script = ''
-      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    '';
-  };
   xdg.portal = {
     enable = true;
     config = {
