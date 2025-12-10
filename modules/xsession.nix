@@ -1,4 +1,4 @@
-{ pkgs, config, lib, username, dpi, kbLayout, ... }:
+{ pkgs, config, lib, dpi, kbLayout, username, ... }:
 let
   fcitx5 = config.i18n.inputMethod.package;
 in
@@ -105,9 +105,14 @@ in
   };
 
   services.displayManager = {
+    ly = {
+      enable = true;
+      settings = {
+        auto_login_user = username;
+        auto_login_session = "none+xmonad";
+      };
+    };
     defaultSession = "none+xmonad";
-    autoLogin.enable = true;
-    autoLogin.user = username;
   };
 
   services.xserver = {
@@ -139,10 +144,7 @@ in
 
     desktopManager.runXdgAutostartIfNone = false;
     displayManager = {
-      lightdm = {
-        enable = true;
-      };
-
+      lightdm.enable = false;
       sessionCommands = with pkgs; ''
         ${xorg.xset}/bin/xset r rate 200 25
         ${xorg.xset}/bin/xset dpms 300
