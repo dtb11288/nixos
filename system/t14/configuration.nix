@@ -37,6 +37,7 @@
   };
 
   security.pam.services.sudo.rules.auth.unix.order = 11200;
+  security.pam.services.ly.rules.auth.unix.order = 11200;
 
   environment.systemPackages = with pkgs; [
     cbatticon

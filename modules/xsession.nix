@@ -108,8 +108,12 @@ in
     ly = {
       enable = true;
       settings = {
+        save = true;
         auto_login_user = username;
         auto_login_session = "none+xmonad";
+        vi_default_mode = "insert";
+        vi_mode = true;
+        xinitrc = null;
       };
     };
     defaultSession = "none+xmonad";
