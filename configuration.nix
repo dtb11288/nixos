@@ -2,11 +2,11 @@
 
   imports = [
     ./modules/uutils.nix
+    ./modules/qudelix.nix
     ./modules/system.nix
     ./modules/user.nix
     ./modules/font.nix
-    ./modules/xsession.nix
-    ./modules/qudelix.nix
+    ./modules/session.nix
   ];
 
   nix = {

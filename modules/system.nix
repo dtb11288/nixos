@@ -32,7 +32,6 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
     rbw
-    pinentry-curses
     bind
     git
     neovim
