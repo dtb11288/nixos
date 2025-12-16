@@ -105,18 +105,11 @@ in
   };
 
   services.displayManager = {
-    ly = {
-      enable = true;
-      settings = {
-        save = true;
-        auto_login_user = username;
-        auto_login_session = "none+xmonad";
-        vi_default_mode = "insert";
-        vi_mode = true;
-        xinitrc = null;
-      };
-    };
     defaultSession = "none+xmonad";
+    autoLogin = {
+      enable = true;
+      user = username;
+    };
   };
 
   services.xserver = {
@@ -148,7 +141,7 @@ in
 
     desktopManager.runXdgAutostartIfNone = false;
     displayManager = {
-      lightdm.enable = false;
+      lightdm.enable = true;
       sessionCommands = with pkgs; ''
         ${xorg.xset}/bin/xset r rate 200 25
         ${xorg.xset}/bin/xset dpms 300
