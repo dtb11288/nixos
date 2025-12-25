@@ -69,12 +69,11 @@
 
     # editor
     librecad
-    darktable
     rawtherapee
     hugin
     blender
     inkscape
-    gimp3
+    gimp
     audacity
   ];
 
