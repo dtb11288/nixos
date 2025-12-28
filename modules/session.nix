@@ -144,6 +144,7 @@ in
     displayManager = {
       lightdm.enable = true;
       sessionCommands = with pkgs; ''
+        ${caffeine-ng}/bin/caffeine &
         ${xorg.xset}/bin/xset r rate 200 25
         ${xorg.xset}/bin/xset dpms 300
         ${pa_applet}/bin/pa-applet &

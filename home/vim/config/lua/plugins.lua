@@ -65,7 +65,6 @@ require("lazy").setup({
     -- AI
     {
       "olimorris/codecompanion.nvim",
-      version = "17.33.x",
       dependencies = {
         'nvim-lua/plenary.nvim',
         'nvim-treesitter/nvim-treesitter',
