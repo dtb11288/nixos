@@ -55,7 +55,7 @@
     lxtask
     lxappearance
     discord
-    xfce.mousepad
+    mousepad
     supersonic
     qbittorrent
     simplescreenrecorder

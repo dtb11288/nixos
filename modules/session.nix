@@ -31,7 +31,7 @@ in
     anydesk
     teamviewer
     caffeine-ng
-    goldendict-ng
+    # goldendict-ng
     wineWowPackages.stable
     winetricks
   ];
@@ -40,7 +40,7 @@ in
   programs.xfconf.enable = true;
   programs.thunar = {
     enable = true;
-    plugins = with pkgs.xfce; [
+    plugins = with pkgs; [
       thunar-volman
       thunar-archive-plugin
     ];
@@ -153,7 +153,6 @@ in
         ${fcitx5}/bin/fcitx5 &
         ${birdtray}/bin/birdtray &
         ${synology-drive-client}/bin/synology-drive &
-        ${goldendict-ng}/bin/goldendict &
       '';
     };
   };

@@ -1,7 +1,6 @@
 { inputs, lib, config, pkgs, stateVersion, ... }: {
 
   imports = [
-    ./modules/uutils.nix
     ./modules/qudelix.nix
     ./modules/system.nix
     ./modules/user.nix

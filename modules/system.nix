@@ -38,7 +38,7 @@
     silver-searcher
     ripgrep
     file
-    uutils-coreutils
+    coreutils
     zellij
     killall
     htop
