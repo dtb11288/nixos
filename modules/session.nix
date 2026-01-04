@@ -31,7 +31,7 @@ in
     anydesk
     teamviewer
     caffeine-ng
-    # goldendict-ng
+    goldendict-ng
     wineWowPackages.stable
     winetricks
   ];
@@ -153,6 +153,7 @@ in
         ${fcitx5}/bin/fcitx5 &
         ${birdtray}/bin/birdtray &
         ${synology-drive-client}/bin/synology-drive &
+        ${goldendict-ng}/bin/goldendict &
       '';
     };
   };
