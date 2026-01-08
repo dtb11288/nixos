@@ -74,7 +74,7 @@
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
-    "ventoy-1.1.07"
+    "ventoy-1.1.10"
   ];
 
   # Direnv support
@@ -180,7 +180,6 @@
     COLOR15 = color15;
   };
 
-  programs.adb.enable = true;
   programs.command-not-found.dbPath = programs-sqlite-db;
   programs.zsh.enable = true;
   programs.ssh.startAgent = true;
