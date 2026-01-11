@@ -1,7 +1,7 @@
 { pkgs, bootPath, hostname, secrets, programs-sqlite-db, theme, ... }: {
 
   imports = [
-    ./nordvpn.nix
+    # ./nordvpn.nix
   ];
 
   hardware.enableAllFirmware = true;
@@ -41,7 +41,7 @@
     uutils-coreutils
     zellij
     killall
-    htop
+    btop
     wget
     curl
     aria2
@@ -71,6 +71,7 @@
     bandwhich
     slumber
     appimage-run
+    nix-tree
   ];
 
   nixpkgs.config.permittedInsecurePackages = [
@@ -130,7 +131,7 @@
     '';
   };
 
-  services.custom.nordvpn.enable = true;
+  # services.custom.nordvpn.enable = true;
   services.blueman.enable = true;
   services.gvfs.enable = true;
   services.auto-cpufreq = {

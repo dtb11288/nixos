@@ -22,7 +22,7 @@ in
     tabheight = "${toString (28 * dpiRatio)}";
     easyeffects = "${pkgs.easyeffects}/bin/easyeffects";
     pomodoro = "${pkgs.pomodoro-gtk}/bin/pomodoro";
-    htop = "${common.terminal} -T htop -e ${htop}/bin/htop";
+    btop = "${common.terminal} -T btop -e ${btop}/bin/btop";
     supersonic = "${pkgs.supersonic}/bin/supersonic";
   } // theme.colors);
 
