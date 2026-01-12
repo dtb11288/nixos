@@ -45,10 +45,7 @@
     firefox
     google-chrome
     ungoogled-chromium
-    thunderbird
-    birdtray
     onlyoffice-desktopeditors
-    flameshot
     nomacs
     zathura
     mpv
@@ -60,12 +57,6 @@
     qbittorrent
     simplescreenrecorder
     pianoteq.standard-trial_8
-
-    # communication
-    telegram-desktop
-    zapzap
-    slack
-    weechat
 
     # editor
     librecad

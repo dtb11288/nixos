@@ -15,6 +15,9 @@ in
     libnotify
     pavucontrol
     easyeffects
+    flameshot
+    birdtray
+    thunderbird
     qpwgraph
     blueman
     xdg-utils
@@ -100,8 +103,6 @@ in
     extraPortals = with pkgs; [
       xdg-desktop-portal
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-gnome
-      kdePackages.xdg-desktop-portal-kde
     ];
   };
 
