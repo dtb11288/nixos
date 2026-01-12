@@ -2,6 +2,8 @@
 
   imports = [
     # ./nordvpn.nix
+    ../extras/uutils.nix
+    ../extras/qudelix.nix
   ];
 
   hardware.enableAllFirmware = true;
