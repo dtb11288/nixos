@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
-    ../../extras/game.nix
+    ../../modules/game.nix
   ];
 
   hardware.bluetooth.enable = true;

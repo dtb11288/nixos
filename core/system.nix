@@ -1,9 +1,9 @@
 { pkgs, bootPath, hostname, secrets, programs-sqlite-db, theme, ... }: {
 
   imports = [
-    # ./nordvpn.nix
-    ../extras/uutils.nix
-    ../extras/qudelix.nix
+    # ../moduels/nordvpn.nix
+    ../modules/uutils.nix
+    ../modules/qudelix.nix
   ];
 
   hardware.enableAllFirmware = true;
