@@ -1,10 +1,10 @@
 { inputs, lib, config, pkgs, stateVersion, ... }: {
 
-  imports = [
-    ./modules/system.nix
-    ./modules/user.nix
-    ./modules/font.nix
-    ./modules/session.nix
+  imports = lib.pipe ./core [
+    (builtins.readDir)
+    (builtins.attrNames)
+    (builtins.filter (name: builtins.match ".*\\.nix" name != null))
+    (map (name: ./core/${name}))
   ];
 
   nix = {
