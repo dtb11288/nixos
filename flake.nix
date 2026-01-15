@@ -19,8 +19,19 @@
   outputs = { self, nixpkgs, home-manager, flake-programs-sqlite, ... }@inputs:
   let
     theme = import ./theme.nix;
-    secrets = builtins.fromJSON (builtins.readFile "${self}/secrets/secrets.json");
-    username = secrets.username;
+    secrets = nixpkgs.lib.pipe ./secrets [
+      (builtins.readDir)
+      (builtins.attrNames)
+      (builtins.filter (name: builtins.match ".*\\.json" name != null))
+      (map (name:
+        let
+          content = builtins.fromJSON (builtins.readFile "${self}/secrets/${name}");
+          key = nixpkgs.lib.removeSuffix ".json" name;
+        in { ${key} = content; }
+      ))
+      (nixpkgs.lib.lists.foldr (acc: config: acc // config) {})
+    ];
+    username = secrets.user.name;
     stateVersion = "25.11";
     nixpkgsConfig = { ... }:
     {

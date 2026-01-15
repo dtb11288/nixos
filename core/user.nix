@@ -5,7 +5,7 @@
   users.users.${username} = {
     createHome = true;
     home = "/home/${username}";
-    hashedPassword = secrets.password;
+    hashedPassword = secrets.user.password;
     group = "users";
     extraGroups = [ "wheel" "disk" "networkmanager" "video" "audio" "input" "docker" "vboxusers" "wireshark" "libvirtd" "adbusers" "kvm" "nordvpn" ];
     isNormalUser = true;
