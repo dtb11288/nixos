@@ -119,18 +119,18 @@
       plugins = with pkgs; [ networkmanager-openvpn ];
     };
     firewall.enable = false;
+    nameservers = [
+      "45.90.28.0#${secrets.nextdns.id}.dns.nextdns.io"
+      "2a07:a8c0::#${secrets.nextdns.id}.dns.nextdns.io"
+      "45.90.30.0#${secrets.nextdns.id}.dns.nextdns.io"
+      "2a07:a8c1::#${secrets.nextdns.id}.dns.nextdns.io"
+    ];
   };
 
   services.resolved = {
     enable = true;
     llmnr = "false";
     dnsovertls = "true";
-    extraConfig = ''
-      DNS=45.90.28.0#${secrets.nextdns.id}.dns.nextdns.io
-      DNS=2a07:a8c0::#${secrets.nextdns.id}.dns.nextdns.io
-      DNS=45.90.30.0#${secrets.nextdns.id}.dns.nextdns.io
-      DNS=2a07:a8c1::#${secrets.nextdns.id}.dns.nextdns.io
-    '';
   };
 
   # services.custom.nordvpn.enable = true;
