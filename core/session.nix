@@ -7,7 +7,7 @@ in
     rofi
     rofi-rbw
     rofi-vpn
-    pinentry-gtk2
+    pinentry-qt
     polybar
     alacritty
     xsel

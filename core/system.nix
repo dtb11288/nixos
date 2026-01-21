@@ -129,8 +129,12 @@
 
   services.resolved = {
     enable = true;
-    llmnr = "false";
-    dnsovertls = "true";
+    settings = {
+      Resolve = {
+        DNSOverTLS = true;
+        LLMNR = false;
+      };
+    };
   };
 
   # services.custom.nordvpn.enable = true;
