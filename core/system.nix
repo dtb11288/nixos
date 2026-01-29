@@ -17,7 +17,7 @@
     grub = {
       devices = [ "nodev" ];
       efiSupport = true;
-      configurationLimit = 5;
+      configurationLimit = 15;
       enable = true;
     };
   };
