@@ -146,8 +146,8 @@ in
       lightdm.enable = true;
       sessionCommands = with pkgs; ''
         ${caffeine-ng}/bin/caffeine &
-        ${xorg.xset}/bin/xset r rate 200 25
-        ${xorg.xset}/bin/xset dpms 300
+        ${xset}/bin/xset r rate 200 25
+        ${xset}/bin/xset dpms 300
         ${pa_applet}/bin/pa-applet &
         ${copyq}/bin/copyq &
         ${blueman}/bin/blueman-applet &
