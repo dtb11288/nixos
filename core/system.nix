@@ -2,7 +2,7 @@
 
   imports = [
     # ../moduels/nordvpn.nix
-    ../modules/uutils.nix
+    # ../modules/uutils.nix
     ../modules/qudelix.nix
   ];
 
@@ -40,7 +40,7 @@
     silver-searcher
     ripgrep
     file
-    uutils-coreutils
+    coreutils
     zellij
     killall
     btop

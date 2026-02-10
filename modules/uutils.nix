@@ -1,16 +1,16 @@
 { pkgs, ... }:
 let
-  coreutils-full-name = "coreuutils-full-" + builtins.concatStringsSep ""
-    (builtins.genList (_: "v") ((builtins.stringLength pkgs.coreutils-full.version) - 1));
+  coreutils-full-name = "coreuutils-full" + builtins.concatStringsSep ""
+    (builtins.genList (_: "_") (builtins.stringLength pkgs.coreutils-full.version));
 
-  coreutils-name = "coreuutils-" + builtins.concatStringsSep ""
-    (builtins.genList (_: "v") ((builtins.stringLength pkgs.coreutils.version) - 1));
+  coreutils-name = "coreuutils" + builtins.concatStringsSep ""
+    (builtins.genList (_: "_") (builtins.stringLength pkgs.coreutils.version));
 
-  findutils-name = "finduutils-" + builtins.concatStringsSep ""
-    (builtins.genList (_: "v") ((builtins.stringLength pkgs.findutils.version) - 1));
+  findutils-name = "finduutils" + builtins.concatStringsSep ""
+    (builtins.genList (_: "_") (builtins.stringLength pkgs.findutils.version));
 
-  diffutils-name = "diffuutils-" + builtins.concatStringsSep ""
-    (builtins.genList (_: "v") ((builtins.stringLength pkgs.diffutils.version) - 1));
+  diffutils-name = "diffuutils" + builtins.concatStringsSep ""
+    (builtins.genList (_: "_") (builtins.stringLength pkgs.diffutils.version));
 in
 {
   system.replaceDependencies.replacements = [
