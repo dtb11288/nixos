@@ -35,7 +35,7 @@ in
     teamviewer
     caffeine-ng
     goldendict-ng
-    wineWowPackages.stable
+    wineWow64Packages.stable
     winetricks
   ];
 
