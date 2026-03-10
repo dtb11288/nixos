@@ -61,7 +61,5 @@
     lockerCommand = "${pkgs.common.locker}";
   };
 
-  programs.light.enable = true;
-
   console.font = "sun12x22";
 }
