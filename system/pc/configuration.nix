@@ -24,10 +24,10 @@ in
   hardware.graphics = {
     enable = true;
     extraPackages = with pkgs; [
-      vaapiVdpau
+      intel-vaapi-driver
     ];
     extraPackages32 = with pkgs.pkgsi686Linux; [
-      vaapiVdpau
+      intel-vaapi-driver
     ];
   };
 
