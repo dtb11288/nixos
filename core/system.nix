@@ -140,19 +140,19 @@
   # services.custom.nordvpn.enable = true;
   services.blueman.enable = true;
   services.gvfs.enable = true;
-  services.auto-cpufreq = {
-    enable = true;
-    settings = {
-      battery = {
-         governor = "powersave";
-         turbo = "never";
-      };
-      charger = {
-         governor = "performance";
-         turbo = "auto";
-      };
-    };
-  };
+  # services.auto-cpufreq = {
+  #   enable = true;
+  #   settings = {
+  #     battery = {
+  #        governor = "powersave";
+  #        turbo = "never";
+  #     };
+  #     charger = {
+  #        governor = "performance";
+  #        turbo = "auto";
+  #     };
+  #   };
+  # };
   services.flatpak.enable = true;
   systemd.services.flatpak-repo = {
     wantedBy = [ "multi-user.target" ];

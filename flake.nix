@@ -14,9 +14,25 @@
       url = "github:wamserma/flake-programs-sqlite";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Mango
+    mango = {
+      url = "github:mangowm/mango";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/quickshell/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-programs-sqlite, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-programs-sqlite, mango, ... }@inputs:
   let
     theme = import ./theme.nix;
     secrets = nixpkgs.lib.pipe ./secrets [
@@ -62,7 +78,10 @@
       home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages.${system};
         extraSpecialArgs = makeArgs config;
-        modules = [ nixpkgsConfig ./home/home.nix ];
+        modules = [
+          mango.hmModules.mango
+          nixpkgsConfig ./home/home.nix
+        ];
       };
     mkNixosSystem = { hostname, system, ... }@config:
       let args = makeArgs config;
@@ -71,6 +90,7 @@
         specialArgs = args;
         modules = [
           nixpkgsConfig
+          mango.nixosModules.mango
           ./configuration.nix
           ./system/${hostname}/hardware.nix
           ./system/${hostname}/configuration.nix
