@@ -11,7 +11,7 @@
     # You can also split up your configuration and import pieces of it here:
     ./theme.nix
     ./zsh.nix
-    ./alacritty.nix
+    ./foot.nix
     ./lazygit.nix
     ./zellij.nix
     ./rofi.nix

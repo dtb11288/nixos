@@ -41,6 +41,11 @@
       bind-key -n M-\\ split-window -h
       bind-key -n M-\- split-window -v
 
+      # vim selection
+      # Bind 'v' to begin selection (Visual Mode)
+      unbind -T copy-mode-vi Space
+      bind-key -T copy-mode-vi v send-keys -X begin-selection
+
       # session select
       bind-key -n M-s display-popup -E "${tmux}/bin/tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"
 

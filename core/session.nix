@@ -9,7 +9,7 @@ in
     rofi-vpn
     pinentry-qt
     polybar
-    alacritty
+    foot
     xsel
     dunst
     libnotify
