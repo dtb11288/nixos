@@ -1,8 +1,6 @@
 { pkgs, bootPath, hostname, secrets, programs-sqlite-db, theme, ... }: {
 
   imports = [
-    # ../moduels/nordvpn.nix
-    # ../modules/uutils.nix
     ../modules/qudelix.nix
   ];
 

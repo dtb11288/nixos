@@ -23,7 +23,7 @@
     ./helix.nix
     ./vim
     ./tmux.nix
-    ./xmonad
+    ./mango
     ./rbw.nix
     ./aria2.nix
   ];

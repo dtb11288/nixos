@@ -23,7 +23,7 @@ in
     xdg-utils
     pa_applet
     copyq
-    xdotool
+    wtype
     playerctl
     feh
     sxhkd
@@ -64,6 +64,8 @@ in
       thunar-archive-plugin
     ];
   };
+
+  services.upower.enable = true;
 
   services.teamviewer.enable = true;
   systemd.services.teamviewerd.wantedBy = lib.mkForce [ ];
