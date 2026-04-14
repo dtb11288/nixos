@@ -1,4 +1,4 @@
-{ pkgs, dpi, dpiRatio, config, theme, ... }:
+{ pkgs, dpiRatio, config, theme, ... }:
 let
   inherit (config.lib.formats.rasi) mkLiteral;
   font = "Noto Front 13";
@@ -9,7 +9,6 @@ in
     terminal = "${pkgs.common.terminal}";
     inherit font;
     extraConfig = {
-      inherit dpi;
       modes = map mkLiteral [ "drun" "run" "calc" "emoji" ];
       show-icons = false;
     };
