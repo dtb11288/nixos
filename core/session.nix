@@ -1,7 +1,7 @@
-{ pkgs, config, lib, system, dpi, kbLayout, inputs, username, ... }:
-let
-  fcitx5 = config.i18n.inputMethod.package;
-in
+{ pkgs, lib, system, inputs, username, ... }:
+# let
+#   fcitx5 = config.i18n.inputMethod.package;
+# in
 {
   environment.systemPackages = with pkgs; [
     rofi
