@@ -7,6 +7,22 @@ let
   );
 in
 {
-  xdg.configFile."mango/config.conf".source = pkgs.replaceVars ./config.conf ({
+  xdg.configFile."mango/config" = {
+    source = pkgs.symlinkJoin {
+      name = "mango-config";
+      paths = [
+        (lib.cleanSourceWith {
+          src = ./config;
+
+          # Filter to exclude certain files and directories
+          filter = name: type:
+            !(lib.hasSuffix "theme.conf" name);
+        })
+      ];
+    };
+    recursive = true;
+  };
+  xdg.configFile."mango/config.conf".source = ./config.conf;
+  xdg.configFile."mango/config/theme.conf".source = pkgs.replaceVars ./config/theme.conf ({
   } // stripHash theme.colors);
 }
