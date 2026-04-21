@@ -8,25 +8,16 @@
     rofi-rbw
     rofi-vpn
     pinentry-qt
-    polybar
     foot
-    xsel
-    dunst
-    libnotify
     pavucontrol
     easyeffects
-    flameshot
     birdtray
     thunderbird
     qpwgraph
     blueman
     xdg-utils
-    pa_applet
-    copyq
     wtype
     playerctl
-    feh
-    sxhkd
     pamixer
     arandr
     file-roller
@@ -114,49 +105,4 @@
       user = username;
     };
   };
-
-  # services.xserver = {
-  #   enable = true;
-  #   xkb = {
-  #     layout = kbLayout;
-  #   };
-  #   inherit dpi;
-  #
-  #   excludePackages = with pkgs; [
-  #     xterm
-  #   ];
-  #
-  #   windowManager.xmonad = {
-  #     enable = true;
-  #     enableContribAndExtras = true;
-  #     extraPackages = hp: with hp; [
-  #       dbus
-  #       xmonad-dbus
-  #     ];
-  #   };
-  #
-  #   xautolock = {
-  #     enable = true;
-  #     locker = "${pkgs.common.locker}";
-  #     time = 5;
-  #     extraOptions = [ "-detectsleep" "-corners '----'" ];
-  #   };
-  #
-  #   desktopManager.runXdgAutostartIfNone = false;
-  #   displayManager = {
-  #     lightdm.enable = true;
-  #     sessionCommands = with pkgs; ''
-  #       ${caffeine-ng}/bin/caffeine &
-  #       ${xset}/bin/xset r rate 200 25
-  #       ${xset}/bin/xset dpms 300
-  #       ${pa_applet}/bin/pa-applet &
-  #       ${copyq}/bin/copyq &
-  #       ${blueman}/bin/blueman-applet &
-  #       ${fcitx5}/bin/fcitx5 &
-  #       ${birdtray}/bin/birdtray &
-  #       ${synology-drive-client}/bin/synology-drive &
-  #       ${goldendict-ng}/bin/goldendict &
-  #     '';
-  #   };
-  # };
 }

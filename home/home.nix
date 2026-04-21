@@ -15,11 +15,8 @@
     ./lazygit.nix
     ./zellij.nix
     ./rofi.nix
-    ./dunst.nix
     ./fzf.nix
-    ./sxhkd
     ./git.nix
-    ./flameshot.nix
     ./helix.nix
     ./vim
     ./tmux.nix
@@ -56,7 +53,6 @@
     supersonic
     qbittorrent
     simplescreenrecorder
-    pianoteq.standard-trial_8
 
     # editor
     librecad
