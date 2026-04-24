@@ -9,9 +9,9 @@ in
     terminal = "${pkgs.common.terminal}";
     inherit font;
     extraConfig = {
-      modes = map mkLiteral [ "drun" "run" "calc" "emoji" ];
       show-icons = false;
     };
+    modes = [ "drun" "run" "calc" "emoji" ];
     theme = with theme.colors; {
       "*" = {
         inherit font;
