@@ -9,12 +9,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # For command-not-found
-    flake-programs-sqlite = {
-      url = "github:wamserma/flake-programs-sqlite";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Mango
     mango = {
       url = "github:mangowm/mango";
@@ -32,7 +26,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-programs-sqlite, mango, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, mango, ... }@inputs:
   let
     theme = import ./theme.nix;
     secrets = nixpkgs.lib.pipe ./secrets [
@@ -68,10 +62,9 @@
         };
       };
     };
-    makeArgs = { dpi, system, ... }@config: config // {
+    makeArgs = { dpi, ... }@config: config // {
       # Pass flake inputs to our config
       dpiRatio = dpi / 96;
-      programs-sqlite-db = flake-programs-sqlite.packages.${system}.programs-sqlite;
       inherit inputs theme secrets username stateVersion;
     };
     mkHomeManagerConfig = { system, ... }@config:
