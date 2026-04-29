@@ -4,12 +4,12 @@ pkgs.mkShell {
     nixd
     lua-language-server
     haskell-language-server
-    (haskellPackages.ghcWithPackages (hpkgs: with hpkgs; [
-      xmonad-extras
-      xmonad-contrib
-      xmonad
-      dbus
-      xmonad-dbus
-    ]))
+    # (haskellPackages.ghcWithPackages (hpkgs: with hpkgs; [
+    #   xmonad-extras
+    #   xmonad-contrib
+    #   xmonad
+    #   dbus
+    #   xmonad-dbus
+    # ]))
   ];
 }
