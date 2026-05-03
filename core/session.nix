@@ -18,7 +18,6 @@
     xdg-utils
     wtype
     playerctl
-    pamixer
     arandr
     file-roller
     synology-drive-client
