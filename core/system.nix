@@ -171,7 +171,6 @@
     COLOR15 = color15;
   };
 
-  programs.command-not-found.enable = true;
   programs.zsh.enable = true;
   programs.ssh.startAgent = true;
   programs.appimage.binfmt = true;

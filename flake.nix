@@ -9,6 +9,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Mango
     mango = {
       url = "github:mangowm/mango";
@@ -26,7 +31,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, mango, ... }@inputs:
+  outputs = { self, nixpkgs, nix-index-database, home-manager, mango, ... }@inputs:
   let
     theme = import ./theme.nix;
     secrets = nixpkgs.lib.pipe ./secrets [
@@ -83,6 +88,7 @@
         specialArgs = args;
         modules = [
           nixpkgsConfig
+          nix-index-database.nixosModules.default
           mango.nixosModules.mango
           ./configuration.nix
           ./system/${hostname}/hardware.nix
