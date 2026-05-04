@@ -43,7 +43,7 @@
     google-chrome
     ungoogled-chromium
     onlyoffice-desktopeditors
-    nomacs
+    loupe
     zathura
     mpv
     lxtask
