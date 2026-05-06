@@ -1,7 +1,4 @@
 { pkgs, lib, system, inputs, username, ... }:
-# let
-#   fcitx5 = config.i18n.inputMethod.package;
-# in
 {
   environment.systemPackages = with pkgs; [
     rofi
@@ -23,7 +20,6 @@
     synology-drive-client
     anydesk
     teamviewer
-    caffeine-ng
     goldendict-ng
     wineWow64Packages.stable
     winetricks
