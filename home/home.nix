@@ -52,7 +52,7 @@
     mousepad
     supersonic
     qbittorrent
-    simplescreenrecorder
+    obs-studio
 
     # editor
     librecad
