@@ -50,7 +50,7 @@
     lxappearance
     discord
     mousepad
-    supersonic
+    tauon
     qbittorrent
     obs-studio
 
