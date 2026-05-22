@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ../../modules/work.nix
     ../../modules/game.nix
   ];
 

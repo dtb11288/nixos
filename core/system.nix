@@ -174,4 +174,5 @@
   programs.zsh.enable = true;
   programs.ssh.startAgent = true;
   programs.appimage.binfmt = true;
+  programs.nix-ld.enable = true;
 }
