@@ -39,7 +39,6 @@
     ripgrep
     file
     coreutils
-    zellij
     killall
     btop
     wget
@@ -63,6 +62,7 @@
     docker-compose
     usbutils
     tmux
+    opencode
     glib
     git-crypt
     termscp
