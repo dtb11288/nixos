@@ -69,7 +69,6 @@
     ventoy-full
     dua
     bandwhich
-    slumber
     appimage-run
     nix-tree
   ];

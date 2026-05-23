@@ -145,21 +145,16 @@ local lazygit  = Terminal:new({
 })
 vim.keymap.set('n', '<C-g>', function() lazygit:toggle() end, { noremap = true, silent = true, desc = 'Open Lazygit' })
 
-local slumber = Terminal:new({
-  cmd = "slumber",
+-- OpenCode Terminal Instance
+local opencode = Terminal:new({
+  cmd = "opencode",
   direction = "float",
   float_opts = {
     border = BORDER,
   },
-  on_open = function(term)
-    vim.cmd("startinsert!")
-    vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
-  end,
-  on_close = function(_)
-    vim.cmd("startinsert!")
-  end,
+  hidden = true,
 })
-vim.keymap.set('n', '<C-s>', function() slumber:toggle() end, { noremap = true, silent = true, desc = 'Slumber' })
+vim.keymap.set({ 'n', 't' }, '<C-a>i', function() opencode:toggle() end, { noremap = true, silent = true, desc = 'Toggle OpenCode' })
 
 -- Tree sitter
 local parsers_dir = VIM_HOME .. '/parsers'
