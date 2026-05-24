@@ -127,8 +127,6 @@ require("lazy").setup({
       "jesseleite/nvim-noirbuddy",
       dependencies = { "tjdevries/colorbuddy.nvim", branch = "dev" }
     },
-    'aditya-azad/candle-grey',
-    'shaunsingh/nord.nvim',
     'norcalli/nvim-colorizer.lua'
   },
 })
