@@ -18,10 +18,6 @@
   services.xserver.deviceSection = ''Option "TearFree" "true"''; # For amdgpu.
 
   services.xserver.videoDrivers = [ "amdgpu" ];
-  services.xserver.displayManager.sessionCommands = ''
-    ${pkgs.libinput-gestures}/bin/libinput-gestures &
-    ${pkgs.cbatticon}/bin/cbatticon &
-  '';
   services.libinput = {
     enable = true;
     touchpad.naturalScrolling = true;

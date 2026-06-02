@@ -19,10 +19,6 @@
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];
-  services.xserver.displayManager.sessionCommands = ''
-    ${pkgs.libinput-gestures}/bin/libinput-gestures &
-    ${pkgs.cbatticon}/bin/cbatticon &
-  '';
   services.libinput = {
     enable = true;
     touchpad.naturalScrolling = true;

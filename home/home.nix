@@ -52,7 +52,6 @@
     mousepad
     tauon
     qbittorrent
-    obs-studio
 
     # editor
     librecad
@@ -62,6 +61,7 @@
     inkscape
     gimp
     audacity
+    obs-studio
   ];
 
   # Wallpaper
