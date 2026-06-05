@@ -23,6 +23,7 @@
     ./mango
     ./rbw.nix
     ./aria2.nix
+    ./opencode.nix
   ];
 
   nix.settings.experimental-features = "nix-command flakes";
