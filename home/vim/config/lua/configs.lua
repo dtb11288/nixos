@@ -184,7 +184,7 @@ require('auto-session').setup({
 -- Undo
 vim.opt.undodir = VIM_HOME .. '/undofiles'
 vim.opt.undofile = true
-vim.keymap.set('n', '<leader>u', '<cmd>MundoToggle<cr>')
+vim.keymap.set('n', '<leader>u', '<cmd>UndotreeToggle<cr>')
 
 -- Close buffers
 vim.keymap.set('n', '<leader>cb', ':Bdelete<cr>', { noremap = true, silent = true, desc = 'Close current buffer' })

@@ -119,7 +119,7 @@ require("lazy").setup({
     },
     -- History & Session
     { 'rmagatti/auto-session', dependencies = 'nvim-telescope/telescope.nvim' },
-    'simnalamburt/vim-mundo',
+    'mbbill/undotree',
 
     -- Theme
     { 'nvim-lualine/lualine.nvim', dependencies = 'nvim-tree/nvim-web-devicons' },

@@ -35,7 +35,6 @@
     bind
     git
     neovim
-    silver-searcher
     ripgrep
     file
     coreutils
