@@ -23,6 +23,7 @@
     ./mango
     ./rbw.nix
     ./aria2.nix
+    ./lspmux.nix
     ./opencode.nix
   ];
 

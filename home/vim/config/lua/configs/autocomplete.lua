@@ -202,6 +202,18 @@ vim.lsp.enable('nixd')
 
 -- Rust
 vim.lsp.enable('rust_analyzer')
+vim.lsp.config('rust_analyzer', {
+  cmd = vim.lsp.rpc.connect("127.0.0.1", 27631),
+  settings = {
+    ["rust-analyzer"] = {
+      lspMux = {
+        version = "1",
+        method = "connect",
+        server = "rust-analyzer"
+      },
+    },
+  },
+})
 
 -- Docker
 vim.lsp.enable('dockerls')

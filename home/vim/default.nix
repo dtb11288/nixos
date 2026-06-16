@@ -18,6 +18,7 @@
   xdg.configFile."nvim/lua/variables.lua".source = pkgs.replaceVars ./config/lua/variables.lua ({
     vim_home = "${config.xdg.configHome}/nvim";
     nodejs = "${pkgs.nodejs}/bin/node";
+    lspmux = "${pkgs.lspmux}/bin/lspmux";
   } // theme.colors);
   xdg.configFile."nvim/init.lua".source = ./init.lua;
 }
