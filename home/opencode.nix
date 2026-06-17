@@ -1,19 +1,5 @@
 { pkgs, ... }:
-let
-  lsp-env = pkgs.symlinkJoin {
-    name = "lsp-env";
-    paths = with pkgs; [
-      rust-analyzer
-      stdenv.cc
-      cargo
-      rustc
-
-      nixd
-      typescript-language-server
-      vscode-langservers-extracted
-    ];
-  };
-in {
+{
   programs.opencode = {
     enable = true;
     settings = {
@@ -50,7 +36,7 @@ in {
     Service = {
       Type = "simple";
       ExecStart = "${pkgs.opencode}/bin/opencode serve";
-      ExecSearchPath = "${lsp-env}/bin";
+      ExecSearchPath = "${pkgs.lsp-env}/bin";
       Environment = [
         "RUST_SRC_PATH=${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}"
       ];
