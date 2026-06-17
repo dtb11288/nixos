@@ -147,7 +147,7 @@ vim.keymap.set('n', '<C-g>', function() lazygit:toggle() end, { noremap = true, 
 
 -- OpenCode Terminal Instance
 local opencode = Terminal:new({
-  cmd = OPENCODE .. " attach http://127.0.0.1:4096 --continue --dir $PWD",
+  cmd = OPENCODE .. ' --continue',
   direction = "float",
   float_opts = {
     border = BORDER,

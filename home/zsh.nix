@@ -6,7 +6,6 @@
       vi = "${neovim}/bin/nvim";
       vim = "${neovim}/bin/nvim";
       ls = "ls -h --color=auto";
-      opencode = "${opencode}/bin/opencode attach http://127.0.0.1:4096 --continue --dir $PWD";
     };
     zplug = {
       enable = true;
