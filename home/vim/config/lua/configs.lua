@@ -129,7 +129,7 @@ require('gitsigns').setup({
 -- Lazygit
 local Terminal = require('toggleterm.terminal').Terminal
 local lazygit  = Terminal:new({
-  cmd = "lazygit",
+  cmd = LAZYGIT,
   direction = "float",
   float_opts = {
     border = BORDER,
@@ -147,7 +147,7 @@ vim.keymap.set('n', '<C-g>', function() lazygit:toggle() end, { noremap = true, 
 
 -- OpenCode Terminal Instance
 local opencode = Terminal:new({
-  cmd = "opencode attach http://127.0.0.1:4096 --dir $PWD",
+  cmd = OPENCODE .. " attach http://127.0.0.1:4096 --continue --dir $PWD",
   direction = "float",
   float_opts = {
     border = BORDER,

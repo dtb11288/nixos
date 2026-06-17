@@ -1,6 +1,8 @@
 VIM_HOME = vim.fn.expand("@vim_home@")
 NODEJS = "@nodejs@"
 LSPMUX = "@lspmux@"
+OPENCODE = "@opencode@"
+LAZYGIT = "@lazygit@"
 BORDER = {
   { "╔", "CmpBorder" },
   { "═", "CmpBorder" },
