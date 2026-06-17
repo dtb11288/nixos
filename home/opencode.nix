@@ -1,12 +1,16 @@
 { pkgs, ... }:
 let
-  lspmux-env = pkgs.symlinkJoin {
-    name = "lspmux-env";
-    paths = [
-      pkgs.rust-analyzer
-      pkgs.stdenv.cc
-      pkgs.cargo
-      pkgs.rustc
+  lsp-env = pkgs.symlinkJoin {
+    name = "lsp-env";
+    paths = with pkgs; [
+      rust-analyzer
+      stdenv.cc
+      cargo
+      rustc
+
+      nixd
+      typescript-language-server
+      vscode-langservers-extracted
     ];
   };
 in {
@@ -46,7 +50,7 @@ in {
     Service = {
       Type = "simple";
       ExecStart = "${pkgs.opencode}/bin/opencode serve";
-      ExecSearchPath = "${lspmux-env}/bin";
+      ExecSearchPath = "${lsp-env}/bin";
       Environment = [
         "RUST_SRC_PATH=${pkgs.rust.packages.stable.rustPlatform.rustLibSrc}"
       ];
