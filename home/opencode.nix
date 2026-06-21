@@ -14,6 +14,7 @@
     };
     tui = {
       theme = "system";
+      plugin = ["opencode-subagent-statusline"];
       attention = {
         enabled = true;
         notifications = true;
