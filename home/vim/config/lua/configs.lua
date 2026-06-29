@@ -144,6 +144,22 @@ require('gitsigns').setup({
   end
 })
 
+-- Workaround: gitsigns worker thread crashes on package.preload being nil
+-- https://github.com/lewis6991/gitsigns.nvim/issues/1126
+do
+  local diff_int = require('gitsigns.diff_int')
+  local gs_config = require('gitsigns.config').config
+  local orig_run = diff_int.run_diff
+  diff_int.run_diff = function(fa, fb, linematch)
+    local old = gs_config._threaded_diff
+    gs_config._threaded_diff = false
+    local ok, result = pcall(orig_run, fa, fb, linematch)
+    gs_config._threaded_diff = old
+    if not ok then error(result) end
+    return result
+  end
+end
+
 -- Lazygit
 local Terminal = require('toggleterm.terminal').Terminal
 local lazygit  = Terminal:new({
