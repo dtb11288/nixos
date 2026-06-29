@@ -37,7 +37,7 @@ require('nvim-tree').setup({
 })
 vim.api.nvim_create_autocmd({ "QuitPre" }, {
   callback = function()
-    vim.cmd('NvimTreeClose')
+    pcall(vim.cmd, 'NvimTreeClose')
   end,
 })
 vim.keymap.set('n', '<leader>e', function() require('nvim-tree.api').tree.toggle({ focus = true }) end,
