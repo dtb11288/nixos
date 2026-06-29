@@ -54,6 +54,24 @@ require('./configs/autocomplete')
 -- Theme
 require('./configs/theme')
 
+-- lualine registers a BufEnter autocmd in the "lualine" augroup for find_git_dir.
+-- During lazy.nvim reload, `package` gets cleared, causing it to crash with
+-- "attempt to index field 'loaded'". Replace it with a deferred pcall version
+-- that outlives the reload.
+vim.api.nvim_clear_autocmds({
+  event = "BufEnter",
+  group = vim.api.nvim_create_augroup("lualine", { clear = false }),
+  pattern = "*",
+})
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "*",
+  callback = function()
+    vim.schedule(function()
+      pcall(require("lualine.components.branch.git_branch").find_git_dir)
+    end)
+  end,
+})
+
 -- Key helper
 require('which-key').setup({
   win = {

@@ -14,7 +14,7 @@
     };
     tui = {
       theme = "system";
-      plugin = ["opencode-subagent-statusline"];
+      plugin = ["opencode-subagent-statusline" "@tarquinen/opencode-dcp"];
       attention = {
         enabled = true;
         notifications = true;
