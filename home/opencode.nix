@@ -3,12 +3,18 @@
   programs.opencode = {
     enable = true;
     settings = {
-      model = "opencode-go/deepseek-v4-flash";
       formatter = true;
       lsp = {
         "rust-lspmux" = {
           command = [ "${pkgs.lspmux}/bin/lspmux" ];
           extensions = [ ".rs" ];
+        };
+      };
+      mcp = {
+        nixos = {
+          type = "local";
+          command = ["${pkgs.mcp-nixos}/bin/mcp-nixos"];
+          enabled = true;
         };
       };
     };
