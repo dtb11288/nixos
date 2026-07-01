@@ -18,7 +18,7 @@
     arandr
     file-roller
     synology-drive-client
-    # anydesk
+    anydesk
     teamviewer
     goldendict-ng
     wineWow64Packages.stable
