@@ -2,7 +2,7 @@
 
 {
   environment.systemPackages = with pkgs; [
-    ryubing
+    eden
   ];
 
   programs.steam = {

@@ -1,4 +1,17 @@
 { pkgs, ... }:
+let
+  toggle-opencode = with pkgs; writeShellScriptBin "toggle-opencode" ''
+    set -euo pipefail
+    cwd="$(tmux display-message -p '#{pane_current_path}')"
+    sid="opencode-$(printf '%s' "$cwd" | md5sum | head -c 8)"
+    if tmux has-session -t "$sid" 2>/dev/null; then
+      exec tmux attach-session -t "$sid"
+    else
+      tmux new-session -d -s "$sid" -c "$cwd" "${pkgs.opencode}/bin/opencode --continue; tmux kill-session"
+      exec tmux attach-session -t "$sid"
+    fi
+  '';
+in
 {
   programs.tmux = {
     enable = true;
@@ -13,7 +26,7 @@
     extraConfig = with pkgs; ''
       unbind C-b
       set -g prefix M-a
-      set -g detach-on-destroy off
+      set -g detach-on-destroy on
       set -g renumber-windows on
       set -g set-clipboard on
 
@@ -29,7 +42,10 @@
       bind-key -n M-9 select-window -t 9
 
       # new window
-      bind-key -n M-c new-window
+      bind-key -n M-n new-window
+
+      # detach
+      bind-key -n M-d detach-client
 
       # move around panes
       bind-key -n M-h select-pane -L
@@ -49,6 +65,13 @@
       # session select
       bind-key -n M-s display-popup -E "${tmux}/bin/tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"
 
+      # toggle opencode in a floating popup
+      bind-key -n M-i display-popup -w 80% -h 80% -E "${toggle-opencode}/bin/toggle-opencode"
+
+      # title
+      set -g set-titles on
+      set -g set-titles-string '#T'
+
       # status bar
       set -g status-position bottom
       set -g status-style bg=colour234,fg=colour137,dim
@@ -67,16 +90,6 @@
     plugins = with pkgs; [
       tmuxPlugins.yank
       tmuxPlugins.sensible
-      {
-        plugin = tmuxPlugins.resurrect;
-        extraConfig = "set -g @resurrect-strategy-nvim 'session'";
-      }
-      {
-        plugin = tmuxPlugins.continuum;
-        extraConfig = ''
-          set -g @continuum-restore 'on'
-        '';
-      }
     ];
   };
 }

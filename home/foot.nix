@@ -1,4 +1,4 @@
-{ theme, lib, ... }:
+{ theme, lib, pkgs, ... }:
 let
   stripHash = lib.mapAttrs (name: value:
     if lib.hasPrefix "#" value then
@@ -15,6 +15,7 @@ in
     settings = with stripHash theme.colors; {
       main = {
         term = "foot";
+        shell = "${pkgs.tmux}/bin/tmux";
         font = "SauceCodePro Nerd Font Mono:size=12";
       };
 
