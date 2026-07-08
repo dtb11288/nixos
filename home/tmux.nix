@@ -29,6 +29,7 @@ in
       set -g detach-on-destroy on
       set -g renumber-windows on
       set -g set-clipboard on
+      set -s extended-keys on
 
       # switch windows alt+number
       bind-key -n M-1 select-window -t 1
@@ -58,6 +59,8 @@ in
       bind-key -n M-\- split-window -v
 
       # vim selection
+      # Enter copy/selection mode
+      bind-key Space copy-mode
       # Bind 'v' to begin selection (Visual Mode)
       unbind -T copy-mode-vi Space
       bind-key -T copy-mode-vi v send-keys -X begin-selection

@@ -61,6 +61,7 @@
     docker-compose
     usbutils
     tmux
+    wl-clipboard
     opencode
     glib
     git-crypt
