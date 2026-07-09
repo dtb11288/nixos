@@ -19,8 +19,11 @@
       };
     };
     tui = {
-      theme = "system";
-      plugin = ["opencode-subagent-statusline" "@tarquinen/opencode-dcp"];
+      theme = "vesper";
+      plugin = [
+        "opencode-subagent-statusline"
+        "@tarquinen/opencode-dcp"
+      ];
       attention = {
         enabled = true;
         notifications = true;
