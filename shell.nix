@@ -2,6 +2,7 @@
 pkgs.mkShell {
   buildInputs = with pkgs; [
     nixd
+    openspec
     lua-language-server
     haskell-language-server
     # (haskellPackages.ghcWithPackages (hpkgs: with hpkgs; [
