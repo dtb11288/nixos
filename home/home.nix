@@ -25,6 +25,7 @@
     ./aria2.nix
     ./lspmux.nix
     ./opencode.nix
+    ./pi.nix
   ];
 
   nix.settings.experimental-features = "nix-command flakes";

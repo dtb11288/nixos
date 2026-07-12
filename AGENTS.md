@@ -35,6 +35,24 @@ Host names: `pc`, `t14`, `xps15`. Each is auto-discovered from `system/` subdire
 - **`home/`** — home-manager config (shared across hosts via `home/home.nix`); each file is a module
 - **`system/<hostname>/`** — per-host config as described above
 
+## Pi coding-agent (split architecture)
+
+The `pi` coding-agent (from `github:lukasl-dev/pi.nix`) is split across two layers:
+
+| Layer | Binary | Source | PATH priority |
+|-------|--------|--------|---------------|
+| System | Raw `pi` binary | `environment.systemPackages` via `modules/pi.nix` (NixOS module) | `/run/current-system/sw/bin/pi` |
+| User | Wrapped `pi` with jq-merge for settings | `home.packages` via `home/pi.nix` (HM module) | `~/.nix-profile/bin/pi` (takes priority) |
+
+- **System-level install** (`modules/pi.nix`): Imports `pi-nix.nixosModules.default` and enables `programs.pi.coding-agent`. Makes the binary available to all users and system scripts.
+- **User-level config** (`home/pi.nix`): Imports `pi-nix.homeModules.default` and configures settings (packages list, rules, skills, extensions). The HM binary shadows the system one in the user's PATH.
+
+### Rebuild
+
+```sh
+sudo nixos-rebuild switch --flake '.#HOST'   # re-evaluates both system and HM pi modules
+```
+
 ## Key inputs
 
 | Input | Source |

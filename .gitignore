@@ -1,4 +1,8 @@
 .direnv
 .git
 .opencode
-.openspec
+openspec
+# Local Pi runtime state
+.atl/
+.pi
+.pi-subagents

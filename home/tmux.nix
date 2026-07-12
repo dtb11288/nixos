@@ -30,6 +30,7 @@ in
       set -g renumber-windows on
       set -g set-clipboard on
       set -s extended-keys on
+      set -g extended-keys-format csi-u
 
       # switch windows alt+number
       bind-key -n M-1 select-window -t 1
