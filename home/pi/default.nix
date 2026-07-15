@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }:
+{ inputs, pkgs, theme, ... }:
 {
   imports = [ inputs.pi-nix.homeModules.default ];
 
@@ -24,9 +24,14 @@
     };
   };
 
+  home.file.".pi/agent/themes/vintage-earth.json" = {
+    text = builtins.toJSON (import ./themes/vintage-earth.nix { inherit theme; });
+  };
+
   programs.pi.coding-agent = {
     enable = true;
     settings = {
+      theme = "vintage-earth";
       packages = [
         "npm:pi-mcp-adapter"
         "npm:pi-lsp"
