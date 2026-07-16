@@ -36,11 +36,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783529634,
-        "narHash": "sha256-zdHsPGPE5MVi/y+uIt548XScTfZjQzdF21dME7ISEJM=",
+        "lastModified": 1784143977,
+        "narHash": "sha256-4UyLqRVtDVQIn+Z1prs5gUUkp2quD1aZq2qNePKls2c=",
         "owner": "AvengeMedia",
         "repo": "DankMaterialShell",
-        "rev": "bdfd565b72cbb416441a9ab828efcac4fd516c70",
+        "rev": "6306bc7aa2cae7450ad0dc9fc9392ad61b860711",
         "type": "github"
       },
       "original": {
@@ -135,11 +135,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1783963347,
-        "narHash": "sha256-r376E2XpakiXwModDHIxlvB6qLq4iFVEq730vxOO4JY=",
+        "lastModified": 1784129366,
+        "narHash": "sha256-N5JiyICSeQF14x+OQebNyPpYowOT9Rs1iKyeCylSzOA=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "a45a7c451455a51ae740ec3bce4024b312809c29",
+        "rev": "165228b0efefc3e635e5174020c40ea64271dc25",
         "type": "github"
       },
       "original": {
@@ -172,11 +172,11 @@
         "scenefx": "scenefx"
       },
       "locked": {
-        "lastModified": 1783932497,
-        "narHash": "sha256-1rE88vU06L8Lu4pQf0JcjVXkDkSMWCvjCxmQdPTBWYM=",
+        "lastModified": 1784125412,
+        "narHash": "sha256-BgQpab+V64aTbMP6b5Ly0/HxhClYAoAytDlUsRz+KHQ=",
         "owner": "mangowm",
         "repo": "mango",
-        "rev": "203de7c9d7213ecfb4161b511a9d513339a8dd8a",
+        "rev": "02cfbbad99d9003ade2ef944d5d27969564647a2",
         "type": "github"
       },
       "original": {
@@ -207,11 +207,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1783776592,
-        "narHash": "sha256-UgCQzxeWI75XM8G+hPrPh+MKzEPjG3SpAj7dtqSbksA=",
+        "lastModified": 1784007870,
+        "narHash": "sha256-djcLt/JJphyNt4eDY9XTly+/WbCK5lqWq9lSgCmJkkQ=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "e7a3ca8092b61ff85b6a45bf863ea2b2d6a661b3",
+        "rev": "18b9261cb3294b6d2a06d03f96872827b8fe2698",
         "type": "github"
       },
       "original": {
@@ -246,11 +246,11 @@
         "systems": "systems_2"
       },
       "locked": {
-        "lastModified": 1783974853,
-        "narHash": "sha256-oehIu6V2SNbb504K3R1XHo1U/7ekqecrvuFecCqU8mo=",
+        "lastModified": 1784096999,
+        "narHash": "sha256-zQUlZFPIWIN0FQ9KDb6L34aCd3nM4xMEqGThsFtzJsg=",
         "owner": "lukasl-dev",
         "repo": "pi.nix",
-        "rev": "e753d3d48520174fbaeadba027b50b957439919d",
+        "rev": "32c5e5681ff8e9edc4ab9936e06e6b780681e804",
         "type": "github"
       },
       "original": {

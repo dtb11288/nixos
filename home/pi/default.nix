@@ -3,35 +3,17 @@
   imports = [ inputs.pi-nix.homeModules.default ];
 
   home.file.".pi/agent/lsp.json" = {
-    text = builtins.toJSON {
-      version = 1;
-      servers = [
-        {
-          id = "rust-analyzer";
-          enabled = true;
-          include = [ "**/*.rs" ];
-          rootMarkers = [ "Cargo.toml" ];
-          bin = "${pkgs.lspmux}/bin/lspmux";
-          args = [ ];
-          cwd = "{root}";
-          languageIdByExtension = { ".rs" = "rust"; };
-          startupTimeoutMs = 45000;
-          diagnosticsWaitMs = 1500;
-          initializationOptions = { };
-          settings = { };
-        }
-      ];
-    };
+    text = builtins.toJSON (import ./lsp.nix { inherit pkgs; });
   };
 
-  home.file.".pi/agent/themes/vintage-earth.json" = {
-    text = builtins.toJSON (import ./themes/vintage-earth.nix { inherit theme; });
+  home.file.".pi/agent/themes/default.json" = {
+    text = builtins.toJSON (import ./theme.nix { inherit theme; });
   };
 
   programs.pi.coding-agent = {
     enable = true;
     settings = {
-      theme = "vintage-earth";
+      theme = "default";
       packages = [
         "npm:pi-mcp-adapter"
         "npm:pi-lsp"
