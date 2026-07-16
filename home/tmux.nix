@@ -1,17 +1,5 @@
 { pkgs, ... }:
-let
-  toggle-opencode = with pkgs; writeShellScriptBin "toggle-opencode" ''
-    set -euo pipefail
-    cwd="$(tmux display-message -p '#{pane_current_path}')"
-    sid="opencode-$(printf '%s' "$cwd" | md5sum | head -c 8)"
-    if tmux has-session -t "$sid" 2>/dev/null; then
-      exec tmux attach-session -t "$sid"
-    else
-      tmux new-session -d -s "$sid" -c "$cwd" "${pkgs.opencode}/bin/opencode --continue; tmux kill-session"
-      exec tmux attach-session -t "$sid"
-    fi
-  '';
-in
+
 {
   programs.tmux = {
     enable = true;
@@ -43,8 +31,11 @@ in
       bind-key -n M-8 select-window -t 8
       bind-key -n M-9 select-window -t 9
 
-      # new window
-      bind-key -n M-n new-window
+      # new window (current directory)
+      bind-key -n M-n new-window -c '#{pane_current_path}'
+
+      # new window (default directory)
+      bind-key -n M-o new-window
 
       # detach
       bind-key -n M-d detach-client
@@ -69,8 +60,8 @@ in
       # session select
       bind-key -n M-s display-popup -E "${tmux}/bin/tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"
 
-      # toggle opencode in a floating popup
-      bind-key -n M-i display-popup -w 80% -h 80% -E "${toggle-opencode}/bin/toggle-opencode"
+      # new window with pi (current directory)
+      bind-key -n M-i new-window -c '#{pane_current_path}' 'pi'
 
       # title
       set -g set-titles on
