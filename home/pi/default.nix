@@ -2,12 +2,21 @@
 {
   imports = [ inputs.pi-nix.homeModules.default ];
 
-  home.file.".pi/agent/lsp.json" = {
-    text = builtins.toJSON (import ./lsp.nix { inherit pkgs; });
-  };
-
-  home.file.".pi/agent/themes/default.json" = {
-    text = builtins.toJSON (import ./theme.nix { inherit theme; });
+  home.file = {
+    ".pi/agent/lsp.json" = {
+      text = builtins.toJSON (import ./lsp.nix { inherit pkgs; });
+    };
+    ".pi/agent/themes/default.json" = {
+      text = builtins.toJSON (import ./themes/theme.nix { inherit theme; });
+    };
+    ".pi/agent/skills" = {
+      source = ./skills;
+      recursive = true;
+    };
+    ".pi/agent/prompts" = {
+      source = ./prompts;
+      recursive = true;
+    };
   };
 
   programs.pi.coding-agent = {
