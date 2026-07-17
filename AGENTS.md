@@ -8,6 +8,8 @@ nix-collect-garbage -d                        # user gc
 sudo /run/current-system/bin/switch-to-configuration boot  # boot after gc
 ```
 
+**Agent constraint**: The agent MUST NOT run any deploy command (no `nixos-rebuild`, no `home-manager switch`, no `nix build`/`nix run`, no `sudo`). Make code changes only — the user applies them on their own schedule.
+
 ## Host system layout
 
 ```

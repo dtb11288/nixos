@@ -60,6 +60,9 @@
       # session select
       bind-key -n M-s display-popup -E "${tmux}/bin/tmux list-sessions | sed -E 's/:.*$//' | grep -v \"^$(tmux display-message -p '#S')\$\" | fzf --reverse | xargs tmux switch-client -t"
 
+      # lazygit popup (current directory)
+      bind-key -n M-g display-popup -w 80% -h 80% -E -d '#{pane_current_path}' lazygit
+
       # new window with pi (current directory)
       bind-key -n M-i new-window -c '#{pane_current_path}' 'pi'
 
