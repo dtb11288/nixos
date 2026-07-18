@@ -32,7 +32,6 @@
         "npm:context-mode"
         "npm:@llblab/pi-telegram"
         "npm:pi-vimmode"
-        "https://github.com/monotykamary/pi-double-esc@main"
       ];
     };
   };
