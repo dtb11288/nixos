@@ -47,8 +47,8 @@
       bind-key -n M-l select-pane -R
 
       # split window
-      bind-key -n M-\\ split-window -h
-      bind-key -n M-\- split-window -v
+      bind-key -n M-\\ split-window -h -c "#{pane_current_path}"
+      bind-key -n M-\- split-window -v -c "#{pane_current_path}"
 
       # vim selection
       # Enter copy/selection mode
