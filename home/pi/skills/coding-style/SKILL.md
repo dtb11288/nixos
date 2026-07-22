@@ -1,6 +1,6 @@
 ---
 name: coding-style
-description: "Enforce functional programming style on any code I write or review. Use whenever writing, editing, or reviewing code — in any language — to apply FP principles: immutable by default, pure functions, no raw loops, expression-oriented, type-driven design. Includes a universal methodology for applying FP in unfamiliar languages."
+description: "Enforce functional programming style on any code I write or review. Use whenever writing, editing, or reviewing code. Triggers on [implement, write code, edit code, refactor, review, PR review] and any code-related task."
 license: MIT
 metadata:
   author: binh

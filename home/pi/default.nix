@@ -17,6 +17,9 @@
       source = ./prompts;
       recursive = true;
     };
+    ".pi/agent/bin/openspec" = {
+      source = "${pkgs.openspec}/bin/openspec";
+    };
   };
 
   programs.pi.coding-agent = {

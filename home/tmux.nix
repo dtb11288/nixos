@@ -88,6 +88,7 @@
     plugins = with pkgs; [
       tmuxPlugins.yank
       tmuxPlugins.sensible
+      tmuxPlugins.tmux-which-key
     ];
   };
 }
