@@ -1,4 +1,7 @@
-{ pkgs, lib, kbLayout, username, ... }:
+{ config, pkgs, lib, kbLayout, username, ... }:
+let
+  fcitx5 = config.i18n.inputMethod.package;
+in
 {
   environment.systemPackages = with pkgs; [
     rofi
@@ -103,6 +106,8 @@
       ${pa_applet}/bin/pa-applet &
       ${goldendict-ng}/bin/goldendict &
       ${copyq}/bin/copyq &
+      ${blueman}/bin/blueman-applet &
+      ${fcitx5}/bin/fcitx5 &
       ${birdtray}/bin/birdtray &
       ${synology-drive-client}/bin/synology-drive &
     '';
