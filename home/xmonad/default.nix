@@ -18,12 +18,12 @@ in
   xdg.configFile."xmonad/xmonad.hs".source = with pkgs; replaceVars ./xmonad.hs ({
     runbar = "${runbar}/bin/runbar";
     xmonad = "xmonad";
-    notifysend = "${libnotify}/bin/notify-send";
+    notifysend = "${pkgs.libnotify}/bin/notify-send";
     tabheight = "${toString (28 * dpiRatio)}";
     easyeffects = "${pkgs.easyeffects}/bin/easyeffects";
     pomodoro = "${pkgs.pomodoro-gtk}/bin/pomodoro";
-    btop = "${common.terminal} -T btop -e ${btop}/bin/btop";
-    supersonic = "${pkgs.supersonic}/bin/supersonic";
+    btop = "${pkgs.alacritty}/bin/alacritty -T btop -e ${pkgs.btop}/bin/btop";
+    tauon = "${pkgs.tauon}/bin/tauon";
   } // theme.colors);
 
   xdg.configFile."xmonad/polybar.ini".source = pkgs.replaceVars ./polybar.ini ({

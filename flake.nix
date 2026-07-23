@@ -14,22 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Mango
-    mango = {
-      url = "github:mangowm/mango";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    dms = {
-      url = "github:AvengeMedia/DankMaterialShell/stable";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    quickshell = {
-      url = "git+https://git.outfoxxed.me/quickshell/quickshell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     # Pi coding agent
     pi-nix = {
       url = "github:lukasl-dev/pi.nix";
@@ -37,7 +21,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, nix-index-database, home-manager, mango, pi-nix, ... }@inputs:
+  outputs = { self, nixpkgs, nix-index-database, home-manager, pi-nix, ... }@inputs:
   let
     theme = import ./theme.nix;
     secrets = nixpkgs.lib.pipe ./secrets [
@@ -83,7 +67,6 @@
         pkgs = nixpkgs.legacyPackages.${system};
         extraSpecialArgs = makeArgs config;
         modules = [
-          mango.hmModules.mango
           nixpkgsConfig ./home/home.nix
         ];
       };
@@ -95,7 +78,6 @@
         modules = [
           nixpkgsConfig
           nix-index-database.nixosModules.default
-          mango.nixosModules.mango
           ./configuration.nix
           ./system/${hostname}/hardware.nix
           ./system/${hostname}/configuration.nix

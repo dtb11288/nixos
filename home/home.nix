@@ -11,7 +11,7 @@
     # You can also split up your configuration and import pieces of it here:
     ./theme.nix
     ./zsh.nix
-    ./foot.nix
+    ./alacritty.nix
     ./lazygit.nix
     ./zellij.nix
     ./rofi.nix
@@ -19,8 +19,10 @@
     ./git.nix
     ./helix.nix
     ./vim
+    ./dunst.nix
     ./tmux.nix
-    ./mango
+    ./sxhkd
+    ./xmonad
     ./rbw.nix
     ./aria2.nix
     ./lspmux.nix

@@ -1,9 +1,10 @@
-{ theme,  ... }:
+{ pkgs, theme,  ... }:
 {
   programs.alacritty = {
     enable = true;
     settings = {
       env.TERM = "alacritty";
+      terminal.shell = "${pkgs.tmux}/bin/tmux";
       font = {
         normal = {
           family = "SauceCodePro Nerd Font Mono";

@@ -1,11 +1,11 @@
-{ pkgs, lib, system, inputs, username, ... }:
+{ pkgs, lib, kbLayout, username, ... }:
 {
   environment.systemPackages = with pkgs; [
     rofi
     rofi-rbw
     rofi-vpn
     pinentry-qt
-    foot
+    alacritty
     pavucontrol
     easyeffects
     birdtray
@@ -13,7 +13,6 @@
     qpwgraph
     blueman
     xdg-utils
-    wtype
     playerctl
     arandr
     file-roller
@@ -23,24 +22,19 @@
     goldendict-ng
     wineWow64Packages.stable
     winetricks
+    polybar
+    xsel
+    xdotool
+    feh
+    sxhkd
+    dunst
+    libnotify
+    pamixer
+    caffeine-ng
+    picom
+    copyq
+    pa_applet
   ];
-
-  programs.mango.enable = true;
-
-  programs.dms-shell = {
-    enable = true;
-
-    package = inputs.dms.packages.${system}.default;
-    quickshell.package = inputs.quickshell.packages.${system}.quickshell;
-
-    # Core features
-    enableSystemMonitoring = true;     # System monitoring widgets (dgop)
-    enableVPN = true;                  # VPN management widget
-    enableDynamicTheming = true;       # Wallpaper-based theming (matugen)
-    enableAudioWavelength = true;      # Audio visualizer (cava)
-    enableCalendarEvents = true;       # Calendar integration (khal)
-    enableClipboardPaste = true;       # Pasting from the clipboard history (wtype)
-  };
 
   programs.xfconf.enable = true;
   programs.thunar = {
@@ -85,16 +79,62 @@
     extraPortals = with pkgs; [
       xdg-desktop-portal
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-wlr
     ];
   };
 
-  services.displayManager = {
-    sddm = {
+  services.xserver = {
+    enable = true;
+    xkb.layout = kbLayout;
+    excludePackages = with pkgs; [ xterm ];
+    windowManager.xmonad = {
       enable = true;
-      wayland.enable = true;
+      enableContribAndExtras = true;
+      extraPackages = hp: with hp; [
+        dbus
+        monad-logger
+        xmonad-dbus
+      ];
     };
-    defaultSession = "mango";
+
+    displayManager.sessionCommands = with pkgs; ''
+      ${xset}/bin/xset r rate 200 25
+      ${xset}/bin/xset dpms 300
+      ${feh}/bin/feh --bg-fill ${./../home/wallpaper}
+      ${pa_applet}/bin/pa-applet &
+      ${goldendict-ng}/bin/goldendict &
+      ${copyq}/bin/copyq &
+      ${birdtray}/bin/birdtray &
+      ${synology-drive-client}/bin/synology-drive &
+    '';
+  };
+
+  programs.slock.enable = true;
+
+  services.redshift = {
+    enable = true;
+    temperature = {
+      day = 5000;
+      night = 4000;
+    };
+  };
+
+  services.picom = {
+    enable = true;
+    fade = true;
+    fadeDelta = 5;
+    shadow = true;
+    shadowOpacity = 0.75;
+    inactiveOpacity = 0.99;
+    activeOpacity = 1.0;
+    backend = "glx";
+    settings = {
+      focus-exclude = "x = 0 && y = 0 && override_redirect = true";
+    };
+  };
+
+  services.displayManager = {
+    sddm.enable = true;
+    defaultSession = "none+xmonad";
     autoLogin = {
       enable = true;
       user = username;

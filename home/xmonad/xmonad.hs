@@ -111,7 +111,7 @@ myScatchPads =
   [ NS "easyeffects" "@easyeffects@" (title =? "Easy Effects") $ mkCenter 0.7 0.7
   , NS "btop" "@btop@" (title =? "btop") $ mkCenter 0.7 0.7
   , NS "pomodoro" "@pomodoro@" (title =? "Pomodoro") $ mkCenter 0.3 0.3
-  , NS "supersonic" "@supersonic@" (className =? "Supersonic") $ mkCenter 0.7 0.7
+  , NS "tauon" "@tauon@" (className =? "Tauon") $ mkCenter 0.7 0.7
   ]
  where
   mkCenter :: Rational -> Rational -> ManageHook
@@ -125,7 +125,7 @@ additionKeys =
   [ ((myModMask .|. shiftMask, xK_e), callScratchPad "easyeffects")
   , ((myModMask .|. shiftMask, xK_t), callScratchPad "btop")
   , ((myModMask .|. shiftMask, xK_p), callScratchPad "pomodoro")
-  , ((myModMask .|. shiftMask, xK_m), callScratchPad "supersonic")
+  , ((myModMask .|. shiftMask, xK_m), callScratchPad "tauon")
   , ((myModMask, xK_q), spawn myRestartXmonad)
   ]
  where
