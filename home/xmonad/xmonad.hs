@@ -126,7 +126,7 @@ additionKeys =
   , ((myModMask .|. shiftMask, xK_t), callScratchPad "btop")
   , ((myModMask .|. shiftMask, xK_p), callScratchPad "pomodoro")
   , ((myModMask .|. shiftMask, xK_m), callScratchPad "tauon")
-  , ((myModMask, xK_q), spawn myRestartXmonad)
+  , ((myModMask, xK_r), spawn myRestartXmonad)
   ]
  where
   callScratchPad = namedScratchpadAction myScatchPads

@@ -1,4 +1,4 @@
-{ pkgs, config, dpi, dpiRatio, theme, ... }:
+{ pkgs, config, dpi, dpiRatio, wifi, theme, ... }:
 let
   runbar = pkgs.writeShellScriptBin "runbar" ''
     for pid in `pgrep polybar`; do kill $pid; done;
@@ -31,5 +31,6 @@ in
     height = "${toString (24 * dpiRatio)}";
     dpi = "${toString dpi}";
     traymaxsize = "${toString (18 * dpiRatio)}";
+    wifi_iface = "${wifi}";
   } // theme.colors);
 }
