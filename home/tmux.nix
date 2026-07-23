@@ -9,16 +9,23 @@
     keyMode = "vi";
     newSession = true;
     mouse = true;
+    terminal = "tmux-256color";
     escapeTime = 0;
 
-    extraConfig = with pkgs; ''
+    extraConfig = with pkgs; let
+      esc = "\033";
+    in ''
       unbind C-b
       set -g prefix M-a
       set -g detach-on-destroy on
       set -g renumber-windows on
       set -g set-clipboard on
-      set -s extended-keys on
-      set -g extended-keys-format csi-u
+      set -s extended-keys off
+
+      # Shift/Ctrl/Alt+Enter passthrough (CSI u literal bytes)
+      bind-key -n S-Enter send-keys -l "''${esc}[13;2u"
+      bind-key -n M-Enter send-keys -l "''${esc}[13;3u"
+      bind-key -n C-Enter send-keys -l "''${esc}[13;5u"
 
       # switch windows alt+number
       bind-key -n M-1 select-window -t 1
