@@ -19,9 +19,15 @@
       url = "github:lukasl-dev/pi.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # XLibre — community-maintained X11 server fork
+    xlibre-overlay = {
+      url = "git+https://codeberg.org/takagemacoed/xlibre-overlay?ref=dev";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, nix-index-database, home-manager, pi-nix, ... }@inputs:
+  outputs = { self, nixpkgs, nix-index-database, home-manager, pi-nix, xlibre-overlay, ... }@inputs:
   let
     theme = import ./theme.nix;
     secrets = nixpkgs.lib.pipe ./secrets [
@@ -72,22 +78,27 @@
       };
     mkNixosSystem = { hostname, system, ... }@config:
       let args = makeArgs config;
+          baseModules = [
+            nixpkgsConfig
+            nix-index-database.nixosModules.default
+            xlibre-overlay.nixosModules.overlay-xlibre-xserver
+            xlibre-overlay.nixosModules.overlay-all-xlibre-drivers
+            ./configuration.nix
+            ./system/${hostname}/hardware.nix
+            ./system/${hostname}/configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.${username} = import ./home/home.nix;
+              home-manager.extraSpecialArgs = args;
+            }
+          ];
       in nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = args;
-        modules = [
-          nixpkgsConfig
-          nix-index-database.nixosModules.default
-          ./configuration.nix
-          ./system/${hostname}/hardware.nix
-          ./system/${hostname}/configuration.nix
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.${username} = import ./home/home.nix;
-            home-manager.extraSpecialArgs = args;
-          }
+        modules = baseModules ++ nixpkgs.lib.optionals (hostname == "pc") [
+          xlibre-overlay.nixosModules.nvidia-ignore-ABI
         ];
       };
     mkConfigs = systems: {

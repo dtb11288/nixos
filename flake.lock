@@ -28,6 +28,20 @@
         "type": "github"
       }
     },
+    "fetchurl-sources": {
+      "flake": false,
+      "locked": {
+        "path": "./consumer-overridable/fetchurl-sources.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "./consumer-overridable/fetchurl-sources.nix",
+        "type": "path"
+      },
+      "parent": [
+        "xlibre-overlay"
+      ]
+    },
     "flake-parts": {
       "inputs": {
         "nixpkgs-lib": [
@@ -50,6 +64,24 @@
         "type": "github"
       }
     },
+    "flake-parts_2": {
+      "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib"
+      },
+      "locked": {
+        "lastModified": 1768135262,
+        "narHash": "sha256-PVvu7OqHBGWN16zSi6tEmPwwHQ4rLPU9Plvs8/1TUBY=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "80daad04eddbbf5a4d883996a73f3f542fa437ac",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -57,11 +89,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1784588016,
-        "narHash": "sha256-ouZe80aWEhMLVMkqICFDN+JUw+0FJtCr/bh+hHtRtMg=",
+        "lastModified": 1784725727,
+        "narHash": "sha256-J5+C9wsO0lhDyUalQzfplDbRjyHDYeEH5+9sdyXtwa8=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "deeb6b7eb7e0c44ae1819c051ce175bd92a85100",
+        "rev": "041a999e8c1c5b731913855909e68d30ca69b8e0",
         "type": "github"
       },
       "original": {
@@ -121,6 +153,21 @@
         "type": "github"
       }
     },
+    "nixpkgs-lib": {
+      "locked": {
+        "lastModified": 1765674936,
+        "narHash": "sha256-k00uTP4JNfmejrCLJOwdObYC9jHRrr/5M/a/8L2EIdo=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "2075416fcb47225d9b68ac469a5c4801a9c4dd85",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
     "pi-nix": {
       "inputs": {
         "bun2nix": "bun2nix",
@@ -131,11 +178,11 @@
         "systems": "systems"
       },
       "locked": {
-        "lastModified": 1784532650,
-        "narHash": "sha256-50kpr8hJKmsd6J+0KKS1WRXp1JRw9nLDHFA4fi/QQ6o=",
+        "lastModified": 1784769694,
+        "narHash": "sha256-3kURAdYyiNxB+jTOrgJ5OLhe73vXXJNOjd4wWCABvsU=",
         "owner": "lukasl-dev",
         "repo": "pi.nix",
-        "rev": "1ee5a66c7ae8b33051b90aa92016d976dfbb729c",
+        "rev": "3f97ab609322d3d57025bc6c334aab665d96d477",
         "type": "github"
       },
       "original": {
@@ -149,7 +196,8 @@
         "home-manager": "home-manager",
         "nix-index-database": "nix-index-database",
         "nixpkgs": "nixpkgs",
-        "pi-nix": "pi-nix"
+        "pi-nix": "pi-nix",
+        "xlibre-overlay": "xlibre-overlay"
       }
     },
     "systems": {
@@ -166,6 +214,20 @@
         "repo": "default",
         "type": "github"
       }
+    },
+    "systems_2": {
+      "flake": false,
+      "locked": {
+        "path": "./systems.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "./systems.nix",
+        "type": "path"
+      },
+      "parent": [
+        "xlibre-overlay"
+      ]
     },
     "treefmt-nix": {
       "inputs": {
@@ -188,6 +250,60 @@
         "repo": "treefmt-nix",
         "type": "github"
       }
+    },
+    "xlibre-drivers-overlay-choice": {
+      "flake": false,
+      "locked": {
+        "path": "./consumer-overridable/drivers-overlay-choice.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "./consumer-overridable/drivers-overlay-choice.nix",
+        "type": "path"
+      },
+      "parent": [
+        "xlibre-overlay"
+      ]
+    },
+    "xlibre-overlay": {
+      "inputs": {
+        "fetchurl-sources": "fetchurl-sources",
+        "flake-parts": "flake-parts_2",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "systems": "systems_2",
+        "xlibre-drivers-overlay-choice": "xlibre-drivers-overlay-choice",
+        "xserver-meson-flags": "xserver-meson-flags"
+      },
+      "locked": {
+        "lastModified": 1777652367,
+        "narHash": "sha256-vDl1AjSwywTSJYOEXh51IhM28CgR9kuK2dHOoIDl8+4=",
+        "ref": "dev",
+        "rev": "4a2853fa1fda403b295cfa9da01093b4e31af8b1",
+        "revCount": 114,
+        "type": "git",
+        "url": "https://codeberg.org/takagemacoed/xlibre-overlay"
+      },
+      "original": {
+        "ref": "dev",
+        "type": "git",
+        "url": "https://codeberg.org/takagemacoed/xlibre-overlay"
+      }
+    },
+    "xserver-meson-flags": {
+      "flake": false,
+      "locked": {
+        "path": "./consumer-overridable/xserver-meson-flags.nix",
+        "type": "path"
+      },
+      "original": {
+        "path": "./consumer-overridable/xserver-meson-flags.nix",
+        "type": "path"
+      },
+      "parent": [
+        "xlibre-overlay"
+      ]
     }
   },
   "root": "root",
